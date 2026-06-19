@@ -1,26 +1,36 @@
-# Environment variables
+# Secrets and sensitive files
 .env
-.env.local
-.env.*.local
-
-# Private keys
 *.pem
 *.key
-private-key.txt
+*.crt
+*.p12
+*.pfx
 secrets.json
+config.json
 
 # Node modules
 node_modules/
-
-# Build outputs
-dist/
-build/
-
-# IDE files
-.vscode/
-.idea/
-*.swp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Temp files
+tmp/
+temp/
+*.tmp
