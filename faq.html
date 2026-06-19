@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fly Infinity Token - FAQ</title>
+    
+        <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-image: url('background-desktop.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                background-image: url('background-mobile.png');
+                background-size: contain;
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-color: #0F0F0F;
+                padding: 15px;
+            }
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.85);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ===== TOP NAV BAR ===== */
+        .top-bar {
+            background: #0F0F0F;
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 12px 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .top-bar .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #D4AF37;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .top-bar .logo i {
+            font-size: 22px;
+        }
+        
+        .hamburger {
+            background: transparent;
+            border: 1px solid #00C896;
+            color: #00C896;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger:hover {
+            background: #00C896;
+            color: #0F0F0F;
+            transform: rotate(90deg);
+        }
+        
+        /* ===== SIDEBAR OVERLAY ===== */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #0F0F0F;
+            border-left: 2px solid rgba(0, 200, 150, 0.3);
+            z-index: 1000;
+            padding: 30px 25px;
+            transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar.open {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 200, 150, 0.2);
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-header .logo-text {
+            color: #D4AF37;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .sidebar-header .close-btn {
+            background: transparent;
+            border: none;
+            color: #ff4444;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-radius: 16px;
+            color: #c0d0e8;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .sidebar-menu a i {
+            width: 24px;
+            font-size: 18px;
+            color: #00C896;
+        }
+        
+        .sidebar-menu a:hover {
+            background: rgba(0, 200, 150, 0.08);
+            border-color: rgba(0, 200, 150, 0.3);
+            transform: translateX(-5px);
+        }
+        
+        .sidebar-menu a.active {
+            background: rgba(0, 200, 150, 0.15);
+            border-color: #00C896;
+            color: #D4AF37;
+        }
+        
+        .sidebar-menu a.active i {
+            color: #D4AF37;
+        }
+        
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 200, 150, 0.2);
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .sidebar-footer a {
+            color: #00C896;
+            text-decoration: none;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            color: #D4AF37;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 200, 150, 0.3);
+            padding-bottom: 15px;
+        }
+        
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .faq-item {
+            background: #0F0F0F;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 200, 150, 0.15);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: rgba(0, 200, 150, 0.4);
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            cursor: pointer;
+            color: #D4AF37;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .faq-question:hover {
+            background: rgba(0, 200, 150, 0.05);
+        }
+        
+        .faq-question .faq-icon {
+            font-size: 18px;
+            color: #00C896;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        
+        .faq-question .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 24px;
+            color: #c0d0e8;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .faq-answer.open {
+            max-height: 800px;
+            padding: 0 24px 20px 24px;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 5px;
+        }
+        
+        .faq-answer .highlight {
+            color: #00C896;
+            font-weight: bold;
+        }
+        
+        .faq-answer .warning-box {
+            background: rgba(255, 68, 68, 0.08);
+            border-left: 3px solid #ff4444;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        
+        .faq-answer .info-box {
+            background: rgba(0, 200, 150, 0.06);
+            border-left: 3px solid #00C896;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        
+        .faq-answer .step-box {
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 3px solid #D4AF37;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-top: 30px;
+        }
+        
+        .footer a {
+            color: #00C896;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 85vw;
+                right: -85vw;
+            }
+            .top-bar .logo {
+                font-size: 15px;
+            }
+            .page-title {
+                font-size: 24px;
+            }
+            .faq-question {
+                font-size: 14px;
+                padding: 14px 18px;
+            }
+            .faq-answer {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <!-- ===== TOP NAV BAR ===== -->
+    <div class="top-bar">
+        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+    <img src="logo.png" alt="Fly Infinity DAO" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #D4AF37;">
+    <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+</a>
+        <button class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text" style="display: flex; align-items: center; gap: 10px;">
+    <img src="logo.png" alt="Fly Infinity DAO" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #D4AF37;">
+    <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+</span>
+            <button class="close-btn" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="sidebar-menu">
+            <a href="index.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="compare.html">
+                <i class="fas fa-chart-line"></i> Comparison
+            </a>
+            <a href="dapp.html">
+                <i class="fas fa-charging-station"></i> DApp
+            </a>
+            <a href="transactions.html">
+                <i class="fas fa-history"></i> Transactions
+            </a>
+            <a href="privacy.html">
+                <i class="fas fa-shield-alt"></i> Privacy
+            </a>
+            <a href="warnings.html">
+                <i class="fas fa-exclamation-triangle"></i> Warnings
+            </a>
+            <a href="faq.html" class="active">
+                <i class="fas fa-question-circle"></i> FAQ
+            </a>
+            <a href="whitepaper.html">
+                <i class="fas fa-file-pdf"></i> White Paper
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <a href="https://flyinfinitydao.github.io/fit-price-display" target="_blank">flyinfinitydao.github.io</a><br>
+            Fly Infinity DAO
+        </div>
+    </div>
+
+    <!-- ===== FAQ PAGE CONTENT ===== -->
+    <h1 class="page-title"><i class="fas fa-question-circle" style="color: #00C896; margin-right: 12px;"></i>Frequently Asked Questions</h1>
+    
+    <div class="faq-container">
+        
+        <!-- FAQ 1: Cost of ownership shares -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 How much does it cost to buy Fly Infinity ownership shares?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>To purchase <span class="highlight">Fly Infinity</span> ownership shares, you need to have the following in your wallet:</p>
+                <ul>
+                    <li><span class="highlight">100 DAI</span> — for the ownership share purchase</li>
+                    <li><span class="highlight">Approximately $1 worth of BNB</span> — for network gas fees</li>
+                </ul>
+                <div class="info-box">
+                    <p>💡 <strong>Important:</strong> Make sure you have enough BNB in your wallet to cover transaction fees on the BNB Smart Chain network.</p>
+                </div>
+                <p>Once you have these amounts, follow the steps in the DApp to complete your ownership share purchase.</p>
+            </div>
+        </div>
+        
+        <!-- FAQ 2: How to buy ownership shares? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 How do I buy ownership shares?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>To purchase <span class="highlight">Fly Infinity</span> ownership shares, follow these steps:</p>
+                <div class="step-box">
+                    <p><strong>Step 1:</strong> Go to the <span class="highlight">DApp</span> page.</p>
+                    <p><strong>Step 2:</strong> Connect your wallet (MetaMask, TrustWallet, or TokenPocket).</p>
+                    <p><strong>Step 3:</strong> First, <span class="highlight">approve 100 DAI</span> for the network contract.</p>
+                    <p><strong>Step 4:</strong> Sign the <span class="highlight">Agreement Road Map</span>.</p>
+                    <p><strong>Step 5:</strong> Enter your referrer address and complete registration as a <span class="highlight">network owner</span>.</p>
+                </div>
+                <p>After registration, you will be recognized as an official <span class="highlight">owner</span> of the Fly Infinity network and can enjoy all its benefits.</p>
+                <div class="info-box">
+                    <p>💡 <strong>Note:</strong> You must have at least <span class="highlight">100 DAI</span> in your wallet to purchase ownership shares.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ 3: How to buy FIT? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 How do I buy FIT tokens?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>To purchase <span class="highlight">FIT</span> tokens, <strong>you must first buy Fly Infinity ownership shares</strong>, then follow these steps:</p>
+                <div class="step-box">
+                    <p><strong>Step 1:</strong> After registering as an owner, return to the <span class="highlight">DApp</span> page.</p>
+                    <p><strong>Step 2:</strong> <span class="highlight">Approve 1000 DAI</span> for the token contract.</p>
+                    <p><strong>Step 3:</strong> Enter the amount of DAI you want to spend.</p>
+                    <p><strong>Step 4:</strong> Click the <span class="highlight">Buy FIT</span> button and confirm the transaction in your wallet.</p>
+                </div>
+                <p>After confirmation, the equivalent FIT will be sent to your wallet.</p>
+                <div class="info-box">
+                    <p>💡 <strong>Important:</strong> You can only buy <span class="highlight">FIT</span> after purchasing ownership shares.</p>
+                </div>
+                <p style="font-size: 12px; color: #888;">Buy fee: <span class="highlight">3%</span></p>
+            </div>
+        </div>
+        
+        <!-- FAQ 4: How to sell FIT? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 How do I sell FIT tokens?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>To sell <span class="highlight">FIT</span> tokens, follow these steps:</p>
+                <div class="step-box">
+                    <p><strong>Step 1:</strong> Go to the <span class="highlight">DApp</span> page.</p>
+                    <p><strong>Step 2:</strong> Connect your wallet.</p>
+                    <p><strong>Step 3:</strong> Enter the amount of FIT you want to sell.</p>
+                    <p><strong>Step 4:</strong> Click the <span class="highlight">Sell FIT</span> button.</p>
+                    <p><strong>Step 5:</strong> Confirm the transaction in your wallet.</p>
+                </div>
+                <p>After confirmation, the <span class="highlight">equivalent DAI</span> will be sent to your wallet.</p>
+                <div class="info-box">
+                    <p>💡 <strong>Note:</strong> Every FIT sale adds a portion of the fee to the <span class="highlight">DAI reserve</span>, increasing the base token price.</p>
+                </div>
+                <p style="font-size: 12px; color: #888;">Sell fee: <span class="highlight">6%</span></p>
+            </div>
+        </div>
+        
+        <!-- FAQ 5: Can I transfer tokens between wallets? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 Can I transfer tokens between wallets?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p><span class="highlight">No</span> — <span class="highlight">FIT</span> tokens <strong>cannot</strong> be transferred between wallets.</p>
+                <p>This restriction is designed for the following reasons:</p>
+                <ul>
+                    <li>✅ <strong>Maintain the constantly rising (non-diminishing) price algorithm</strong> — Token transfers could create price volatility and a black market.</li>
+                    <li>✅ <strong>Prevent black market creation</strong> — All FIT trades must go through the <span class="highlight">smart contract</span> to ensure transparency and security.</li>
+                    <li>✅ <strong>Full transparency</strong> — All transactions are visible and auditable on the blockchain.</li>
+                </ul>
+                <div class="info-box">
+                    <p>💡 <strong>Conclusion:</strong> You can only trade FIT through the <span class="highlight">smart contract</span>. FIT is non-transferable between wallets.</p>
+                </div>
+                <p>The only way to change ownership is to <strong>sell through the contract</strong> and have someone else buy.</p>
+            </div>
+        </div>
+        
+        <!-- FAQ 6: What are the fees? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 What are the buy and sell fees?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>Transaction fees in <span class="highlight">Fly Infinity Token</span> are as follows:</p>
+                <ul>
+                    <li><span class="highlight">Buying FIT:</span> <strong>3%</strong> of the input amount</li>
+                    <li><span class="highlight">Selling FIT:</span> <strong>6%</strong> of the output amount</li>
+                </ul>
+                <p>These fees are automatically added to the <span class="highlight">DAI reserve</span>, which increases the base token price.</p>
+                <div class="info-box">
+                    <p>💡 <strong>Key Point:</strong> The more transactions occur, the <span class="highlight">faster</span> the FIT base price grows. This means every buy and sell increases the value of your tokens.</p>
+                </div>
+                <p style="font-size: 12px; color: #888;">📊 All fees are transparent and viewable on the smart contract.</p>
+            </div>
+        </div>
+        
+        <!-- FAQ 7: Can I change my wallet? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 Can I change my wallet?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes, but with one <span class="highlight">important condition</span>:</p>
+                <div class="warning-box">
+                    <p style="color: #ff4444; font-weight: bold;">⚠️ You must sell all your FIT before changing your wallet!</p>
+                </div>
+                <p>If you change your wallet without selling first, your tokens will become <strong>inaccessible</strong> and you will lose the ability to sell them.</p>
+                <div class="step-box">
+                    <p><strong>✅ Correct approach:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>First, <span class="highlight">sell</span> all your FIT tokens.</li>
+                        <li>Change your wallet.</li>
+                        <li><span class="highlight">Buy FIT</span> again in your new wallet.</li>
+                    </ol>
+                </div>
+                <div class="info-box">
+                    <p>💡 <strong>Reason:</strong> FIT is non-transferable between wallets, so selling and repurchasing is the only way to change ownership.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ 8: What if I lose my recovery phrase? -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>🔹 What if I lose my recovery phrase?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <p><span class="highlight">Unfortunately</span>, if you lose your recovery phrase (Seed Phrase / Recovery Phrase), <strong>there is no way to recover your wallet</strong>.</p>
+                <p>The recovery phrase is the only way to access your wallet, and:</p>
+                <ul>
+                    <li>❌ Cannot be changed</li>
+                    <li>❌ Cannot be reset</li>
+                    <li>❌ No support team can recover it</li>
+                    <li>❌ No one else has access to it</li>
+                </ul>
+                <div class="info-box">
+                    <p style="color: #00C896; font-weight: bold;">✅ Security recommendations:</p>
+                    <ul>
+                        <li>Write your recovery phrase on <strong>paper</strong> and store it in a safe place.</li>
+                        <li>Keep multiple copies in separate secure locations.</li>
+                        <li>Never store it digitally (screenshots, cloud, email).</li>
+                        <li>Never share it with anyone.</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p style="color: #ff4444;">⚠️ <strong>Warning:</strong> No support team, including the Fly Infinity team, will ever ask for your recovery phrase. Beware of scammers!</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <a href="index.html">Dashboard</a> | 
+        <a href="compare.html">Comparison</a> | 
+        <a href="transactions.html">Transactions</a> | 
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="warnings.html">Warnings</a> | 
+        <a href="faq.html">FAQ</a><br>
+        Fly Infinity DAO
+    </div>
+</div>
+
+<!-- ===== SIDEBAR SCRIPT ===== -->
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openSidebar);
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+
+    // ===== FAQ TOGGLE =====
+    function toggleFAQ(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = answer.classList.contains('open');
+        
+        document.querySelectorAll('.faq-answer').forEach(el => {
+            if (el !== answer && el.classList.contains('open')) {
+                el.classList.remove('open');
+                el.previousElementSibling.querySelector('.faq-icon').classList.remove('rotated');
+            }
+        });
+        
+        answer.classList.toggle('open');
+        if (icon) {
+            icon.classList.toggle('rotated');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstFAQ = document.querySelector('.faq-answer');
+        if (firstFAQ) {
+            firstFAQ.classList.add('open');
+            const icon = firstFAQ.previousElementSibling.querySelector('.faq-icon');
+            if (icon) icon.classList.add('rotated');
+        }
+    });
+</script>
+
+</body>
+</html>

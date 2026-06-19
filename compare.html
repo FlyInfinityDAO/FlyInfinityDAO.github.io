@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fly Infinity Token - Price Comparison</title>
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-image: url('background-desktop.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                background-image: url('background-mobile.png');
+                background-size: contain;
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-color: #0F0F0F;
+                padding: 15px;
+            }
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.85);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ===== TOP NAV BAR ===== */
+        .top-bar {
+            background: #0F0F0F;
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 12px 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .top-bar .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #D4AF37;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .top-bar .logo i {
+            font-size: 22px;
+        }
+        
+        .hamburger {
+            background: transparent;
+            border: 1px solid #00C896;
+            color: #00C896;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger:hover {
+            background: #00C896;
+            color: #0F0F0F;
+            transform: rotate(90deg);
+        }
+        
+        /* ===== SIDEBAR OVERLAY ===== */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #0F0F0F;
+            border-left: 2px solid rgba(0, 200, 150, 0.3);
+            z-index: 1000;
+            padding: 30px 25px;
+            transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar.open {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 200, 150, 0.2);
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-header .logo-text {
+            color: #D4AF37;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .sidebar-header .close-btn {
+            background: transparent;
+            border: none;
+            color: #ff4444;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-radius: 16px;
+            color: #c0d0e8;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .sidebar-menu a i {
+            width: 24px;
+            font-size: 18px;
+            color: #00C896;
+        }
+        
+        .sidebar-menu a:hover {
+            background: rgba(0, 200, 150, 0.08);
+            border-color: rgba(0, 200, 150, 0.3);
+            transform: translateX(-5px);
+        }
+        
+        .sidebar-menu a.active {
+            background: rgba(0, 200, 150, 0.15);
+            border-color: #00C896;
+            color: #D4AF37;
+        }
+        
+        .sidebar-menu a.active i {
+            color: #D4AF37;
+        }
+        
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 200, 150, 0.2);
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .sidebar-footer a {
+            color: #00C896;
+            text-decoration: none;
+        }
+        
+        .card {
+            background: #0F0F0F;
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+        }
+        
+        .token-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            justify-content: center;
+            border-bottom: 1px solid rgba(0, 200, 150, 0.2);
+            padding-bottom: 15px;
+        }
+        
+        .token-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            color: #c0d0e8;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .token-btn:hover {
+            border-color: #00C896;
+            color: #00C896;
+            transform: translateY(-2px);
+        }
+        
+        .token-btn.active {
+            background: linear-gradient(135deg, #00C896, #008a6a);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 200, 150, 0.3);
+        }
+        
+        .token-symbol {
+            font-weight: bold;
+        }
+        
+        .token-name {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        
+        .price-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            border-left: 3px solid;
+        }
+        
+        .price-main {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .price-current {
+            font-size: 32px;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .price-change {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .price-change.positive { color: #00C896; }
+        .price-change.negative { color: #ff4444; }
+        
+        .price-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .price-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .price-stat-label {
+            font-size: 11px;
+            color: #888;
+        }
+        
+        .price-stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .timeframe-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .time-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            color: #c0d0e8;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .time-btn:hover, .time-btn.active {
+            background: #00C896;
+            border-color: #00C896;
+            color: #0F0F0F;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-top: 20px;
+        }
+        
+        .footer a {
+            color: #00C896;
+            text-decoration: none;
+        }
+        
+        .refresh-btn {
+            background: transparent;
+            border: 1px solid #00C896;
+            color: #00C896;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            background: #00C896;
+            color: #0F0F0F;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 28px;
+            z-index: 10;
+        }
+        
+        .cache-info {
+            text-align: center;
+            font-size: 10px;
+            color: #00C896;
+            margin-top: 10px;
+        }
+        
+        /* ===== TABLE HISTORY STYLES ===== */
+        .history-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .history-controls button {
+            background: transparent;
+            border: 1px solid #00C896;
+            color: #00C896;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .history-controls button:hover {
+            background: #00C896;
+            color: #0F0F0F;
+        }
+        
+        .history-controls button.active {
+            background: #00C896;
+            color: #0F0F0F;
+        }
+        
+        .history-controls select {
+            background: #1a1a1a;
+            border: 1px solid #00C896;
+            color: #D4AF37;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .history-controls select:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        
+        .history-date-display {
+            color: #D4AF37;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+            .price-info-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .price-stats {
+                justify-content: center;
+            }
+            .price-current {
+                font-size: 24px;
+            }
+            .token-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+            .sidebar {
+                width: 85vw;
+                right: -85vw;
+            }
+            .top-bar .logo {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <!-- ===== TOP NAV BAR ===== -->
+    <div class="top-bar">
+        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+    <img src="logo.png" alt="Fly Infinity DAO" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #D4AF37;">
+    <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+</a>
+        <button class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text" style="display: flex; align-items: center; gap: 10px;">
+    <img src="logo.png" alt="Fly Infinity DAO" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #D4AF37;">
+    <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+</span>
+            <button class="close-btn" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="sidebar-menu">
+            <a href="index.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="compare.html" class="active">
+                <i class="fas fa-chart-line"></i> Comparison
+            </a>
+            <a href="dapp.html">
+                <i class="fas fa-charging-station"></i> DApp
+            </a>
+            <a href="transactions.html">
+                <i class="fas fa-history"></i> Transactions
+            </a>
+            <a href="privacy.html">
+                <i class="fas fa-shield-alt"></i> Privacy
+            </a>
+            <a href="warnings.html">
+                <i class="fas fa-exclamation-triangle"></i> Warnings
+            </a>
+            <a href="faq.html">
+                <i class="fas fa-question-circle"></i> FAQ
+            </a>
+            <a href="whitepaper.html">
+                <i class="fas fa-file-pdf"></i> White Paper
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <a href="https://flyinfinitydao.github.io/fit-price-display" target="_blank">flyinfinitydao.github.io</a><br>
+            Fly Infinity DAO
+        </div>
+    </div>
+
+    <!-- ===== PRICE TABLE WITH HISTORY ===== -->
+    <div class="card">
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;">
+            <i class="fas fa-table"></i> Live Price Comparison Table
+        </div>
+        <p style="color:#888; text-align:center; font-size:11px; margin-bottom:20px;">
+            Real-time price changes over the last 24 hours
+        </p>
+        
+        <div style="overflow-x: auto;">
+            <table id="priceTable" style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="background: #1a1a1a; border-bottom: 2px solid rgba(0, 200, 150, 0.3);">
+                        <th style="padding: 12px 15px; text-align: left; color: #D4AF37; font-weight: bold;">Coin</th>
+                        <th style="padding: 12px 15px; text-align: right; color: #888; font-weight: bold;">Price (24h Ago)</th>
+                        <th style="padding: 12px 15px; text-align: right; color: #888; font-weight: bold;">Current Price</th>
+                        <th style="padding: 12px 15px; text-align: right; color: #888; font-weight: bold;">24h Change</th>
+                    </tr>
+                </thead>
+                <tbody id="priceTableBody">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 30px; color: #888;">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- ===== HISTORY CONTROLS ===== -->
+        <div class="history-controls">
+            <button id="historyTodayBtn" class="active">Today</button>
+            <button id="historyYesterdayBtn">Yesterday</button>
+            <button id="history7daysBtn">7 Days Ago</button>
+            <button id="history14daysBtn">14 Days Ago</button>
+            <button id="history30daysBtn">30 Days Ago</button>
+            <select id="historyDateSelect">
+                <option value="">Select a date...</option>
+            </select>
+            <button id="historyGoBtn">Go</button>
+        </div>
+        
+        <div class="history-date-display" id="historyDateDisplay">Showing: Today (Live Data)</div>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <button id="refreshTableBtn" class="refresh-btn" style="padding: 6px 20px;">
+                <i class="fas fa-sync-alt"></i> Refresh Table
+            </button>
+        </div>
+        
+        <div style="color: #888; font-size: 9px; text-align: center; margin-top: 10px;">
+            Last updated: <span id="tableLastUpdate">—</span>
+        </div>
+    </div>
+
+    <!-- Description Card -->
+    <div class="card" style="text-align: center; padding: 20px; margin-bottom: 25px;">
+        <p style="color: #D4AF37; font-size: 14px; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+            <i class="fas fa-chart-line" style="color: #D4AF37; margin-right: 8px;"></i>
+            In this page, you can see the <strong style="color: #D4AF37;">constantly rising (non-diminishing) chart of FIT</strong> 
+            alongside the <strong style="color: #D4AF37;">volatile charts of top cryptocurrencies</strong>.
+            <br>
+            <strong style="color: #D4AF37;">FIT</strong> — the world's first <strong style="color: #D4AF37;">non-diminishing, always rising</strong> digital asset.
+        </p>
+    </div>
+
+    <div class="card" style="position: relative;">
+        <div class="token-selector" id="tokenSelector"></div>
+        
+        <div class="price-info-bar" id="priceInfoBar" style="border-left-color: #D4AF37;">
+            <div class="price-main">
+                <span class="price-current" id="currentPrice">—</span>
+                <span class="price-change" id="priceChange">—</span>
+            </div>
+            <div class="price-stats" id="priceStats"></div>
+        </div>
+        
+        <div class="timeframe-buttons">
+            <button class="time-btn" data-days="7">1W</button>
+            <button class="time-btn" data-days="30">1M</button>
+            <button class="time-btn" data-days="90">3M</button>
+            <button class="time-btn" data-days="180">6M</button>
+            <button class="time-btn active" data-days="365">1Y</button>
+            <button class="time-btn" data-days="max">All</button>
+        </div>
+        
+        <div class="chart-container" id="chartContainer">
+            <canvas id="priceChart"></canvas>
+        </div>
+        
+        <div class="cache-info" id="cacheInfo">
+            <i class="fas fa-database"></i> Loading cache data...
+        </div>
+        
+        <div style="display: flex; justify-content: center; margin-top: 15px;">
+            <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="index.html">Dashboard</a> | 
+        <a href="compare.html">Comparison</a> | 
+        <a href="transactions.html">Transactions</a> | 
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="warnings.html">Warnings</a> | 
+        <a href="faq.html">FAQ</a><br>
+        Data updates every 6 hours via GitHub Actions • FIT price from blockchain<br>
+        Fly Infinity DAO
+    </div>
+</div>
+
+<script>
+    // ==================== TOKEN CONFIGURATION ====================
+    const TOKENS = [
+        { id: 'fit', symbol: 'FIT', name: 'Fly Infinity', color: '#D4AF37', isCustom: true },
+        { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', color: '#F7931A' },
+        { id: 'ethereum', symbol: 'ETH', name: 'Ethereum', color: '#627EEA' },
+        { id: 'binancecoin', symbol: 'BNB', name: 'BNB', color: '#F3BA2F' },
+        { id: 'ripple', symbol: 'XRP', name: 'XRP', color: '#00AAE4' },
+        { id: 'solana', symbol: 'SOL', name: 'Solana', color: '#14F195' },
+        { id: 'cardano', symbol: 'ADA', name: 'Cardano', color: '#0033AD' },
+        { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', color: '#C2A633' },
+        { id: 'tron', symbol: 'TRX', name: 'TRON', color: '#FF0014' },
+        { id: 'zcash', symbol: 'ZEC', name: 'Zcash', color: '#F4B728' },
+        { id: 'stellar', symbol: 'XLM', name: 'Stellar', color: '#08B5E5' },
+        { id: 'pancakeswap', symbol: 'CAKE', name: 'PancakeSwap', color: '#D1884F' },
+        { id: 'toncoin', symbol: 'TON', name: 'Toncoin', color: '#0088CC' },
+        { id: 'shibainu', symbol: 'SHIB', name: 'Shiba Inu', color: '#E88D2A' },
+        { id: 'trump', symbol: 'TRUMP', name: 'Trump Token', color: '#E53935' }
+    ];
+    
+    let cacheData = null;
+    let currentToken = 'fit';
+    let currentDays = 'max';
+    let priceChart = null;
+    
+    const CONTRACT_ADDRESS = "0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa";
+    const ABI = [{"constant":true,"inputs":[],"name":"Price","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
+    const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+    
+    let fitDates = [];
+    let fitPrices = [];
+    
+    // ===== TABLE HISTORY =====
+    const TABLE_TOKENS = [
+        { id: 'fit', symbol: 'FIT', name: 'Fly Infinity', color: '#D4AF37' },
+        { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', color: '#F7931A' },
+        { id: 'ethereum', symbol: 'ETH', name: 'Ethereum', color: '#627EEA' },
+        { id: 'binancecoin', symbol: 'BNB', name: 'BNB', color: '#F3BA2F' },
+        { id: 'ripple', symbol: 'XRP', name: 'XRP', color: '#00AAE4' },
+        { id: 'solana', symbol: 'SOL', name: 'Solana', color: '#14F195' },
+        { id: 'cardano', symbol: 'ADA', name: 'Cardano', color: '#0033AD' },
+        { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', color: '#C2A633' },
+        { id: 'tron', symbol: 'TRX', name: 'TRON', color: '#FF0014' },
+        { id: 'zcash', symbol: 'ZEC', name: 'Zcash', color: '#F4B728' },
+        { id: 'stellar', symbol: 'XLM', name: 'Stellar', color: '#08B5E5' },
+        { id: 'pancakeswap', symbol: 'CAKE', name: 'PancakeSwap', color: '#D1884F' },
+        { id: 'toncoin', symbol: 'TON', name: 'Toncoin', color: '#0088CC' },
+        { id: 'shibainu', symbol: 'SHIB', name: 'Shiba Inu', color: '#E88D2A' },
+        { id: 'trump', symbol: 'TRUMP', name: 'Trump Token', color: '#E53935' }
+    ];
+
+    let tablePrices = {};
+    let historyData = { records: [] };
+    let currentHistoryDate = 'today';
+
+    // ===== LOAD HISTORY FROM GITHUB JSON =====
+    async function loadTableHistory() {
+        try {
+            const response = await fetch('price-history-table.json?t=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.records) {
+                    historyData = data;
+                    updateHistoryDateSelect();
+                    console.log('✅ Table history loaded:', historyData.records.length, 'records');
+                    return true;
+                }
+            }
+        } catch(e) {
+            console.log('⚠️ Table history not found, using empty');
+        }
+        return false;
+    }
+
+    // ===== SAVE TODAY'S PRICES TO HISTORY (Local) =====
+    function saveTodayToHistory() {
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Check if today already exists
+        const existingIndex = historyData.records.findIndex(r => r.date === today);
+        if (existingIndex !== -1) {
+            // Update existing
+            historyData.records[existingIndex].prices = {};
+            for (const token of TABLE_TOKENS) {
+                if (tablePrices[token.id]) {
+                    historyData.records[existingIndex].prices[token.id] = {
+                        price: tablePrices[token.id].current,
+                        yesterday: tablePrices[token.id].yesterday,
+                        change: tablePrices[token.id].change
+                    };
+                }
+            }
+        } else {
+            // Add new record
+            const record = { date: today, prices: {} };
+            for (const token of TABLE_TOKENS) {
+                if (tablePrices[token.id]) {
+                    record.prices[token.id] = {
+                        price: tablePrices[token.id].current,
+                        yesterday: tablePrices[token.id].yesterday,
+                        change: tablePrices[token.id].change
+                    };
+                }
+            }
+            historyData.records.push(record);
+            // Keep only last 90 days
+            if (historyData.records.length > 90) {
+                historyData.records = historyData.records.slice(-90);
+            }
+        }
+        
+        // Sort records by date
+        historyData.records.sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    // ===== GET PRICES FOR A DATE =====
+    function getPricesForDate(date) {
+        const record = historyData.records.find(r => r.date === date);
+        return record ? record.prices : null;
+    }
+
+    // ===== GET ALL DATES =====
+    function getHistoryDates() {
+        return historyData.records.map(r => r.date);
+    }
+
+    // ===== UPDATE DATE SELECT DROPDOWN =====
+    function updateHistoryDateSelect() {
+        const dates = getHistoryDates();
+        const select = document.getElementById('historyDateSelect');
+        const currentValue = select.value;
+        select.innerHTML = '<option value="">Select a date...</option>';
+        dates.forEach(date => {
+            const option = document.createElement('option');
+            option.value = date;
+            option.textContent = date;
+            select.appendChild(option);
+        });
+        if (currentValue && dates.includes(currentValue)) {
+            select.value = currentValue;
+        }
+    }
+
+    // ===== UPDATE TABLE WITH SPECIFIC DATE =====
+    function updateTableWithHistory(date) {
+        const tbody = document.getElementById('priceTableBody');
+        tbody.innerHTML = '';
+        
+        const isToday = date === 'today' || date === null;
+        const dateDisplay = isToday ? 'Today (Live Data)' : date;
+        document.getElementById('historyDateDisplay').innerHTML = `Showing: ${dateDisplay}`;
+        
+        let priceData;
+        if (isToday) {
+            // Check if tablePrices has valid data (price > 0)
+            let hasValidData = false;
+            for (const token of TABLE_TOKENS) {
+                if (tablePrices[token.id] && tablePrices[token.id].current > 0) {
+                    hasValidData = true;
+                    break;
+                }
+            }
+            if (!hasValidData) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #888;">Loading today's data... Please wait or click Refresh</td></tr>`;
+                return;
+            }
+            priceData = tablePrices;
+        } else {
+            priceData = getPricesForDate(date);
+            if (!priceData) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #888;">No data available for this date</td></tr>`;
+                return;
+            }
+        }
+        
+        let hasData = false;
+        for (const token of TABLE_TOKENS) {
+            const data = priceData[token.id];
+            if (!data) continue;
+            hasData = true;
+            
+            const change = data.change || 0;
+            const currentPrice = data.price || data.current || 0;
+            const yesterdayPrice = data.yesterday || data.price || 0;
+            
+            const changeColor = change > 0 ? '#00C896' : (change < 0 ? '#ff4444' : '#888');
+            const changeIcon = change > 0 ? '▲' : (change < 0 ? '▼' : '—');
+            const changeBg = change > 0 ? 'rgba(0, 200, 150, 0.08)' : (change < 0 ? 'rgba(255, 68, 68, 0.08)' : 'transparent');
+            
+            const tr = document.createElement('tr');
+            tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+            tr.style.transition = 'background 0.2s ease';
+            tr.onmouseover = () => tr.style.background = 'rgba(255,255,255,0.03)';
+            tr.onmouseout = () => tr.style.background = 'transparent';
+            
+            tr.innerHTML = `
+                <td style="padding: 10px 15px; color: ${token.color}; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                    <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: ${token.color};"></span>
+                    ${token.symbol} (${token.name})
+                </td>
+                <td style="padding: 10px 15px; text-align: right; color: #c0d0e8;">${formatPriceValue(yesterdayPrice)}</td>
+                <td style="padding: 10px 15px; text-align: right; color: #D4AF37; font-weight: bold;">${formatPriceValue(currentPrice)}</td>
+                <td style="padding: 10px 15px; text-align: right; color: ${changeColor}; background: ${changeBg}; border-radius: 8px; font-weight: bold;">
+                    ${changeIcon} ${Math.abs(change).toFixed(2)}%
+                </td>
+            `;
+            
+            tbody.appendChild(tr);
+        }
+        
+        if (!hasData) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #888;">No data available for this date</td></tr>`;
+        }
+    }
+
+    // ===== FETCH LIVE PRICES =====
+    async function fetchTablePrices() {
+        const ids = TABLE_TOKENS.filter(t => t.id !== 'fit').map(t => t.id).join(',');
+        const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            let hasPriceData = false;
+            
+            for (const token of TABLE_TOKENS) {
+                if (token.id !== 'fit' && data[token.id]) {
+                    const currentPrice = data[token.id].usd;
+                    const change24h = data[token.id].usd_24h_change || 0;
+                    const yesterdayPrice = currentPrice / (1 + change24h / 100);
+                    tablePrices[token.id] = { 
+                        current: currentPrice, 
+                        price: currentPrice,
+                        yesterday: yesterdayPrice, 
+                        change: change24h 
+                    };
+                    hasPriceData = true;
+                }
+            }
+            
+            // Get FIT price from contract
+            try {
+                const raw = await contract.Price();
+                const currentPrice = parseFloat(ethers.utils.formatEther(raw));
+                let yesterdayPrice = currentPrice;
+                if (fitPrices.length >= 2) {
+                    yesterdayPrice = fitPrices[fitPrices.length - 2] || currentPrice;
+                }
+                const change24h = ((currentPrice - yesterdayPrice) / yesterdayPrice) * 100;
+                tablePrices['fit'] = { 
+                    current: currentPrice, 
+                    price: currentPrice,
+                    yesterday: yesterdayPrice, 
+                    change: change24h 
+                };
+                hasPriceData = true;
+            } catch(e) {
+                console.error("Error fetching FIT price:", e);
+            }
+            
+            // Save today's data to history (local)
+            if (hasPriceData) {
+                saveTodayToHistory();
+            }
+            
+            updateHistoryDateSelect();
+            
+            // Update table with today's data if today is selected
+            if (currentHistoryDate === 'today' || !currentHistoryDate) {
+                currentHistoryDate = 'today';
+                updateTableWithHistory('today');
+            }
+            
+            document.getElementById('tableLastUpdate').innerHTML = new Date().toLocaleString();
+        } catch(e) {
+            console.error("Error fetching table prices:", e);
+            useFallbackTableData();
+        }
+    }
+
+    // ===== FALLBACK DATA =====
+    function useFallbackTableData() {
+        const fallbackData = {
+            bitcoin: { current: 64175.20, yesterday: 62893.16, change: 2.04 },
+            fit: { current: 6.3345, yesterday: 6.3052, change: 0.46 },
+            ethereum: { current: 1679.84, yesterday: 1648.35, change: 1.91 },
+            binancecoin: { current: 607.92, yesterday: 599.58, change: 1.39 },
+            ripple: { current: 1.145, yesterday: 1.113, change: 2.87 },
+            solana: { current: 68.23, yesterday: 65.50, change: 4.17 },
+            cardano: { current: 0.1727, yesterday: 0.1657, change: 4.22 },
+            dogecoin: { current: 0.08771, yesterday: 0.08496, change: 3.24 },
+            tron: { current: 0.3172, yesterday: 0.3209, change: -1.15 },
+            zcash: { current: 28.50, yesterday: 29.10, change: -2.06 },
+            stellar: { current: 0.105, yesterday: 0.103, change: 1.94 },
+            pancakeswap: { current: 2.80, yesterday: 2.75, change: 1.82 },
+            toncoin: { current: 1.746, yesterday: 1.625, change: 7.45 },
+            shibainu: { current: 0.000015, yesterday: 0.0000145, change: 3.45 },
+            trump: { current: 0.08, yesterday: 0.085, change: -5.88 }
+        };
+        
+        let hasData = false;
+        for (const token of TABLE_TOKENS) {
+            if (fallbackData[token.id]) {
+                const data = fallbackData[token.id];
+                tablePrices[token.id] = { 
+                    current: data.current, 
+                    price: data.current,
+                    yesterday: data.yesterday, 
+                    change: data.change 
+                };
+                hasData = true;
+            }
+        }
+        
+        if (hasData) {
+            saveTodayToHistory();
+        }
+        
+        updateHistoryDateSelect();
+        currentHistoryDate = 'today';
+        updateTableWithHistory('today');
+        document.getElementById('tableLastUpdate').innerHTML = new Date().toLocaleString() + ' (fallback)';
+    }
+
+    function formatPriceValue(price) {
+        if (price === undefined || price === null || isNaN(price)) return '—';
+        if (price >= 1000) return '$' + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        if (price >= 1) return '$' + price.toFixed(4);
+        if (price >= 0.01) return '$' + price.toFixed(4);
+        if (price >= 0.000001) return '$' + price.toFixed(8);
+        return '$' + price.toFixed(10);
+    }
+
+    // ===== LOAD CACHE =====
+    async function loadCache() {
+        try {
+            const response = await fetch('crypto-cache.json?t=' + Date.now());
+            if (response.ok) {
+                cacheData = await response.json();
+                const lastUpdated = new Date(cacheData.lastUpdated).toLocaleString();
+                document.getElementById('cacheInfo').innerHTML = `<i class="fas fa-check-circle"></i> Data cached: ${lastUpdated} | Updates every 6 hours automatically`;
+                console.log('✅ Cache loaded successfully');
+                return true;
+            }
+        } catch(e) {
+            console.log('Cache not found, using fallback');
+        }
+        document.getElementById('cacheInfo').innerHTML = `<i class="fas fa-exclamation-triangle"></i> Using fallback data | Cache will update automatically`;
+        return false;
+    }
+    
+    // ===== LOAD FIT DATA =====
+    async function loadFITData() {
+        try {
+            const response = await fetch('price-history.json?t=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                if (data.records && data.records.length > 0) {
+                    const records = data.records.sort((a,b) => a.date.localeCompare(b.date));
+                    fitDates = records.map(r => r.date);
+                    fitPrices = records.map(r => r.price);
+                    
+                    try {
+                        const raw = await contract.Price();
+                        const currentPrice = parseFloat(ethers.utils.formatEther(raw));
+                        fitPrices[fitPrices.length - 1] = currentPrice;
+                    } catch(e) {}
+                    return;
+                }
+            }
+            throw new Error("Using fallback");
+        } catch(e) {
+            fitDates = ["2025-12-18", "2026-01-01", "2026-02-01", "2026-03-01", "2026-04-01", "2026-05-01", "2026-06-01", "2026-06-15"];
+            fitPrices = [1.00, 1.02, 1.15, 2.05, 3.08, 4.18, 5.28, 6.35];
+        }
+    }
+    
+    // ===== GET TOKEN DATA =====
+    function getTokenData(tokenId) {
+        if (tokenId === 'fit') {
+            return { dates: [...fitDates], prices: [...fitPrices] };
+        }
+        
+        if (cacheData && cacheData.historicalData && cacheData.historicalData[tokenId]) {
+            return cacheData.historicalData[tokenId];
+        }
+        
+        return generateMockData(tokenId);
+    }
+    
+    function generateMockData(tokenId) {
+        const mockData = {
+            bitcoin: { dates: ["2025-12-18", "2026-06-15"], prices: [95000, 102000] },
+            ethereum: { dates: ["2025-12-18", "2026-06-15"], prices: [3200, 3500] },
+            binancecoin: { dates: ["2025-12-18", "2026-06-15"], prices: [600, 660] }
+        };
+        return mockData[tokenId] || { dates: fitDates, prices: fitPrices.map(p => p * 0.5) };
+    }
+    
+    function get24hChange(tokenId) {
+        if (cacheData && cacheData.currentPrices && cacheData.currentPrices[tokenId]) {
+            return cacheData.currentPrices[tokenId].change24h;
+        }
+        return 0;
+    }
+    
+    function filterByTimeframe(dates, prices, days) {
+        if (days === 'max' || dates.length === 0 || days === 365) {
+            return { dates, prices };
+        }
+        
+        const dayCount = parseInt(days);
+        const endIndex = dates.length - 1;
+        const startIndex = Math.max(0, endIndex - dayCount);
+        
+        return {
+            dates: dates.slice(startIndex, endIndex + 1),
+            prices: prices.slice(startIndex, endIndex + 1)
+        };
+    }
+    
+    function formatPrice(price) {
+        if (!price || isNaN(price)) return '—';
+        if (price >= 1) {
+            return `$${price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        } else if (price >= 0.01) {
+            return `$${price.toFixed(4)}`;
+        } else if (price >= 0.000001) {
+            return `$${price.toFixed(8)}`;
+        } else {
+            return `$${price.toFixed(10)}`;
+        }
+    }
+    
+    function updatePriceInfo(tokenId, filtered) {
+        const token = TOKENS.find(t => t.id === tokenId);
+        const prices = filtered.prices;
+        
+        if (!prices || prices.length === 0) {
+            document.getElementById('currentPrice').innerHTML = '—';
+            document.getElementById('priceChange').innerHTML = '—';
+            return;
+        }
+        
+        const currentPrice = prices[prices.length - 1];
+        const firstPrice = prices[0];
+        const change = ((currentPrice - firstPrice) / firstPrice) * 100;
+        const high = Math.max(...prices);
+        const low = Math.min(...prices);
+        
+        const change24h = get24hChange(tokenId);
+        
+        document.getElementById('currentPrice').innerHTML = formatPrice(currentPrice);
+        
+        const changeElement = document.getElementById('priceChange');
+        changeElement.innerHTML = `${change >= 0 ? '▲' : '▼'} ${Math.abs(change).toFixed(2)}% (All time) | 24h: ${change24h >= 0 ? '+' : ''}${change24h.toFixed(2)}%`;
+        changeElement.className = `price-change ${change >= 0 ? 'positive' : 'negative'}`;
+        
+        document.getElementById('priceStats').innerHTML = `
+            <div class="price-stat">
+                <span class="price-stat-label">Earliest Price</span>
+                <span class="price-stat-value">${formatPrice(firstPrice)}</span>
+            </div>
+            <div class="price-stat">
+                <span class="price-stat-label">All Time High</span>
+                <span class="price-stat-value">${formatPrice(high)}</span>
+            </div>
+            <div class="price-stat">
+                <span class="price-stat-label">All Time Low</span>
+                <span class="price-stat-value">${formatPrice(low)}</span>
+            </div>
+        `;
+        
+        document.getElementById('priceInfoBar').style.borderLeftColor = token.color;
+    }
+    
+    function drawChart(tokenId, data) {
+        const token = TOKENS.find(t => t.id === tokenId);
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        
+        if (priceChart) priceChart.destroy();
+        
+        if (!data.prices || data.prices.length === 0) {
+            priceChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: ['No Data'], datasets: [{ label: `${token.symbol} Price`, data: [0], borderColor: token.color, borderWidth: 2 }] },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
+            });
+            return;
+        }
+        
+        priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.dates,
+                datasets: [{
+                    label: `${token.symbol} Price (USD)`,
+                    data: data.prices,
+                    borderColor: token.color,
+                    backgroundColor: `rgba(${hexToRgb(token.color)}, 0.05)`,
+                    borderWidth: 2.5,
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { tooltip: { callbacks: { label: (context) => formatPrice(context.raw) } }, legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: '#888', maxRotation: 45, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
+                    y: { ticks: { color: '#888', callback: (val) => { if (val >= 1000) return '$' + (val/1000).toFixed(0) + 'K'; if (val >= 1) return '$' + val.toFixed(0); return '$' + val.toExponential(2); } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+            }
+        });
+    }
+    
+    function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '212, 175, 55';
+    }
+    
+    function buildTokenSelector() {
+        const container = document.getElementById('tokenSelector');
+        container.innerHTML = '';
+        
+        TOKENS.forEach(token => {
+            const btn = document.createElement('button');
+            btn.className = `token-btn ${currentToken === token.id ? 'active' : ''}`;
+            btn.innerHTML = `<span class="token-symbol" style="color: ${token.color}">${token.symbol}</span><span class="token-name">${token.name}</span>`;
+            btn.onclick = () => switchToken(token.id);
+            container.appendChild(btn);
+        });
+    }
+    
+    async function switchToken(tokenId) {
+        currentToken = tokenId;
+        buildTokenSelector();
+        
+        const fullData = getTokenData(tokenId);
+        const filtered = filterByTimeframe(fullData.dates, fullData.prices, currentDays);
+        
+        updatePriceInfo(tokenId, filtered);
+        drawChart(tokenId, filtered);
+    }
+    
+    async function switchTimeframe(days) {
+        currentDays = days;
+        
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            if (btn.dataset.days === days || (days === 'max' && btn.dataset.days === 'max')) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        const fullData = getTokenData(currentToken);
+        const filtered = filterByTimeframe(fullData.dates, fullData.prices, currentDays);
+        
+        updatePriceInfo(currentToken, filtered);
+        drawChart(currentToken, filtered);
+    }
+    
+    async function refreshAll() {
+        const btn = document.getElementById('refreshBtn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        btn.disabled = true;
+        
+        await loadCache();
+        await loadFITData();
+        await switchToken(currentToken);
+        
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+    }
+
+    // ===== HISTORY CONTROLS =====
+    document.getElementById('historyTodayBtn').addEventListener('click', function() {
+        document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentHistoryDate = 'today';
+        updateTableWithHistory('today');
+    });
+
+    document.getElementById('historyYesterdayBtn').addEventListener('click', function() {
+        document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const dates = getHistoryDates();
+        if (dates.length > 0) {
+            const yesterday = dates[dates.length - 1];
+            currentHistoryDate = yesterday;
+            updateTableWithHistory(yesterday);
+        }
+    });
+
+    document.getElementById('history7daysBtn').addEventListener('click', function() {
+        document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const dates = getHistoryDates();
+        if (dates.length > 7) {
+            const date = dates[dates.length - 7];
+            currentHistoryDate = date;
+            updateTableWithHistory(date);
+        }
+    });
+
+    document.getElementById('history14daysBtn').addEventListener('click', function() {
+        document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const dates = getHistoryDates();
+        if (dates.length > 14) {
+            const date = dates[dates.length - 14];
+            currentHistoryDate = date;
+            updateTableWithHistory(date);
+        }
+    });
+
+    document.getElementById('history30daysBtn').addEventListener('click', function() {
+        document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const dates = getHistoryDates();
+        if (dates.length > 30) {
+            const date = dates[dates.length - 30];
+            currentHistoryDate = date;
+            updateTableWithHistory(date);
+        }
+    });
+
+    document.getElementById('historyGoBtn').addEventListener('click', function() {
+        const select = document.getElementById('historyDateSelect');
+        const date = select.value;
+        if (date) {
+            document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+            currentHistoryDate = date;
+            updateTableWithHistory(date);
+        }
+    });
+
+    // ===== REFRESH TABLE =====
+    document.getElementById('refreshTableBtn').addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        this.disabled = true;
+        fetchTablePrices().finally(() => {
+            this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Table';
+            this.disabled = false;
+        });
+    });
+
+    // ===== INIT =====
+    async function init() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'loading-overlay';
+        loadingDiv.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading cached data...</div>';
+        document.getElementById('chartContainer').appendChild(loadingDiv);
+        
+        await loadCache();
+        await loadFITData();
+        await loadTableHistory();
+        buildTokenSelector();
+        await switchToken('fit');
+        
+        loadingDiv.remove();
+        
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchTimeframe(btn.dataset.days));
+        });
+        
+        document.getElementById('refreshBtn').addEventListener('click', refreshAll);
+        
+        setInterval(async () => {
+            try {
+                const raw = await contract.Price();
+                const currentPrice = parseFloat(ethers.utils.formatEther(raw));
+                fitPrices[fitPrices.length - 1] = currentPrice;
+                if (currentToken === 'fit') {
+                    const filtered = filterByTimeframe(fitDates, fitPrices, currentDays);
+                    updatePriceInfo('fit', filtered);
+                    drawChart('fit', filtered);
+                }
+            } catch(e) {}
+        }, 30000);
+        
+        // ===== LOAD TABLE DATA =====
+        setTimeout(async () => {
+            // First load history from JSON
+            await loadTableHistory();
+            
+            // Then fetch live data
+            await fetchTablePrices();
+            
+            // Set today as active
+            currentHistoryDate = 'today';
+            document.querySelectorAll('.history-controls button').forEach(b => b.classList.remove('active'));
+            document.getElementById('historyTodayBtn').classList.add('active');
+            
+            // Update table with today's data
+            updateTableWithHistory('today');
+            
+            // Auto-refresh every minute
+            setInterval(fetchTablePrices, 60000);
+        }, 1000);
+    }
+    
+    init();
+</script>
+
+<!-- ===== SIDEBAR SCRIPT ===== -->
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openSidebar);
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+</script>
+
+</body>
+</html>
