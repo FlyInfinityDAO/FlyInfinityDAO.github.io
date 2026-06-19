@@ -1,0 +1,9 @@
+{
+  "name": "fit-price-display",
+  "version": "1.0.0",
+  "description": "Fly Infinity Token price display",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "ethers": "^5.7.2"
+  }
+}
