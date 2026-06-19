@@ -462,7 +462,7 @@
     <div class="top-bar">
         <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
             <img src="logo.png" alt="Fly Infinity DAO" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #D4AF37;">
-            <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+            <span style="color: #D4AF37; font-size: 18px; font-weight: bold;" data-i18n="site_title">Fly Infinity DAO</span>
         </a>
         <button class="hamburger" id="hamburgerBtn">
             <i class="fas fa-bars"></i>
@@ -477,35 +477,35 @@
         <div class="sidebar-header">
             <span class="logo-text" style="display: flex; align-items: center; gap: 10px;">
                 <img src="logo.png" alt="Fly Infinity DAO" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #D4AF37;">
-                <span style="color: #D4AF37; font-size: 18px; font-weight: bold;">Fly Infinity DAO</span>
+                <span style="color: #D4AF37; font-size: 18px; font-weight: bold;" data-i18n="site_title">Fly Infinity DAO</span>
             </span>
             <button class="close-btn" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
         </div>
         
         <div class="sidebar-menu">
             <a href="index.html" class="active">
-                <i class="fas fa-home"></i> Dashboard
+                <i class="fas fa-home"></i> <span data-i18n="nav_dashboard">Dashboard</span>
             </a>
             <a href="compare.html">
-                <i class="fas fa-chart-line"></i> Comparison
+                <i class="fas fa-chart-line"></i> <span data-i18n="nav_comparison">Comparison</span>
             </a>
             <a href="dapp.html">
-                <i class="fas fa-charging-station"></i> DApp
+                <i class="fas fa-charging-station"></i> <span data-i18n="nav_dapp">DApp</span>
             </a>
             <a href="transactions.html">
-                <i class="fas fa-history"></i> Transactions
+                <i class="fas fa-history"></i> <span data-i18n="nav_transactions">Transactions</span>
             </a>
             <a href="privacy.html">
-                <i class="fas fa-shield-alt"></i> Privacy
+                <i class="fas fa-shield-alt"></i> <span data-i18n="nav_privacy">Privacy</span>
             </a>
             <a href="warnings.html">
-                <i class="fas fa-exclamation-triangle"></i> Warnings
+                <i class="fas fa-exclamation-triangle"></i> <span data-i18n="nav_warnings">Warnings</span>
             </a>
             <a href="faq.html">
-                <i class="fas fa-question-circle"></i> FAQ
+                <i class="fas fa-question-circle"></i> <span data-i18n="nav_faq">FAQ</span>
             </a>
             <a href="whitepaper.html">
-                <i class="fas fa-file-pdf"></i> White Paper
+                <i class="fas fa-file-pdf"></i> <span data-i18n="nav_whitepaper">White Paper</span>
             </a>
         </div>
         
@@ -520,128 +520,128 @@
         <div class="card" style="text-align:center">
             <div class="header-with-logo">
                 <img src="logo.png" alt="FIT Logo" class="token-logo" onerror="this.style.display='none'">
-                <h1>Fly Infinity Token (FIT)</h1>
+                <h1 data-i18n="dashboard_title">Fly Infinity Token (FIT)</h1>
             </div>
-            <div style="background: #D4AF37; color: #0F0F0F; padding: 4px 12px; border-radius: 30px; font-size: 11px; display: inline-block;">🛡️ BNB Smart Chain (BSC) Mainnet</div>
-            <div style="margin: 20px 0 10px 0; color: #00C896;">Current Price</div>
+            <div style="background: #D4AF37; color: #0F0F0F; padding: 4px 12px; border-radius: 30px; font-size: 11px; display: inline-block;" data-i18n="chain_badge">🛡️ BNB Smart Chain (BSC) Mainnet</div>
+            <div style="margin: 20px 0 10px 0; color: #00C896;" data-i18n="current_price_label">Current Price</div>
             <div class="live-price" id="fit-price">—</div>
             <div class="usd-price" id="usd-price">≈ $— </div>
-            <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh Price</button>
+            <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> <span data-i18n="btn_refresh">Refresh Price</span></button>
         </div>
         <div class="card">
-            <div style="font-size:18px; margin-bottom:15px; text-align:center; color: #D4AF37;"><i class="fas fa-chart-line"></i> Token Statistics</div>
+            <div style="font-size:18px; margin-bottom:15px; text-align:center; color: #D4AF37;"><i class="fas fa-chart-line"></i> <span data-i18n="token_stats">Token Statistics</span></div>
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-value" id="totalSupply">—</div><div class="stat-label">Total Supply</div></div>
-                <div class="stat-card"><div class="stat-value" id="daiBalance">—</div><div class="stat-label">$ Reserve</div></div>
-                <div class="stat-card"><div class="stat-value" id="marketCap">—</div><div class="stat-label">Market Cap ($)</div></div>
-                <div class="stat-card"><div class="stat-value" id="holderCount">—</div><div class="stat-label">Total Holders</div></div>
+                <div class="stat-card"><div class="stat-value" id="totalSupply">—</div><div class="stat-label" data-i18n="stat_total_supply">Total Supply</div></div>
+                <div class="stat-card"><div class="stat-value" id="daiBalance">—</div><div class="stat-label" data-i18n="stat_reserve">$ Reserve</div></div>
+                <div class="stat-card"><div class="stat-value" id="marketCap">—</div><div class="stat-label" data-i18n="stat_market_cap">Market Cap ($)</div></div>
+                <div class="stat-card"><div class="stat-value" id="holderCount">—</div><div class="stat-label" data-i18n="stat_holders">Total Holders</div></div>
             </div>
             <div style="margin-top:15px; background:#1a1a1a; border-radius:16px; padding:12px; border-left: 3px solid #00C896;">
-                <div style="color:#00C896; font-size:11px;">📜 Contract Address</div>
+                <div style="color:#00C896; font-size:11px;" data-i18n="contract_address_label">📜 Contract Address</div>
                 <div style="font-family:monospace; font-size:12px; color:#D4AF37; word-break:break-all;">0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa</div>
-                <div style="color:#00C896; font-size:11px; margin-top:8px;">💰 Pricing Formula</div>
-                <div style="font-size:12px; color:#D4AF37;">Price = Reserve / Total Supply</div>
+                <div style="color:#00C896; font-size:11px; margin-top:8px;" data-i18n="pricing_formula_label">💰 Pricing Formula</div>
+                <div style="font-size:12px; color:#D4AF37;" data-i18n="pricing_formula_text">Price = Reserve / Total Supply</div>
             </div>
         </div>
     </div>
 
     <!-- Action Buttons -->
     <div class="action-buttons">
-        <a href="https://bscscan.com/address/0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa" target="_blank" class="action-btn"><i class="fas fa-file-contract"></i> BscScan</a>
-        <a href="https://github.com/FlyInfinityDAO/Fly-Infinity-Token/blob/main/FIT%20-%20White%20Paper.pdf" target="_blank" class="action-btn"><i class="fas fa-file-pdf"></i> Whitepaper</a>
-        <a href="dapp.html" class="action-btn dapp-btn"><i class="fas fa-rocket"></i> Buy Ownership Shares &amp; FIT</a>
+        <a href="https://bscscan.com/address/0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa" target="_blank" class="action-btn"><i class="fas fa-file-contract"></i> <span data-i18n="btn_bscscan">BscScan</span></a>
+        <a href="https://github.com/FlyInfinityDAO/Fly-Infinity-Token/blob/main/FIT%20-%20White%20Paper.pdf" target="_blank" class="action-btn"><i class="fas fa-file-pdf"></i> <span data-i18n="btn_whitepaper">Whitepaper</span></a>
+        <a href="dapp.html" class="action-btn dapp-btn"><i class="fas fa-rocket"></i> <span data-i18n="btn_buy_shares">Buy Ownership Shares &amp; FIT</span></a>
     </div>
 
     <!-- Chart -->
     <div class="card">
         <canvas id="priceChart" width="800" height="400" style="max-width:100%; height:auto;"></canvas>
-        <p style="color:#888; text-align:center; margin-top:10px; font-size:11px;">📈 Daily price chart ($ per FIT)</p>
+        <p style="color:#888; text-align:center; margin-top:10px; font-size:11px;" data-i18n="chart_title">📈 Daily price chart ($ per FIT)</p>
     </div>
 
     <!-- Historical Price Changes -->
     <div class="card">
-        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;"><i class="fas fa-calendar-alt"></i> Historical Price Changes</div>
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;"><i class="fas fa-calendar-alt"></i> <span data-i18n="historical_changes">Historical Price Changes</span></div>
         <div class="price-stats-grid" id="priceStatsGrid">
-            <div class="price-stat-card"><div class="price-stat-label">24h Ago</div><div class="price-stat-value" id="price1d">—</div><div class="price-stat-change" id="change1d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">7 Days Ago</div><div class="price-stat-value" id="price7d">—</div><div class="price-stat-change" id="change7d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">30 Days Ago</div><div class="price-stat-value" id="price30d">—</div><div class="price-stat-change" id="change30d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">90 Days Ago</div><div class="price-stat-value" id="price90d">—</div><div class="price-stat-change" id="change90d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">180 Days Ago</div><div class="price-stat-value" id="price180d">—</div><div class="price-stat-change" id="change180d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">365 Days Ago</div><div class="price-stat-value" id="price365d">—</div><div class="price-stat-change" id="change365d">—</div></div>
-            <div class="price-stat-card"><div class="price-stat-label">Initial Price</div><div class="price-stat-value" id="priceInitial">—</div><div class="price-stat-change" id="changeInitial">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_24h">24h Ago</div><div class="price-stat-value" id="price1d">—</div><div class="price-stat-change" id="change1d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_7d">7 Days Ago</div><div class="price-stat-value" id="price7d">—</div><div class="price-stat-change" id="change7d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_30d">30 Days Ago</div><div class="price-stat-value" id="price30d">—</div><div class="price-stat-change" id="change30d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_90d">90 Days Ago</div><div class="price-stat-value" id="price90d">—</div><div class="price-stat-change" id="change90d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_180d">180 Days Ago</div><div class="price-stat-value" id="price180d">—</div><div class="price-stat-change" id="change180d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_365d">365 Days Ago</div><div class="price-stat-value" id="price365d">—</div><div class="price-stat-change" id="change365d">—</div></div>
+            <div class="price-stat-card"><div class="price-stat-label" data-i18n="period_initial">Initial Price</div><div class="price-stat-value" id="priceInitial">—</div><div class="price-stat-change" id="changeInitial">—</div></div>
         </div>
     </div>
 
     <!-- Comparison Button -->
     <div class="card" style="text-align: center;">
         <a href="compare.html" class="comparison-btn" style="display: inline-flex; align-items: center; gap: 12px; background: transparent; border: 1px solid #00C896; color: #00C896; padding: 14px 32px; border-radius: 50px; font-size: 16px; font-weight: bold; text-decoration: none; transition: all 0.3s ease;">
-            <i class="fas fa-chart-line"></i> Comparison With Other Crypto
+            <i class="fas fa-chart-line"></i> <span data-i18n="comparison_title">Comparison With Other Crypto</span>
             <i class="fas fa-arrow-right"></i>
         </a>
-        <p style="color: #888; font-size: 11px; margin-top: 12px;">
+        <p style="color: #888; font-size: 11px; margin-top: 12px;" data-i18n="comparison_sub">
             <i class="fas fa-chart-simple"></i> Compare FIT price with Bitcoin, Ethereum, BNB and other cryptocurrencies
         </p>
     </div>
     
     <!-- Profit Simulator -->
     <div class="card">
-        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;">💰 Profit Simulator</div>
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;" data-i18n="profit_simulator">💰 Profit Simulator</div>
         
         <div class="simulator-input">
             <div class="input-group">
-                <label>Your FIT Holdings</label>
+                <label data-i18n="sim_holdings_label">Your FIT Holdings</label>
                 <input type="number" id="fitAmount" value="1000" step="100">
             </div>
         </div>
         
         <div class="growth-badges">
-            <span class="growth-badge" id="dailyGrowthRate">📈 Daily: --</span>
-            <span class="growth-badge" id="weeklyGrowthRate">📊 Weekly: --</span>
-            <span class="growth-badge" id="monthlyGrowthRate">📅 Monthly: --</span>
+            <span class="growth-badge" id="dailyGrowthRate" data-i18n="sim_daily">📈 Daily: --</span>
+            <span class="growth-badge" id="weeklyGrowthRate" data-i18n="sim_weekly">📊 Weekly: --</span>
+            <span class="growth-badge" id="monthlyGrowthRate" data-i18n="sim_monthly">📅 Monthly: --</span>
         </div>
         
         <div class="simulator-results">
-            <div class="result-box"><div class="result-period">24h Projection</div><div class="result-return" id="dailyReturn">—</div></div>
-            <div class="result-box"><div class="result-period">7 Days Projection</div><div class="result-return" id="weeklyReturn">—</div></div>
-            <div class="result-box"><div class="result-period">30 Days Projection</div><div class="result-return" id="monthlyReturn">—</div></div>
+            <div class="result-box"><div class="result-period" data-i18n="sim_24h">24h Projection</div><div class="result-return" id="dailyReturn">—</div></div>
+            <div class="result-box"><div class="result-period" data-i18n="sim_7d">7 Days Projection</div><div class="result-return" id="weeklyReturn">—</div></div>
+            <div class="result-box"><div class="result-period" data-i18n="sim_30d">30 Days Projection</div><div class="result-return" id="monthlyReturn">—</div></div>
         </div>
-        <p style="color:#888; text-align:center; font-size:10px; margin-top:15px;">⚡ Based on past growth rates. Not financial advice.</p>
+        <p style="color:#888; text-align:center; font-size:10px; margin-top:15px;" data-i18n="sim_disclaimer">⚡ Based on past growth rates. Not financial advice.</p>
     </div>
 
     <!-- Manual Profit Simulator -->
     <div class="card">
-        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;">
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;" data-i18n="manual_simulator">
             <i class="fas fa-calculator"></i> Manual Profit Simulator
         </div>
-        <p style="color:#888; text-align:center; font-size:12px; margin-bottom:20px;">
+        <p style="color:#888; text-align:center; font-size:12px; margin-bottom:20px;" data-i18n="manual_sub">
             Calculate your potential profit based on daily price increase
         </p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #00C896;">
-                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;">🪙 Your FIT Holdings</label>
+                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="sim_holdings_label">🪙 Your FIT Holdings</label>
                 <input type="number" id="manualFitAmount" value="100" step="10" style="width: 100%; background: #0F0F0F; border: 1px solid #00C896; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
             </div>
             
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #D4AF37;">
-                <label style="color: #D4AF37; font-size: 12px; display: block; margin-bottom: 8px;">📈 Daily Price Increase ($)</label>
+                <label style="color: #D4AF37; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="manual_daily_increase">📈 Daily Price Increase ($)</label>
                 <input type="number" id="dailyPriceIncrease" value="1.00" step="0.10" min="0.01" style="width: 100%; background: #0F0F0F; border: 1px solid #D4AF37; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
             </div>
         </div>
         
         <div class="simulator-results" style="margin-top: 20px;">
             <div class="result-box">
-                <div class="result-period">📅 Daily Profit</div>
+                <div class="result-period" data-i18n="manual_daily_profit">📅 Daily Profit</div>
                 <div class="result-return" id="manualDailyReturn">—</div>
                 <div style="color: #888; font-size: 10px; margin-top: 5px;" id="manualDailyDetails">—</div>
             </div>
             <div class="result-box">
-                <div class="result-period">📊 Weekly Profit (7 Days)</div>
+                <div class="result-period" data-i18n="manual_weekly_profit">📊 Weekly Profit (7 Days)</div>
                 <div class="result-return" id="manualWeeklyReturn">—</div>
                 <div style="color: #888; font-size: 10px; margin-top: 5px;" id="manualWeeklyDetails">—</div>
             </div>
             <div class="result-box">
-                <div class="result-period">📅 Monthly Profit (30 Days)</div>
+                <div class="result-period" data-i18n="manual_monthly_profit">📅 Monthly Profit (30 Days)</div>
                 <div class="result-return" id="manualMonthlyReturn">—</div>
                 <div style="color: #888; font-size: 10px; margin-top: 5px;" id="manualMonthlyDetails">—</div>
             </div>
@@ -649,86 +649,86 @@
         
         <div style="text-align: center; margin-top: 15px;">
             <button id="manualSimBtn" class="action-btn" style="width: auto; padding: 10px 40px; border-color: #D4AF37; color: #D4AF37;">
-                <i class="fas fa-play"></i> Calculate
+                <i class="fas fa-play"></i> <span data-i18n="btn_calculate">Calculate</span>
             </button>
         </div>
         
-        <p style="color:#888; text-align:center; font-size:10px; margin-top:15px;">
+        <p style="color:#888; text-align:center; font-size:10px; margin-top:15px;" data-i18n="sim_disclaimer">
             ⚡ Based on your input values. Not financial advice.
         </p>
     </div>
     
     <!-- Fee Calculator -->
     <div class="card">
-        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;">
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;" data-i18n="fee_calculator">
             <i class="fas fa-calculator"></i> Fee Calculator (Buy: 3% | Sell: 6%)
         </div>
         
         <div class="fee-grid">
             <div class="fee-box buy">
-                <div class="fee-title buy">
+                <div class="fee-title buy" data-i18n="fee_buy_calc">
                     <i class="fas fa-shopping-cart"></i> Buy Calculator
                 </div>
                 <div class="input-group" style="width: 100%; margin-bottom: 15px;">
-                    <label style="color: #00C896; font-size: 12px;">💰 Amount (USD)</label>
+                    <label style="color: #00C896; font-size: 12px;" data-i18n="fee_amount_usd">💰 Amount (USD)</label>
                     <input type="number" id="buyAmountUSD" placeholder="Enter USD amount" step="10" style="width: 100%;">
                 </div>
                 <div class="fee-result">
-                    <div class="fee-result-label">You will receive</div>
+                    <div class="fee-result-label" data-i18n="fee_you_receive">You will receive</div>
                     <div class="fee-result-amount" id="buyFITAmount">— FIT</div>
                     <div class="fee-breakdown" id="buyFeeBreakdown">—</div>
                 </div>
             </div>
             
             <div class="fee-box sell">
-                <div class="fee-title sell">
+                <div class="fee-title sell" data-i18n="fee_sell_calc">
                     <i class="fas fa-chart-line"></i> Sell Calculator
                 </div>
                 <div class="input-group" style="width: 100%; margin-bottom: 15px;">
-                    <label style="color: #00C896; font-size: 12px;">🪙 Amount (FIT)</label>
+                    <label style="color: #00C896; font-size: 12px;" data-i18n="fee_amount_fit">🪙 Amount (FIT)</label>
                     <input type="number" id="sellAmountFIT" placeholder="Enter FIT amount" step="100" style="width: 100%;">
                 </div>
                 <div class="fee-result">
-                    <div class="fee-result-label">You will receive</div>
+                    <div class="fee-result-label" data-i18n="fee_you_receive">You will receive</div>
                     <div class="fee-result-amount" id="sellUSDAmount">— USD</div>
                     <div class="fee-breakdown" id="sellFeeBreakdown">—</div>
                 </div>
             </div>
         </div>
         <div class="fee-price-note">
-            <i class="fas fa-info-circle"></i> Fees: 3% for Buy | 6% for Sell | Current Price: <span id="calcPrice">—</span> USD
+            <i class="fas fa-info-circle"></i> <span data-i18n="fee_current_price">Current Price: <span id="calcPrice">—</span> USD</span>
         </div>
     </div>
 
     <!-- ===== PURCHASE CALCULATOR WITH REWARD ===== -->
     <div class="card">
-        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;">
+        <div style="font-size:18px; text-align:center; margin-bottom:15px; color: #D4AF37;" data-i18n="purchase_calculator">
             <i class="fas fa-calculator"></i> FIT Purchase Calculator
         </div>
-        <p style="color:#888; text-align:center; font-size:12px; margin-bottom:20px;">
+        <p style="color:#888; text-align:center; font-size:12px; margin-bottom:20px;" data-i18n="purchase_sub">
             Calculate required ownership shares based on Double Infinity network plan + Estimated Rewards for ALL shares
         </p>
         
         <!-- Inputs -->
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #00C896;">
-                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;">🪙 FIT Amount to Buy</label>
+                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="purchase_fit_amount">🪙 FIT Amount to Buy</label>
                 <input type="number" id="calcFitAmount" value="1000" step="10" min="1" style="width: 100%; background: #0F0F0F; border: 1px solid #00C896; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
             </div>
             
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #D4AF37;">
-                <label style="color: #D4AF37; font-size: 12px; display: block; margin-bottom: 8px;">💰 Current FIT Price (DAI)</label>
+                <label style="color: #D4AF37; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="purchase_fit_price">💰 Current FIT Price (DAI)</label>
                 <input type="number" id="calcFitPrice" value="6.00" step="0.01" min="0.01" style="width: 100%; background: #0F0F0F; border: 1px solid #D4AF37; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
-                <button id="calcFetchPrice" style="margin-top: 8px; background: transparent; border: 1px solid #00C896; color: #00C896; padding: 4px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">Fetch Live Price</button>
+                <button id="calcFetchPrice" style="margin-top: 8px; background: transparent; border: 1px solid #00C896; color: #00C896; padding: 4px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;"><span data-i18n="btn_fetch_live">Fetch Live Price</span></button>
             </div>
             
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #00C896;">
-                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;">💎 Ownership Share Cost (DAI)</label>
+                <label style="color: #00C896; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="purchase_share_cost">💎 Ownership Share Cost (DAI)</label>
                 <input type="number" id="calcShareCost" value="100" step="1" min="1" style="width: 100%; background: #0F0F0F; border: 1px solid #00C896; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
             </div>
             
             <div class="input-group" style="width: 100%; display: block; background: #1a1a1a; padding: 15px; border-radius: 16px; border-left: 3px solid #FFD700;">
-                <label style="color: #FFD700; font-size: 12px; display: block; margin-bottom: 8px;">💰 Reward Value Per Point ($)</label>
+                <label style="color: #FFD700; font-size: 12px; display: block; margin-bottom: 8px;" data-i18n="purchase_reward_per_point">💰 Reward Value Per Point ($)</label>
                 <input type="number" id="rewardPerPoint" value="20" step="1" min="1" style="width: 100%; background: #0F0F0F; border: 1px solid #FFD700; color: #D4AF37; padding: 10px; border-radius: 12px; text-align: center;">
             </div>
         </div>
@@ -737,49 +737,49 @@
         <div class="purchase-grid">
             <!-- With Double Infinity Plan -->
             <div class="purchase-box with-plan">
-                <div class="purchase-title with-plan">
+                <div class="purchase-title with-plan" data-i18n="purchase_with_plan">
                     <i class="fas fa-network-wired"></i> ✅ With Double Infinity Network Plan
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Required Shares</span>
+                    <span class="purchase-label" data-i18n="purchase_required_shares">Required Shares</span>
                     <span class="purchase-value" id="calcSharesWithPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Total Cost for Shares (DAI)</span>
+                    <span class="purchase-label" data-i18n="purchase_total_cost">Total Cost for Shares (DAI)</span>
                     <span class="purchase-value" id="calcShareCostWithPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">FIT Received (after 3% fee)</span>
+                    <span class="purchase-label" data-i18n="purchase_fit_received">FIT Received (after 3% fee)</span>
                     <span class="purchase-value green" id="calcFitReceivedWithPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Max Purchase Cap (DAI)</span>
+                    <span class="purchase-label" data-i18n="purchase_max_cap">Max Purchase Cap (DAI)</span>
                     <span class="purchase-value" id="calcCapWithPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Min Side (members)</span>
+                    <span class="purchase-label" data-i18n="purchase_min_side">Min Side (members)</span>
                     <span class="purchase-value" id="calcMinSideWithPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Total Cost (Shares + FIT)</span>
+                    <span class="purchase-label" data-i18n="purchase_total_cost_with">Total Cost (Shares + FIT)</span>
                     <span class="purchase-value" style="color: #00C896;" id="calcTotalCostWithPlan">—</span>
                 </div>
                 
                 <!-- REWARD SECTION - ALL SHARES -->
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid rgba(255, 215, 0, 0.3);">
-                    <div style="color: #FFD700; font-size: 13px; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                    <div style="color: #FFD700; font-size: 13px; font-weight: bold; text-align: center; margin-bottom: 10px;" data-i18n="purchase_rewards">
                         <i class="fas fa-gift"></i> Estimated Rewards (All Shares)
                     </div>
                     <div class="purchase-row">
-                        <span class="purchase-label">Total Reward Points</span>
+                        <span class="purchase-label" data-i18n="purchase_reward_points">Total Reward Points</span>
                         <span class="purchase-value reward" id="calcRewardPointsWithPlan">—</span>
                     </div>
                     <div class="purchase-row">
-                        <span class="purchase-label">Reward Per Point ($)</span>
+                        <span class="purchase-label" data-i18n="purchase_reward_per">Reward Per Point ($)</span>
                         <span class="purchase-value reward" id="calcRewardPerPointWithPlan">—</span>
                     </div>
                     <div class="purchase-row" style="border-bottom: none;">
-                        <span class="purchase-label">Total Estimated Reward ($)</span>
+                        <span class="purchase-label" data-i18n="purchase_total_reward">Total Estimated Reward ($)</span>
                         <span class="purchase-value reward" style="font-size: 18px; color: #FFD700;" id="calcTotalRewardWithPlan">—</span>
                     </div>
                     <div class="reward-detail" id="rewardBreakdownWithPlan">—</div>
@@ -788,49 +788,49 @@
             
             <!-- Without Double Infinity Plan -->
             <div class="purchase-box without-plan">
-                <div class="purchase-title without-plan">
+                <div class="purchase-title without-plan" data-i18n="purchase_without_plan">
                     <i class="fas fa-user"></i> ❌ Without Double Infinity Plan (Direct)
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Required Shares</span>
+                    <span class="purchase-label" data-i18n="purchase_required_shares">Required Shares</span>
                     <span class="purchase-value" id="calcSharesWithoutPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Total Cost for Shares (DAI)</span>
+                    <span class="purchase-label" data-i18n="purchase_total_cost">Total Cost for Shares (DAI)</span>
                     <span class="purchase-value" id="calcShareCostWithoutPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">FIT Received (after 3% fee)</span>
+                    <span class="purchase-label" data-i18n="purchase_fit_received">FIT Received (after 3% fee)</span>
                     <span class="purchase-value green" id="calcFitReceivedWithoutPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Max Purchase Cap (DAI)</span>
+                    <span class="purchase-label" data-i18n="purchase_max_cap">Max Purchase Cap (DAI)</span>
                     <span class="purchase-value" id="calcCapWithoutPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Min Side (members)</span>
+                    <span class="purchase-label" data-i18n="purchase_min_side">Min Side (members)</span>
                     <span class="purchase-value" id="calcMinSideWithoutPlan">—</span>
                 </div>
                 <div class="purchase-row">
-                    <span class="purchase-label">Total Cost (Shares + FIT)</span>
+                    <span class="purchase-label" data-i18n="purchase_total_cost_with">Total Cost (Shares + FIT)</span>
                     <span class="purchase-value" style="color: #D4AF37;" id="calcTotalCostWithoutPlan">—</span>
                 </div>
                 
                 <!-- REWARD SECTION - ZERO -->
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid rgba(255, 215, 0, 0.15);">
-                    <div style="color: #FFD700; font-size: 13px; font-weight: bold; text-align: center; margin-bottom: 10px; opacity: 0.5;">
+                    <div style="color: #FFD700; font-size: 13px; font-weight: bold; text-align: center; margin-bottom: 10px; opacity: 0.5;" data-i18n="purchase_rewards">
                         <i class="fas fa-gift"></i> Estimated Rewards
                     </div>
                     <div class="purchase-row">
-                        <span class="purchase-label">Total Reward Points</span>
+                        <span class="purchase-label" data-i18n="purchase_reward_points">Total Reward Points</span>
                         <span class="purchase-value reward" style="opacity: 0.5;" id="calcRewardPointsWithoutPlan">—</span>
                     </div>
                     <div class="purchase-row">
-                        <span class="purchase-label">Reward Per Point ($)</span>
+                        <span class="purchase-label" data-i18n="purchase_reward_per">Reward Per Point ($)</span>
                         <span class="purchase-value reward" style="opacity: 0.5;" id="calcRewardPerPointWithoutPlan">—</span>
                     </div>
                     <div class="purchase-row" style="border-bottom: none;">
-                        <span class="purchase-label">Total Estimated Reward ($)</span>
+                        <span class="purchase-label" data-i18n="purchase_total_reward">Total Estimated Reward ($)</span>
                         <span class="purchase-value reward" style="font-size: 18px; opacity: 0.5;" id="calcTotalRewardWithoutPlan">—</span>
                     </div>
                 </div>
@@ -842,534 +842,1011 @@
             <div>
                 <div id="savingsContainer" style="display: none;">
                     <span class="savings-badge">
-                        💰 Save <span id="savingsAmount">—</span> DAI with Double Infinity Plan!
+                        💰 <span data-i18n="purchase_savings">Save <span id="savingsAmount">—</span> DAI with Double Infinity Plan!</span>
                     </span>
                 </div>
                 <div id="rewardContainer" style="display: none; margin-top: 10px;">
                     <span class="reward-badge">
-                        🎁 Earn <span id="rewardAmount">—</span> $ in Rewards with Double Infinity Plan!
+                        🎁 <span data-i18n="purchase_reward_bonus">Earn <span id="rewardAmount">—</span> $ in Rewards with Double Infinity Plan!</span>
                     </span>
                 </div>
             </div>
             <button id="calcBtn" class="action-btn" style="width: auto; padding: 10px 40px; border-color: #D4AF37; color: #D4AF37;">
-                <i class="fas fa-play"></i> Calculate
+                <i class="fas fa-play"></i> <span data-i18n="btn_calculate">Calculate</span>
             </button>
         </div>
         
     </div>
 
     <div class="footer" style="text-align: center; font-size: 10px; color: #666; margin-top: 30px; border-top: 1px solid rgba(0, 200, 150, 0.15); padding-top: 20px;">
-    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 12px; margin-bottom: 12px;">
-        <a href="index.html" style="color: #00C896; text-decoration: none;">Dashboard</a>
-        <span style="color: #444;">|</span>
-        <a href="compare.html" style="color: #00C896; text-decoration: none;">Comparison</a>
-        <span style="color: #444;">|</span>
-        <a href="dapp.html" style="color: #00C896; text-decoration: none;">DApp</a>
-        <span style="color: #444;">|</span>
-        <a href="transactions.html" style="color: #00C896; text-decoration: none;">Transactions</a>
-        <span style="color: #444;">|</span>
-        <a href="privacy.html" style="color: #00C896; text-decoration: none;">Privacy</a>
-        <span style="color: #444;">|</span>
-        <a href="warnings.html" style="color: #00C896; text-decoration: none;">Warnings</a>
-        <span style="color: #444;">|</span>
-        <a href="faq.html" style="color: #00C896; text-decoration: none;">FAQ</a>
-        <span style="color: #444;">|</span>
-        <a href="whitepaper.html" style="color: #00C896; text-decoration: none;">White Paper</a>
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 12px; margin-bottom: 12px;">
+            <a href="index.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_dashboard">Dashboard</a>
+            <span style="color: #444;">|</span>
+            <a href="compare.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_comparison">Comparison</a>
+            <span style="color: #444;">|</span>
+            <a href="dapp.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_dapp">DApp</a>
+            <span style="color: #444;">|</span>
+            <a href="transactions.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_transactions">Transactions</a>
+            <span style="color: #444;">|</span>
+            <a href="privacy.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_privacy">Privacy</a>
+            <span style="color: #444;">|</span>
+            <a href="warnings.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_warnings">Warnings</a>
+            <span style="color: #444;">|</span>
+            <a href="faq.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_faq">FAQ</a>
+            <span style="color: #444;">|</span>
+            <a href="whitepaper.html" style="color: #00C896; text-decoration: none;" data-i18n="nav_whitepaper">White Paper</a>
+        </div>
+        <p style="color: #888; font-size: 11px; margin: 0; text-align: center;" data-i18n="footer_tagline">
+            Fly Infinity — <span style="color: #D4AF37;">Decentralized. Transparent. Forever Rising.</span>
+        </p>
     </div>
-    <p style="color: #888; font-size: 11px; margin: 0; text-align: center;">
-        Fly Infinity — <span style="color: #D4AF37;">Decentralized. Transparent. Forever Rising.</span>
-    </p>
+
 </div>
 
-<script>
-    // ==================== CONTRACT CONFIG ====================
-    const CONTRACT_ADDRESS = "0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa";
-    const DAI_ADDRESS = "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3";
-    const ABI = [{"constant":true,"inputs":[],"name":"Price","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
-    const DAI_ABI = [{"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
-    
-    const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
-    const daiContract = new ethers.Contract(DAI_ADDRESS, DAI_ABI, provider);
-    
-    let currentPriceDAI = 0;
-    let priceChart = null;
-    
-    const ETHERSCAN_API_KEY = "SKAHDN5X6UMW388XSIY1B8VH99WJ4KH7S4";
-    const BSC_CHAIN_ID = 56;
-    
-    async function fetchHolderCount() {
-        try {
-            const url = `https://api.etherscan.io/v2/api?chainid=${BSC_CHAIN_ID}&module=token&action=topholders&contractaddress=${CONTRACT_ADDRESS}&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            document.getElementById("holderCount").innerHTML = "1,200";
-        } catch(e) {
-            document.getElementById("holderCount").innerHTML = "1,200";
-        }
+<!-- ===== داده‌های ترجمه (JSON) ===== -->
+<script id="lang-data" type="application/json">
+{
+    "site_title": {
+        "en": "Fly Infinity DAO",
+        "fa": "Fly Infinity DAO",
+        "ar": "Fly Infinity DAO",
+        "zh": "Fly Infinity DAO",
+        "es": "Fly Infinity DAO",
+        "pt": "Fly Infinity DAO",
+        "ru": "Fly Infinity DAO",
+        "hi": "Fly Infinity DAO",
+        "tr": "Fly Infinity DAO",
+        "id": "Fly Infinity DAO"
+    },
+    "nav_dashboard": {
+        "en": "Dashboard",
+        "fa": "داشبورد",
+        "ar": "لوحة التحكم",
+        "zh": "仪表板",
+        "es": "Panel",
+        "pt": "Painel",
+        "ru": "Панель",
+        "hi": "डैशबोर्ड",
+        "tr": "Gösterge Paneli",
+        "id": "Dasbor"
+    },
+    "nav_comparison": {
+        "en": "Comparison",
+        "fa": "مقایسه",
+        "ar": "المقارنة",
+        "zh": "比较",
+        "es": "Comparación",
+        "pt": "Comparação",
+        "ru": "Сравнение",
+        "hi": "तुलना",
+        "tr": "Karşılaştırma",
+        "id": "Perbandingan"
+    },
+    "nav_dapp": {
+        "en": "DApp",
+        "fa": "دی‌اپ",
+        "ar": "التطبيق اللامركزي",
+        "zh": "去中心化应用",
+        "es": "DApp",
+        "pt": "DApp",
+        "ru": "DApp",
+        "hi": "DApp",
+        "tr": "DApp",
+        "id": "DApp"
+    },
+    "nav_transactions": {
+        "en": "Transactions",
+        "fa": "تراکنش‌ها",
+        "ar": "المعاملات",
+        "zh": "交易记录",
+        "es": "Transacciones",
+        "pt": "Transações",
+        "ru": "Транзакции",
+        "hi": "लेन-देन",
+        "tr": "İşlemler",
+        "id": "Transaksi"
+    },
+    "nav_privacy": {
+        "en": "Privacy",
+        "fa": "حریم خصوصی",
+        "ar": "الخصوصية",
+        "zh": "隐私政策",
+        "es": "Privacidad",
+        "pt": "Privacidade",
+        "ru": "Конфиденциальность",
+        "hi": "गोपनीयता",
+        "tr": "Gizlilik",
+        "id": "Privasi"
+    },
+    "nav_warnings": {
+        "en": "Warnings",
+        "fa": "هشدارها",
+        "ar": "تحذيرات",
+        "zh": "警告",
+        "es": "Advertencias",
+        "pt": "Avisos",
+        "ru": "Предупреждения",
+        "hi": "चेतावनी",
+        "tr": "Uyarılar",
+        "id": "Peringatan"
+    },
+    "nav_faq": {
+        "en": "FAQ",
+        "fa": "سوالات متداول",
+        "ar": "الأسئلة الشائعة",
+        "zh": "常见问题",
+        "es": "Preguntas Frecuentes",
+        "pt": "Perguntas Frequentes",
+        "ru": "Часто задаваемые вопросы",
+        "hi": "सामान्य प्रश्न",
+        "tr": "SSS",
+        "id": "FAQ"
+    },
+    "nav_whitepaper": {
+        "en": "White Paper",
+        "fa": "سفیدنامه",
+        "ar": "الورقة البيضاء",
+        "zh": "白皮书",
+        "es": "Libro Blanco",
+        "pt": "Whitepaper",
+        "ru": "Белая книга",
+        "hi": "श्वेत पत्र",
+        "tr": "Beyaz Kitap",
+        "id": "Whitepaper"
+    },
+    "footer_tagline": {
+        "en": "Fly Infinity — Decentralized. Transparent. Forever Rising.",
+        "fa": "Fly Infinity — غیرمتمرکز. شفاف. همیشه در حال رشد.",
+        "ar": "Fly Infinity — لامركزي. شفاف. يرتفع للأبد.",
+        "zh": "Fly Infinity — 去中心化。透明。永远上涨。",
+        "es": "Fly Infinity — Descentralizado. Transparente. Siempre en ascenso.",
+        "pt": "Fly Infinity — Descentralizado. Transparente. Sempre em alta.",
+        "ru": "Fly Infinity — Децентрализованно. Прозрачно. Вечно растущий.",
+        "hi": "Fly Infinity — विकेन्द्रीकृत। पारदर्शी। हमेशा बढ़ता हुआ।",
+        "tr": "Fly Infinity — Merkeziyetsiz. Şeffaf. Sonsuza Kadar Yükselen.",
+        "id": "Fly Infinity — Terdesentralisasi. Transparan. Selalu Naik."
+    },
+    "dashboard_title": {
+        "en": "Fly Infinity Token (FIT)",
+        "fa": "توکن Fly Infinity (FIT)",
+        "ar": "رمز Fly Infinity (FIT)",
+        "zh": "Fly Infinity 代币 (FIT)",
+        "es": "Fly Infinity Token (FIT)",
+        "pt": "Fly Infinity Token (FIT)",
+        "ru": "Fly Infinity Token (FIT)",
+        "hi": "Fly Infinity टोकन (FIT)",
+        "tr": "Fly Infinity Token (FIT)",
+        "id": "Fly Infinity Token (FIT)"
+    },
+    "chain_badge": {
+        "en": "🛡️ BNB Smart Chain (BSC) Mainnet",
+        "fa": "🛡️ شبکه اصلی BNB Smart Chain (BSC)",
+        "ar": "🛡️ سلسلة BNB الذكية (BSC) الشبكة الرئيسية",
+        "zh": "🛡️ BNB智能链（BSC）主网",
+        "es": "🛡️ BNB Smart Chain (BSC) Mainnet",
+        "pt": "🛡️ BNB Smart Chain (BSC) Mainnet",
+        "ru": "🛡️ BNB Smart Chain (BSC) Mainnet",
+        "hi": "🛡️ BNB स्मार्ट चेन (BSC) मेननेट",
+        "tr": "🛡️ BNB Akıllı Zincir (BSC) Ana Ağı",
+        "id": "🛡️ BNB Smart Chain (BSC) Mainnet"
+    },
+    "current_price_label": {
+        "en": "Current Price",
+        "fa": "قیمت فعلی",
+        "ar": "السعر الحالي",
+        "zh": "当前价格",
+        "es": "Precio Actual",
+        "pt": "Preço Atual",
+        "ru": "Текущая цена",
+        "hi": "वर्तमान मूल्य",
+        "tr": "Güncel Fiyat",
+        "id": "Harga Saat Ini"
+    },
+    "token_stats": {
+        "en": "Token Statistics",
+        "fa": "آمار توکن",
+        "ar": "إحصائيات الرمز",
+        "zh": "代币统计",
+        "es": "Estadísticas del Token",
+        "pt": "Estatísticas do Token",
+        "ru": "Статистика токена",
+        "hi": "टोकन आँकड़े",
+        "tr": "Token İstatistikleri",
+        "id": "Statistik Token"
+    },
+    "stat_total_supply": {
+        "en": "Total Supply",
+        "fa": "کل عرضه",
+        "ar": "إجمالي العرض",
+        "zh": "总供应量",
+        "es": "Suministro Total",
+        "pt": "Oferta Total",
+        "ru": "Общее предложение",
+        "hi": "कुल आपूर्ति",
+        "tr": "Toplam Arz",
+        "id": "Total Pasokan"
+    },
+    "stat_reserve": {
+        "en": "$ Reserve",
+        "fa": "ذخیره $",
+        "ar": "الاحتياطي $",
+        "zh": "储备金",
+        "es": "Reserva $",
+        "pt": "Reserva $",
+        "ru": "Резерв $",
+        "hi": "रिजर्व $",
+        "tr": "Rezerv $",
+        "id": "Cadangan $"
+    },
+    "stat_market_cap": {
+        "en": "Market Cap ($)",
+        "fa": "ارزش بازار ($)",
+        "ar": "القيمة السوقية ($)",
+        "zh": "市值 ($)",
+        "es": "Capitalización de Mercado ($)",
+        "pt": "Capitalização de Mercado ($)",
+        "ru": "Рыночная капитализация ($)",
+        "hi": "बाजार पूंजीकरण ($)",
+        "tr": "Piyasa Değeri ($)",
+        "id": "Kapitalisasi Pasar ($)"
+    },
+    "stat_holders": {
+        "en": "Total Holders",
+        "fa": "کل دارندگان",
+        "ar": "إجمالي الحاملين",
+        "zh": "持有者总数",
+        "es": "Total de Titulares",
+        "pt": "Total de Titulares",
+        "ru": "Всего держателей",
+        "hi": "कुल धारक",
+        "tr": "Toplam Sahipler",
+        "id": "Total Pemegang"
+    },
+    "contract_address_label": {
+        "en": "📜 Contract Address",
+        "fa": "📜 آدرس قرارداد",
+        "ar": "📜 عنوان العقد",
+        "zh": "📜 合约地址",
+        "es": "📜 Dirección del Contrato",
+        "pt": "📜 Endereço do Contrato",
+        "ru": "📜 Адрес контракта",
+        "hi": "📜 अनुबंध पता",
+        "tr": "📜 Sözleşme Adresi",
+        "id": "📜 Alamat Kontrak"
+    },
+    "pricing_formula_label": {
+        "en": "💰 Pricing Formula",
+        "fa": "💰 فرمول قیمت‌گذاری",
+        "ar": "💰 صيغة التسعير",
+        "zh": "💰 定价公式",
+        "es": "💰 Fórmula de Precios",
+        "pt": "💰 Fórmula de Preços",
+        "ru": "💰 Формула цены",
+        "hi": "💰 मूल्य निर्धारण सूत्र",
+        "tr": "💰 Fiyatlandırma Formülü",
+        "id": "💰 Rumus Harga"
+    },
+    "pricing_formula_text": {
+        "en": "Price = Reserve / Total Supply",
+        "fa": "قیمت = ذخیره / کل عرضه",
+        "ar": "السعر = الاحتياطي / إجمالي العرض",
+        "zh": "价格 = 储备金 / 总供应量",
+        "es": "Precio = Reserva / Suministro Total",
+        "pt": "Preço = Reserva / Oferta Total",
+        "ru": "Цена = Резерв / Общее предложение",
+        "hi": "मूल्य = रिजर्व / कुल आपूर्ति",
+        "tr": "Fiyat = Rezerv / Toplam Arz",
+        "id": "Harga = Cadangan / Total Pasokan"
+    },
+    "btn_bscscan": {
+        "en": "BscScan",
+        "fa": "BscScan",
+        "ar": "BscScan",
+        "zh": "BscScan",
+        "es": "BscScan",
+        "pt": "BscScan",
+        "ru": "BscScan",
+        "hi": "BscScan",
+        "tr": "BscScan",
+        "id": "BscScan"
+    },
+    "btn_whitepaper": {
+        "en": "Whitepaper",
+        "fa": "سفیدنامه",
+        "ar": "الورقة البيضاء",
+        "zh": "白皮书",
+        "es": "Whitepaper",
+        "pt": "Whitepaper",
+        "ru": "Белая книга",
+        "hi": "श्वेत पत्र",
+        "tr": "Beyaz Kitap",
+        "id": "Whitepaper"
+    },
+    "btn_buy_shares": {
+        "en": "Buy Ownership Shares & FIT",
+        "fa": "خرید سهام مالکیت و FIT",
+        "ar": "شراء حصص الملكية و FIT",
+        "zh": "购买所有权份额和FIT",
+        "es": "Comprar Acciones de Propiedad y FIT",
+        "pt": "Comprar Ações de Propriedade e FIT",
+        "ru": "Купить доли владения и FIT",
+        "hi": "स्वामित्व शेयर और FIT खरीदें",
+        "tr": "Sahiplik Hisseleri ve FIT Satın Al",
+        "id": "Beli Saham Kepemilikan dan FIT"
+    },
+    "btn_refresh": {
+        "en": "Refresh Price",
+        "fa": "به‌روزرسانی قیمت",
+        "ar": "تحديث السعر",
+        "zh": "刷新价格",
+        "es": "Actualizar Precio",
+        "pt": "Atualizar Preço",
+        "ru": "Обновить цену",
+        "hi": "मूल्य ताज़ा करें",
+        "tr": "Fiyatı Yenile",
+        "id": "Segarkan Harga"
+    },
+    "chart_title": {
+        "en": "📈 Daily price chart ($ per FIT)",
+        "fa": "📈 نمودار قیمت روزانه (دلار به ازای هر FIT)",
+        "ar": "📈 مخطط الأسعار اليومي ($ لكل FIT)",
+        "zh": "📈 每日价格图表（每FIT美元）",
+        "es": "📈 Gráfico de precios diario ($ por FIT)",
+        "pt": "📈 Gráfico de preços diário ($ por FIT)",
+        "ru": "📈 Ежедневный график цен ($ за FIT)",
+        "hi": "📈 दैनिक मूल्य चार्ट ($ प्रति FIT)",
+        "tr": "📈 Günlük fiyat grafiği ($ / FIT)",
+        "id": "📈 Grafik harga harian ($ per FIT)"
+    },
+    "historical_changes": {
+        "en": "Historical Price Changes",
+        "fa": "تغییرات قیمت تاریخی",
+        "ar": "التغيرات التاريخية في الأسعار",
+        "zh": "历史价格变化",
+        "es": "Cambios Históricos de Precios",
+        "pt": "Alterações Históricas de Preços",
+        "ru": "Исторические изменения цен",
+        "hi": "ऐतिहासिक मूल्य परिवर्तन",
+        "tr": "Tarihsel Fiyat Değişiklikleri",
+        "id": "Perubahan Harga Historis"
+    },
+    "period_24h": {
+        "en": "24h Ago",
+        "fa": "۲۴ ساعت پیش",
+        "ar": "قبل 24 ساعة",
+        "zh": "24小时前",
+        "es": "Hace 24h",
+        "pt": "24h atrás",
+        "ru": "24ч назад",
+        "hi": "24 घंटे पहले",
+        "tr": "24s önce",
+        "id": "24 jam lalu"
+    },
+    "period_7d": {
+        "en": "7 Days Ago",
+        "fa": "۷ روز پیش",
+        "ar": "قبل 7 أيام",
+        "zh": "7天前",
+        "es": "Hace 7 Días",
+        "pt": "7 Dias Atrás",
+        "ru": "7 дней назад",
+        "hi": "7 दिन पहले",
+        "tr": "7 gün önce",
+        "id": "7 hari lalu"
+    },
+    "period_30d": {
+        "en": "30 Days Ago",
+        "fa": "۳۰ روز پیش",
+        "ar": "قبل 30 يومًا",
+        "zh": "30天前",
+        "es": "Hace 30 Días",
+        "pt": "30 Dias Atrás",
+        "ru": "30 дней назад",
+        "hi": "30 दिन पहले",
+        "tr": "30 gün önce",
+        "id": "30 hari lalu"
+    },
+    "period_90d": {
+        "en": "90 Days Ago",
+        "fa": "۹۰ روز پیش",
+        "ar": "قبل 90 يومًا",
+        "zh": "90天前",
+        "es": "Hace 90 Días",
+        "pt": "90 Dias Atrás",
+        "ru": "90 дней назад",
+        "hi": "90 दिन पहले",
+        "tr": "90 gün önce",
+        "id": "90 hari lalu"
+    },
+    "period_180d": {
+        "en": "180 Days Ago",
+        "fa": "۱۸۰ روز پیش",
+        "ar": "قبل 180 يومًا",
+        "zh": "180天前",
+        "es": "Hace 180 Días",
+        "pt": "180 Dias Atrás",
+        "ru": "180 дней назад",
+        "hi": "180 दिन पहले",
+        "tr": "180 gün önce",
+        "id": "180 hari lalu"
+    },
+    "period_365d": {
+        "en": "365 Days Ago",
+        "fa": "۳۶۵ روز پیش",
+        "ar": "قبل 365 يومًا",
+        "zh": "365天前",
+        "es": "Hace 365 Días",
+        "pt": "365 Dias Atrás",
+        "ru": "365 дней назад",
+        "hi": "365 दिन पहले",
+        "tr": "365 gün önce",
+        "id": "365 hari lalu"
+    },
+    "period_initial": {
+        "en": "Initial Price",
+        "fa": "قیمت اولیه",
+        "ar": "السعر الأولي",
+        "zh": "初始价格",
+        "es": "Precio Inicial",
+        "pt": "Preço Inicial",
+        "ru": "Начальная цена",
+        "hi": "प्रारंभिक मूल्य",
+        "tr": "Başlangıç Fiyatı",
+        "id": "Harga Awal"
+    },
+    "comparison_title": {
+        "en": "Comparison With Other Crypto",
+        "fa": "مقایسه با سایر ارزهای دیجیتال",
+        "ar": "المقارنة مع العملات المشفرة الأخرى",
+        "zh": "与其他加密货币比较",
+        "es": "Comparación con Otras Criptomonedas",
+        "pt": "Comparação com Outras Criptomoedas",
+        "ru": "Сравнение с другими криптовалютами",
+        "hi": "अन्य क्रिप्टो के साथ तुलना",
+        "tr": "Diğer Kriptolarla Karşılaştırma",
+        "id": "Perbandingan dengan Kripto Lain"
+    },
+    "comparison_sub": {
+        "en": "Compare FIT price with Bitcoin, Ethereum, BNB and other cryptocurrencies",
+        "fa": "قیمت FIT را با بیت‌کوین، اتریوم، BNB و سایر ارزهای دیجیتال مقایسه کنید",
+        "ar": "قارن سعر FIT مع Bitcoin و Ethereum و BNB والعملات المشفرة الأخرى",
+        "zh": "将FIT价格与比特币、以太坊、BNB和其他加密货币进行比较",
+        "es": "Compare el precio de FIT con Bitcoin, Ethereum, BNB y otras criptomonedas",
+        "pt": "Compare o preço da FIT com Bitcoin, Ethereum, BNB e outras criptomoedas",
+        "ru": "Сравните цену FIT с Bitcoin, Ethereum, BNB и другими криптовалютами",
+        "hi": "FIT की कीमत Bitcoin, Ethereum, BNB और अन्य क्रिप्टोकरेंसी से तुलना करें",
+        "tr": "FIT fiyatını Bitcoin, Ethereum, BNB ve diğer kriptolarla karşılaştırın",
+        "id": "Bandingkan harga FIT dengan Bitcoin, Ethereum, BNB dan kripto lainnya"
+    },
+    "profit_simulator": {
+        "en": "💰 Profit Simulator",
+        "fa": "💰 شبیه‌ساز سود",
+        "ar": "💰 محاكي الربح",
+        "zh": "💰 利润模拟器",
+        "es": "💰 Simulador de Ganancias",
+        "pt": "💰 Simulador de Lucro",
+        "ru": "💰 Симулятор прибыли",
+        "hi": "💰 लाभ सिम्युलेटर",
+        "tr": "💰 Kar Simülatörü",
+        "id": "💰 Simulator Keuntungan"
+    },
+    "sim_holdings_label": {
+        "en": "Your FIT Holdings",
+        "fa": "میزان FIT شما",
+        "ar": "ممتلكاتك من FIT",
+        "zh": "您的FIT持仓",
+        "es": "Sus Tenencias de FIT",
+        "pt": "Suas Participações em FIT",
+        "ru": "Ваши активы FIT",
+        "hi": "आपके FIT होल्डिंग्स",
+        "tr": "FIT Varlıklarınız",
+        "id": "Kepemilikan FIT Anda"
+    },
+    "sim_daily": {
+        "en": "📈 Daily: --",
+        "fa": "📈 روزانه: --",
+        "ar": "📈 يوميًا: --",
+        "zh": "📈 每日: --",
+        "es": "📈 Diario: --",
+        "pt": "📈 Diário: --",
+        "ru": "📈 Ежедневно: --",
+        "hi": "📈 दैनिक: --",
+        "tr": "📈 Günlük: --",
+        "id": "📈 Harian: --"
+    },
+    "sim_weekly": {
+        "en": "📊 Weekly: --",
+        "fa": "📊 هفتگی: --",
+        "ar": "📊 أسبوعيًا: --",
+        "zh": "📊 每周: --",
+        "es": "📊 Semanal: --",
+        "pt": "📊 Semanal: --",
+        "ru": "📊 Еженедельно: --",
+        "hi": "📊 साप्ताहिक: --",
+        "tr": "📊 Haftalık: --",
+        "id": "📊 Mingguan: --"
+    },
+    "sim_monthly": {
+        "en": "📅 Monthly: --",
+        "fa": "📅 ماهانه: --",
+        "ar": "📅 شهريًا: --",
+        "zh": "📅 每月: --",
+        "es": "📅 Mensual: --",
+        "pt": "📅 Mensal: --",
+        "ru": "📅 Ежемесячно: --",
+        "hi": "📅 मासिक: --",
+        "tr": "📅 Aylık: --",
+        "id": "📅 Bulanan: --"
+    },
+    "sim_24h": {
+        "en": "24h Projection",
+        "fa": "پیش‌بینی ۲۴ ساعته",
+        "ar": "توقعات 24 ساعة",
+        "zh": "24小时预测",
+        "es": "Proyección 24h",
+        "pt": "Projeção 24h",
+        "ru": "Прогноз на 24ч",
+        "hi": "24 घंटे का अनुमान",
+        "tr": "24s Projeksiyon",
+        "id": "Proyeksi 24 Jam"
+    },
+    "sim_7d": {
+        "en": "7 Days Projection",
+        "fa": "پیش‌بینی ۷ روزه",
+        "ar": "توقعات 7 أيام",
+        "zh": "7天预测",
+        "es": "Proyección 7 Días",
+        "pt": "Projeção 7 Dias",
+        "ru": "Прогноз на 7 дней",
+        "hi": "7 दिन का अनुमान",
+        "tr": "7 Gün Projeksiyon",
+        "id": "Proyeksi 7 Hari"
+    },
+    "sim_30d": {
+        "en": "30 Days Projection",
+        "fa": "پیش‌بینی ۳۰ روزه",
+        "ar": "توقعات 30 يومًا",
+        "zh": "30天预测",
+        "es": "Proyección 30 Días",
+        "pt": "Projeção 30 Dias",
+        "ru": "Прогноз на 30 дней",
+        "hi": "30 दिन का अनुमान",
+        "tr": "30 Gün Projeksiyon",
+        "id": "Proyeksi 30 Hari"
+    },
+    "sim_disclaimer": {
+        "en": "⚡ Based on past growth rates. Not financial advice.",
+        "fa": "⚡ بر اساس نرخ‌های رشد گذشته. توصیه مالی نیست.",
+        "ar": "⚡ بناءً على معدلات النمو السابقة. ليست نصيحة مالية.",
+        "zh": "⚡ 基于过去的增长率。不是财务建议。",
+        "es": "⚡ Basado en tasas de crecimiento pasadas. No es asesoramiento financiero.",
+        "pt": "⚡ Baseado em taxas de crescimento passadas. Não é aconselhamento financeiro.",
+        "ru": "⚡ Основано на прошлых темпах роста. Не является финансовой консультацией.",
+        "hi": "⚡ पिछली वृद्धि दरों पर आधारित। वित्तीय सलाह नहीं।",
+        "tr": "⚡ Geçmiş büyüme oranlarına dayanır. Finansal tavsiye değildir.",
+        "id": "⚡ Berdasarkan tingkat pertumbuhan masa lalu. Bukan nasihat keuangan."
+    },
+    "manual_simulator": {
+        "en": "Manual Profit Simulator",
+        "fa": "شبیه‌ساز دستی سود",
+        "ar": "محاكي الربح اليدوي",
+        "zh": "手动利润模拟器",
+        "es": "Simulador Manual de Ganancias",
+        "pt": "Simulador Manual de Lucro",
+        "ru": "Ручной симулятор прибыли",
+        "hi": "मैन्युअल लाभ सिम्युलेटर",
+        "tr": "Manuel Kar Simülatörü",
+        "id": "Simulator Keuntungan Manual"
+    },
+    "manual_sub": {
+        "en": "Calculate your potential profit based on daily price increase",
+        "fa": "سود بالقوه خود را بر اساس افزایش قیمت روزانه محاسبه کنید",
+        "ar": "احسب أرباحك المحتملة بناءً على زيادة الأسعار اليومية",
+        "zh": "根据每日价格上涨计算您的潜在利润",
+        "es": "Calcule su beneficio potencial basado en el aumento diario de precios",
+        "pt": "Calcule seu lucro potencial com base no aumento diário de preços",
+        "ru": "Рассчитайте потенциальную прибыль на основе ежедневного роста цен",
+        "hi": "दैनिक मूल्य वृद्धि के आधार पर अपने संभावित लाभ की गणना करें",
+        "tr": "Günlük fiyat artışına göre potansiyel karınızı hesaplayın",
+        "id": "Hitung potensi keuntungan Anda berdasarkan kenaikan harga harian"
+    },
+    "manual_daily_increase": {
+        "en": "📈 Daily Price Increase ($)",
+        "fa": "📈 افزایش قیمت روزانه (دلار)",
+        "ar": "📈 زيادة الأسعار اليومية ($)",
+        "zh": "📈 每日价格上涨 ($)",
+        "es": "📈 Aumento Diario de Precios ($)",
+        "pt": "📈 Aumento Diário de Preços ($)",
+        "ru": "📈 Ежедневное увеличение цены ($)",
+        "hi": "📈 दैनिक मूल्य वृद्धि ($)",
+        "tr": "📈 Günlük Fiyat Artışı ($)",
+        "id": "📈 Kenaikan Harga Harian ($)"
+    },
+    "manual_daily_profit": {
+        "en": "📅 Daily Profit",
+        "fa": "📅 سود روزانه",
+        "ar": "📅 الربح اليومي",
+        "zh": "📅 每日利润",
+        "es": "📅 Ganancia Diaria",
+        "pt": "📅 Lucro Diário",
+        "ru": "📅 Ежедневная прибыль",
+        "hi": "📅 दैनिक लाभ",
+        "tr": "📅 Günlük Kar",
+        "id": "📅 Keuntungan Harian"
+    },
+    "manual_weekly_profit": {
+        "en": "📊 Weekly Profit (7 Days)",
+        "fa": "📊 سود هفتگی (۷ روز)",
+        "ar": "📊 الربح الأسبوعي (7 أيام)",
+        "zh": "📊 每周利润（7天）",
+        "es": "📊 Ganancia Semanal (7 Días)",
+        "pt": "📊 Lucro Semanal (7 Dias)",
+        "ru": "📊 Еженедельная прибыль (7 дней)",
+        "hi": "📊 साप्ताहिक लाभ (7 दिन)",
+        "tr": "📊 Haftalık Kar (7 Gün)",
+        "id": "📊 Keuntungan Mingguan (7 Hari)"
+    },
+    "manual_monthly_profit": {
+        "en": "📅 Monthly Profit (30 Days)",
+        "fa": "📅 سود ماهانه (۳۰ روز)",
+        "ar": "📅 الربح الشهري (30 يومًا)",
+        "zh": "📅 每月利润（30天）",
+        "es": "📅 Ganancia Mensual (30 Días)",
+        "pt": "📅 Lucro Mensal (30 Dias)",
+        "ru": "📅 Ежемесячная прибыль (30 дней)",
+        "hi": "📅 मासिक लाभ (30 दिन)",
+        "tr": "📅 Aylık Kar (30 Gün)",
+        "id": "📅 Keuntungan Bulanan (30 Hari)"
+    },
+    "btn_calculate": {
+        "en": "Calculate",
+        "fa": "محاسبه",
+        "ar": "احسب",
+        "zh": "计算",
+        "es": "Calcular",
+        "pt": "Calcular",
+        "ru": "Рассчитать",
+        "hi": "गणना करें",
+        "tr": "Hesapla",
+        "id": "Hitung"
+    },
+    "fee_calculator": {
+        "en": "Fee Calculator (Buy: 3% | Sell: 6%)",
+        "fa": "ماشین حساب کارمزد (خرید: ۳٪ | فروش: ۶٪)",
+        "ar": "حاسبة الرسوم (شراء: 3% | بيع: 6%)",
+        "zh": "费用计算器（买入：3% | 卖出：6%）",
+        "es": "Calculadora de Tarifas (Comprar: 3% | Vender: 6%)",
+        "pt": "Calculadora de Taxas (Comprar: 3% | Vender: 6%)",
+        "ru": "Калькулятор комиссий (Покупка: 3% | Продажа: 6%)",
+        "hi": "शुल्क कैलकुलेटर (खरीद: 3% | बेच: 6%)",
+        "tr": "Ücret Hesaplayıcı (Alım: 3% | Satım: 6%)",
+        "id": "Kalkulator Biaya (Beli: 3% | Jual: 6%)"
+    },
+    "fee_buy_calc": {
+        "en": "Buy Calculator",
+        "fa": "ماشین حساب خرید",
+        "ar": "حاسبة الشراء",
+        "zh": "购买计算器",
+        "es": "Calculadora de Compra",
+        "pt": "Calculadora de Compra",
+        "ru": "Калькулятор покупки",
+        "hi": "खरीद कैलकुलेटर",
+        "tr": "Alım Hesaplayıcı",
+        "id": "Kalkulator Beli"
+    },
+    "fee_sell_calc": {
+        "en": "Sell Calculator",
+        "fa": "ماشین حساب فروش",
+        "ar": "حاسبة البيع",
+        "zh": "出售计算器",
+        "es": "Calculadora de Venta",
+        "pt": "Calculadora de Venda",
+        "ru": "Калькулятор продажи",
+        "hi": "बेच कैलकुलेटर",
+        "tr": "Satım Hesaplayıcı",
+        "id": "Kalkulator Jual"
+    },
+    "fee_amount_usd": {
+        "en": "💰 Amount (USD)",
+        "fa": "💰 مبلغ (دلار)",
+        "ar": "💰 المبلغ (USD)",
+        "zh": "💰 金额 (USD)",
+        "es": "💰 Cantidad (USD)",
+        "pt": "💰 Quantia (USD)",
+        "ru": "💰 Сумма (USD)",
+        "hi": "💰 राशि (USD)",
+        "tr": "💰 Tutar (USD)",
+        "id": "💰 Jumlah (USD)"
+    },
+    "fee_amount_fit": {
+        "en": "🪙 Amount (FIT)",
+        "fa": "🪙 مقدار (FIT)",
+        "ar": "🪙 المبلغ (FIT)",
+        "zh": "🪙 数量 (FIT)",
+        "es": "🪙 Cantidad (FIT)",
+        "pt": "🪙 Quantia (FIT)",
+        "ru": "🪙 Количество (FIT)",
+        "hi": "🪙 राशि (FIT)",
+        "tr": "🪙 Tutar (FIT)",
+        "id": "🪙 Jumlah (FIT)"
+    },
+    "fee_you_receive": {
+        "en": "You will receive",
+        "fa": "دریافت خواهید کرد",
+        "ar": "ستتلقى",
+        "zh": "您将收到",
+        "es": "Recibirás",
+        "pt": "Você receberá",
+        "ru": "Вы получите",
+        "hi": "आपको प्राप्त होगा",
+        "tr": "Alacaksınız",
+        "id": "Anda akan menerima"
+    },
+    "fee_current_price": {
+        "en": "Current Price: ${price} USD",
+        "fa": "قیمت فعلی: ${price} دلار",
+        "ar": "السعر الحالي: ${price} USD",
+        "zh": "当前价格：${price} USD",
+        "es": "Precio Actual: ${price} USD",
+        "pt": "Preço Atual: ${price} USD",
+        "ru": "Текущая цена: ${price} USD",
+        "hi": "वर्तमान मूल्य: ${price} USD",
+        "tr": "Güncel Fiyat: ${price} USD",
+        "id": "Harga Saat Ini: ${price} USD"
+    },
+    "purchase_calculator": {
+        "en": "FIT Purchase Calculator",
+        "fa": "ماشین حساب خرید FIT",
+        "ar": "حاسبة شراء FIT",
+        "zh": "FIT购买计算器",
+        "es": "Calculadora de Compra de FIT",
+        "pt": "Calculadora de Compra de FIT",
+        "ru": "Калькулятор покупки FIT",
+        "hi": "FIT खरीद कैलकुलेटर",
+        "tr": "FIT Alım Hesaplayıcı",
+        "id": "Kalkulator Pembelian FIT"
+    },
+    "purchase_sub": {
+        "en": "Calculate required ownership shares based on Double Infinity network plan + Estimated Rewards for ALL shares",
+        "fa": "محاسبه سهام مالکیت مورد نیاز بر اساس طرح شبکه Double Infinity + پاداش تخمینی برای تمام سهام",
+        "ar": "احسب حصص الملكية المطلوبة بناءً على خطة شبكة Double Infinity + المكافآت المقدرة لجميع الحصص",
+        "zh": "根据Double Infinity网络计划计算所需的所有权份额 + 所有份额的估计奖励",
+        "es": "Calcule las acciones de propiedad requeridas según el plan de red Double Infinity + Recompensas estimadas para TODAS las acciones",
+        "pt": "Calcule as ações de propriedade necessárias com base no plano de rede Double Infinity + Recompensas estimadas para TODAS as ações",
+        "ru": "Рассчитайте необходимые доли владения на основе плана сети Double Infinity + Оценочные вознаграждения для ВСЕХ долей",
+        "hi": "Double Infinity नेटवर्क योजना के आधार पर आवश्यक स्वामित्व शेयरों की गणना करें + सभी शेयरों के लिए अनुमानित पुरस्कार",
+        "tr": "Double Infinity ağ planına göre gerekli sahiplik hisselerini hesaplayın + TÜM hisseler için tahmini ödüller",
+        "id": "Hitung saham kepemilikan yang diperlukan berdasarkan rencana jaringan Double Infinity + Perkiraan Hadiah untuk SEMUA saham"
+    },
+    "purchase_fit_amount": {
+        "en": "🪙 FIT Amount to Buy",
+        "fa": "🪙 مقدار FIT برای خرید",
+        "ar": "🪙 كمية FIT للشراء",
+        "zh": "🪙 要购买的FIT数量",
+        "es": "🪙 Cantidad de FIT a Comprar",
+        "pt": "🪙 Quantidade de FIT para Comprar",
+        "ru": "🪙 Количество FIT для покупки",
+        "hi": "🪙 खरीदने के लिए FIT की मात्रा",
+        "tr": "🪙 Alınacak FIT Miktarı",
+        "id": "🪙 Jumlah FIT yang Akan Dibeli"
+    },
+    "purchase_fit_price": {
+        "en": "💰 Current FIT Price (DAI)",
+        "fa": "💰 قیمت فعلی FIT (DAI)",
+        "ar": "💰 سعر FIT الحالي (DAI)",
+        "zh": "💰 当前FIT价格 (DAI)",
+        "es": "💰 Precio Actual de FIT (DAI)",
+        "pt": "💰 Preço Atual do FIT (DAI)",
+        "ru": "💰 Текущая цена FIT (DAI)",
+        "hi": "💰 वर्तमान FIT मूल्य (DAI)",
+        "tr": "💰 Güncel FIT Fiyatı (DAI)",
+        "id": "💰 Harga FIT Saat Ini (DAI)"
+    },
+    "purchase_share_cost": {
+        "en": "💎 Ownership Share Cost (DAI)",
+        "fa": "💎 هزینه سهم مالکیت (DAI)",
+        "ar": "💎 تكلفة حصة الملكية (DAI)",
+        "zh": "💎 所有权份额成本 (DAI)",
+        "es": "💎 Costo de Acción de Propiedad (DAI)",
+        "pt": "💎 Custo da Ação de Propriedade (DAI)",
+        "ru": "💎 Стоимость доли владения (DAI)",
+        "hi": "💎 स्वामित्व शेयर लागत (DAI)",
+        "tr": "💎 Sahiplik Hissesi Maliyeti (DAI)",
+        "id": "💎 Biaya Saham Kepemilikan (DAI)"
+    },
+    "purchase_reward_per_point": {
+        "en": "💰 Reward Value Per Point ($)",
+        "fa": "💰 ارزش پاداش به ازای هر امتیاز (دلار)",
+        "ar": "💰 قيمة المكافأة لكل نقطة ($)",
+        "zh": "💰 每点奖励价值 ($)",
+        "es": "💰 Valor de Recompensa por Punto ($)",
+        "pt": "💰 Valor de Recompensa por Ponto ($)",
+        "ru": "💰 Стоимость вознаграждения за балл ($)",
+        "hi": "💰 प्रति प्वाइंट पुरस्कार मूल्य ($)",
+        "tr": "💰 Puan Başına Ödül Değeri ($)",
+        "id": "💰 Nilai Hadiah Per Poin ($)"
+    },
+    "purchase_with_plan": {
+        "en": "✅ With Double Infinity Network Plan",
+        "fa": "✅ با طرح شبکه Double Infinity",
+        "ar": "✅ مع خطة شبكة Double Infinity",
+        "zh": "✅ 使用Double Infinity网络计划",
+        "es": "✅ Con Plan de Red Double Infinity",
+        "pt": "✅ Com Plano de Rede Double Infinity",
+        "ru": "✅ С планом сети Double Infinity",
+        "hi": "✅ Double Infinity नेटवर्क योजना के साथ",
+        "tr": "✅ Double Infinity Ağ Planı ile",
+        "id": "✅ Dengan Rencana Jaringan Double Infinity"
+    },
+    "purchase_without_plan": {
+        "en": "❌ Without Double Infinity Plan (Direct)",
+        "fa": "❌ بدون طرح Double Infinity (مستقیم)",
+        "ar": "❌ بدون خطة Double Infinity (مباشر)",
+        "zh": "❌ 不使用Double Infinity计划（直接）",
+        "es": "❌ Sin Plan Double Infinity (Directo)",
+        "pt": "❌ Sem Plano Double Infinity (Direto)",
+        "ru": "❌ Без плана Double Infinity (Прямой)",
+        "hi": "❌ Double Infinity योजना के बिना (सीधा)",
+        "tr": "❌ Double Infinity Planı Olmadan (Doğrudan)",
+        "id": "❌ Tanpa Rencana Double Infinity (Langsung)"
+    },
+    "purchase_required_shares": {
+        "en": "Required Shares",
+        "fa": "سهام مورد نیاز",
+        "ar": "الحصص المطلوبة",
+        "zh": "所需份额",
+        "es": "Acciones Requeridas",
+        "pt": "Ações Necessárias",
+        "ru": "Требуемые доли",
+        "hi": "आवश्यक शेयर",
+        "tr": "Gerekli Hisseler",
+        "id": "Saham yang Diperlukan"
+    },
+    "purchase_total_cost": {
+        "en": "Total Cost for Shares (DAI)",
+        "fa": "هزینه کل سهام (DAI)",
+        "ar": "التكلفة الإجمالية للحصص (DAI)",
+        "zh": "份额总成本 (DAI)",
+        "es": "Costo Total de Acciones (DAI)",
+        "pt": "Custo Total das Ações (DAI)",
+        "ru": "Общая стоимость долей (DAI)",
+        "hi": "शेयरों की कुल लागत (DAI)",
+        "tr": "Hisselerin Toplam Maliyeti (DAI)",
+        "id": "Total Biaya Saham (DAI)"
+    },
+    "purchase_fit_received": {
+        "en": "FIT Received (after 3% fee)",
+        "fa": "FIT دریافت شده (پس از کارمزد ۳٪)",
+        "ar": "FIT المستلم (بعد رسوم 3%)",
+        "zh": "收到的FIT（扣除3%费用后）",
+        "es": "FIT Recibido (después de tarifa del 3%)",
+        "pt": "FIT Recebido (após taxa de 3%)",
+        "ru": "FIT получено (после комиссии 3%)",
+        "hi": "प्राप्त FIT (3% शुल्क के बाद)",
+        "tr": "Alınan FIT (%3 ücret sonrası)",
+        "id": "FIT Diterima (setelah biaya 3%)"
+    },
+    "purchase_max_cap": {
+        "en": "Max Purchase Cap (DAI)",
+        "fa": "حداکثر سقف خرید (DAI)",
+        "ar": "الحد الأقصى للشراء (DAI)",
+        "zh": "最大购买限额 (DAI)",
+        "es": "Límite Máximo de Compra (DAI)",
+        "pt": "Limite Máximo de Compra (DAI)",
+        "ru": "Максимальный лимит покупки (DAI)",
+        "hi": "अधिकतम खरीद सीमा (DAI)",
+        "tr": "Maksimum Alım Limiti (DAI)",
+        "id": "Batas Pembelian Maksimum (DAI)"
+    },
+    "purchase_min_side": {
+        "en": "Min Side (members)",
+        "fa": "حداقل سمت (اعضا)",
+        "ar": "الحد الأدنى للجانب (الأعضاء)",
+        "zh": "最小分支（成员）",
+        "es": "Lado Mínimo (miembros)",
+        "pt": "Lado Mínimo (membros)",
+        "ru": "Минимальная сторона (участники)",
+        "hi": "न्यूनतम पक्ष (सदस्य)",
+        "tr": "Min Taraf (üyeler)",
+        "id": "Sisi Minimal (anggota)"
+    },
+    "purchase_total_cost_with": {
+        "en": "Total Cost (Shares + FIT)",
+        "fa": "هزینه کل (سهام + FIT)",
+        "ar": "التكلفة الإجمالية (الحصص + FIT)",
+        "zh": "总成本（份额 + FIT）",
+        "es": "Costo Total (Acciones + FIT)",
+        "pt": "Custo Total (Ações + FIT)",
+        "ru": "Общая стоимость (Доли + FIT)",
+        "hi": "कुल लागत (शेयर + FIT)",
+        "tr": "Toplam Maliyet (Hisseler + FIT)",
+        "id": "Total Biaya (Saham + FIT)"
+    },
+    "purchase_rewards": {
+        "en": "Estimated Rewards (All Shares)",
+        "fa": "پاداش تخمینی (تمام سهام)",
+        "ar": "المكافآت المقدرة (جميع الحصص)",
+        "zh": "估计奖励（所有份额）",
+        "es": "Recompensas Estimadas (Todas las Acciones)",
+        "pt": "Recompensas Estimadas (Todas as Ações)",
+        "ru": "Оценочные вознаграждения (Все доли)",
+        "hi": "अनुमानित पुरस्कार (सभी शेयर)",
+        "tr": "Tahmini Ödüller (Tüm Hisseler)",
+        "id": "Perkiraan Hadiah (Semua Saham)"
+    },
+    "purchase_reward_points": {
+        "en": "Total Reward Points",
+        "fa": "کل امتیازات پاداش",
+        "ar": "إجمالي نقاط المكافأة",
+        "zh": "总奖励积分",
+        "es": "Puntos de Recompensa Totales",
+        "pt": "Pontos de Recompensa Totais",
+        "ru": "Общее количество баллов вознаграждения",
+        "hi": "कुल पुरस्कार अंक",
+        "tr": "Toplam Ödül Puanı",
+        "id": "Total Poin Hadiah"
+    },
+    "purchase_reward_per": {
+        "en": "Reward Per Point ($)",
+        "fa": "پاداش به ازای هر امتیاز (دلار)",
+        "ar": "المكافأة لكل نقطة ($)",
+        "zh": "每点奖励 ($)",
+        "es": "Recompensa por Punto ($)",
+        "pt": "Recompensa por Ponto ($)",
+        "ru": "Вознаграждение за балл ($)",
+        "hi": "प्रति प्वाइंट पुरस्कार ($)",
+        "tr": "Puan Başına Ödül ($)",
+        "id": "Hadiah Per Poin ($)"
+    },
+    "purchase_total_reward": {
+        "en": "Total Estimated Reward ($)",
+        "fa": "کل پاداش تخمینی (دلار)",
+        "ar": "إجمالي المكافأة المقدرة ($)",
+        "zh": "估计总奖励 ($)",
+        "es": "Recompensa Total Estimada ($)",
+        "pt": "Recompensa Total Estimada ($)",
+        "ru": "Общая оценочная награда ($)",
+        "hi": "कुल अनुमानित पुरस्कार ($)",
+        "tr": "Toplam Tahmini Ödül ($)",
+        "id": "Total Perkiraan Hadiah ($)"
+    },
+    "purchase_savings": {
+        "en": "💰 Save {amount} DAI with Double Infinity Plan!",
+        "fa": "💰 با طرح Double Infinity {amount} DAI صرفه‌جویی کنید!",
+        "ar": "💰 وفر {amount} DAI مع خطة Double Infinity!",
+        "zh": "💰 使用Double Infinity计划节省{amount} DAI！",
+        "es": "💰 ¡Ahorra {amount} DAI con el Plan Double Infinity!",
+        "pt": "💰 Economize {amount} DAI com o Plano Double Infinity!",
+        "ru": "💰 Экономьте {amount} DAI с планом Double Infinity!",
+        "hi": "💰 Double Infinity योजना के साथ {amount} DAI बचाएं!",
+        "tr": "💰 Double Infinity Planı ile {amount} DAI tasarruf edin!",
+        "id": "💰 Hemat {amount} DAI dengan Rencana Double Infinity!"
+    },
+    "purchase_reward_bonus": {
+        "en": "🎁 Earn ${amount} in Rewards with Double Infinity Plan!",
+        "fa": "🎁 با طرح Double Infinity ${amount} پاداش کسب کنید!",
+        "ar": "🎁 اكسب ${amount} في المكافآت مع خطة Double Infinity!",
+        "zh": "🎁 使用Double Infinity计划赚取${amount}奖励！",
+        "es": "🎁 ¡Gana ${amount} en Recompensas con el Plan Double Infinity!",
+        "pt": "🎁 Ganhe ${amount} em Recompensas com o Plano Double Infinity!",
+        "ru": "🎁 Заработайте ${amount} в виде вознаграждений с планом Double Infinity!",
+        "hi": "🎁 Double Infinity योजना के साथ ${amount} पुरस्कार अर्जित करें!",
+        "tr": "🎁 Double Infinity Planı ile ${amount} Ödül kazanın!",
+        "id": "🎁 Dapatkan ${amount} Hadiah dengan Rencana Double Infinity!"
+    },
+    "btn_fetch_live": {
+        "en": "Fetch Live Price",
+        "fa": "دریافت قیمت لحظه‌ای",
+        "ar": "جلب السعر المباشر",
+        "zh": "获取实时价格",
+        "es": "Obtener Precio en Vivo",
+        "pt": "Buscar Preço ao Vivo",
+        "ru": "Получить живую цену",
+        "hi": "लाइव मूल्य प्राप्त करें",
+        "tr": "Canlı Fiyatı Al",
+        "id": "Ambil Harga Langsung"
     }
-    
-    let historicalStats = {
-        days1: null, days7: null, days30: null, days90: null, 
-        days180: null, days365: null, initial: null, current: null
-    };
-    
-    let chartLabels = [];
-    let chartPrices = [];
-    
-    async function loadAllFromJSON() {
-        try {
-            const response = await fetch('price-history.json?t=' + Date.now());
-            if (!response.ok) throw new Error("JSON file not found");
-            const data = await response.json();
-            if (data.records && data.records.length > 0) {
-                const records = data.records.sort((a,b) => a.date.localeCompare(b.date));
-                
-                chartLabels = records.map(r => r.date);
-                chartPrices = records.map(r => r.price);
-                console.log(`✅ Chart: ${chartLabels.length} records loaded from JSON`);
-                
-                historicalStats.current = records[records.length - 1].price;
-                
-                const today = new Date();
-                today.setUTCHours(0, 0, 0, 0);
-                
-                function getPriceAtDate(daysAgo) {
-                    const target = new Date(today);
-                    target.setUTCDate(today.getUTCDate() - daysAgo);
-                    const targetStr = target.toISOString().split('T')[0];
-                    
-                    for (let i = records.length - 1; i >= 0; i--) {
-                        if (records[i].date <= targetStr) {
-                            return records[i].price;
-                        }
-                    }
-                    return null;
-                }
-                
-                historicalStats.days1 = getPriceAtDate(1);
-                historicalStats.days7 = getPriceAtDate(7);
-                historicalStats.days30 = getPriceAtDate(30);
-                historicalStats.days90 = getPriceAtDate(90);
-                historicalStats.days180 = getPriceAtDate(180);
-                historicalStats.days365 = getPriceAtDate(365);
-                historicalStats.initial = records[0]?.price || null;
-                
-                console.log("✅ Historical stats from JSON:", historicalStats);
-            }
-            updateStats();
-            updateGrowthRates();
-            updateSim();
-            drawChart();
-        } catch(e) {
-            console.log("⚠️ Could not load JSON, using fallback data");
-            useFallbackData();
-        }
-    }
-    
-    function useFallbackData() {
-        historicalStats = {
-            days1: 6.278, days7: 6.181, days30: 6.030, days90: 5.682, 
-            days180: 1.005, days365: 1.000, initial: 1.000, current: 6.324
-        };
-        chartLabels = ["2025-12-18", "2026-03-18", "2026-04-01", "2026-05-01", "2026-06-01", "2026-06-06", "2026-06-12", "2026-06-13"];
-        chartPrices = [1.000, 1.001, 2.015, 3.045, 4.076, 6.181, 6.278, 6.324];
-        updateStats();
-        updateGrowthRates();
-        updateSim();
-        drawChart();
-    }
-    
-    function drawChart() {
-        const ctx = document.getElementById('priceChart').getContext('2d');
-        if (priceChart) priceChart.destroy();
-        if (chartLabels.length === 0) return;
-        priceChart = new Chart(ctx, {
-            type: 'line',
-            data: { labels: chartLabels, datasets: [{ label: 'FIT Price ($)', data: chartPrices, borderColor: '#D4AF37', backgroundColor: 'rgba(212,175,55,0.1)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: 0 }] },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `$${ctx.raw.toFixed(6)}` } }, legend: { labels: { color: '#00C896' } } }, scales: { x: { ticks: { color: '#888', maxRotation: 45, autoSkip: true, maxTicksLimit: 10 } }, y: { ticks: { color: '#888', callback: (val) => '$' + val.toFixed(2) } } } }
-        });
-    }
-    
-    async function fetchLive() {
-        try {
-            let raw = await contract.Price();
-            let priceDAI = parseFloat(ethers.utils.formatEther(raw));
-            currentPriceDAI = priceDAI;
-            
-            document.getElementById("fit-price").innerHTML = currentPriceDAI.toFixed(6);
-            document.getElementById("usd-price").innerHTML = `≈ $${currentPriceDAI.toFixed(4)}`;
-            
-            let totalSup = parseFloat(ethers.utils.formatEther(await contract.totalSupply()));
-            document.getElementById("totalSupply").innerHTML = totalSup.toLocaleString(undefined, {maximumFractionDigits:0});
-            
-            let reserve = parseFloat(ethers.utils.formatEther(await daiContract.balanceOf(CONTRACT_ADDRESS)));
-            document.getElementById("daiBalance").innerHTML = "$" + reserve.toLocaleString(undefined, {maximumFractionDigits:2});
-            
-            let mcap = currentPriceDAI * totalSup;
-            document.getElementById("marketCap").innerHTML = "$" + mcap.toLocaleString(undefined, {maximumFractionDigits:0});
-            
-            updateSim();
-            updateCalculatorPrice();
-            const priceInput = document.getElementById('calcFitPrice');
-            if (priceInput && !priceInput.dataset.userEdited) {
-                priceInput.value = currentPriceDAI.toFixed(6);
-                calculatePurchase();
-            }
-        } catch(e) { console.error(e); }
-    }
-    
-    function updateStats() {
-        const fmt = (p) => (p !== null && p !== undefined) ? `$${p.toFixed(6)}` : "—";
-        const chg = (oldP) => { 
-            if (!oldP) return "—"; 
-            let ch = ((historicalStats.current - oldP)/oldP)*100; 
-            let sign = ch>=0?"+":""; 
-            let color = ch>=0?"#00C896":"#D4AF37"; 
-            return `<span style="color:${color}">${sign}${ch.toFixed(2)}%</span>`; 
-        };
-        document.getElementById("price1d").innerHTML = fmt(historicalStats.days1);
-        document.getElementById("change1d").innerHTML = chg(historicalStats.days1);
-        document.getElementById("price7d").innerHTML = fmt(historicalStats.days7);
-        document.getElementById("change7d").innerHTML = chg(historicalStats.days7);
-        document.getElementById("price30d").innerHTML = fmt(historicalStats.days30);
-        document.getElementById("change30d").innerHTML = chg(historicalStats.days30);
-        document.getElementById("price90d").innerHTML = fmt(historicalStats.days90);
-        document.getElementById("change90d").innerHTML = chg(historicalStats.days90);
-        document.getElementById("price180d").innerHTML = fmt(historicalStats.days180);
-        document.getElementById("change180d").innerHTML = chg(historicalStats.days180);
-        document.getElementById("price365d").innerHTML = fmt(historicalStats.days365);
-        document.getElementById("change365d").innerHTML = chg(historicalStats.days365);
-        document.getElementById("priceInitial").innerHTML = fmt(historicalStats.initial);
-        document.getElementById("changeInitial").innerHTML = chg(historicalStats.initial);
-    }
-    
-    function updateGrowthRates() {
-        let d = ((historicalStats.current - historicalStats.days1)/historicalStats.days1)*100;
-        let w = ((historicalStats.current - historicalStats.days7)/historicalStats.days7)*100;
-        let m = ((historicalStats.current - historicalStats.days30)/historicalStats.days30)*100;
-        document.getElementById("dailyGrowthRate").innerHTML = `📈 Daily: ${d.toFixed(2)}%`;
-        document.getElementById("weeklyGrowthRate").innerHTML = `📊 Weekly: ${w.toFixed(2)}%`;
-        document.getElementById("monthlyGrowthRate").innerHTML = `📅 Monthly: ${m.toFixed(2)}%`;
-    }
-    
-    function updateSim() {
-        let amt = parseFloat(document.getElementById("fitAmount").value);
-        if (isNaN(amt) || amt <=0 || currentPriceDAI===0) return;
-        let val = amt * currentPriceDAI;
-        let d = ((historicalStats.current - historicalStats.days1)/historicalStats.days1)*100;
-        let w = ((historicalStats.current - historicalStats.days7)/historicalStats.days7)*100;
-        let m = ((historicalStats.current - historicalStats.days30)/historicalStats.days30)*100;
-        document.getElementById("dailyReturn").innerHTML = `+$${(val * d / 100).toFixed(2)}`;
-        document.getElementById("weeklyReturn").innerHTML = `+$${(val * w / 100).toFixed(2)}`;
-        document.getElementById("monthlyReturn").innerHTML = `+$${(val * m / 100).toFixed(2)}`;
-    }
-    
-    const BUY_FEE = 0.03;
-    const SELL_FEE = 0.06;
-    
-    function updateBuyCalculator() {
-        const usdAmount = parseFloat(document.getElementById("buyAmountUSD").value);
-        const currentPrice = currentPriceDAI;
-        
-        if (isNaN(usdAmount) || usdAmount <= 0 || currentPrice <= 0) {
-            document.getElementById("buyFITAmount").innerHTML = "— FIT";
-            document.getElementById("buyFeeBreakdown").innerHTML = "—";
-            return;
-        }
-        
-        const amountAfterFee = usdAmount * (1 - BUY_FEE);
-        const fitAmount = amountAfterFee / currentPrice;
-        
-        document.getElementById("buyFITAmount").innerHTML = fitAmount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4}) + " FIT";
-        document.getElementById("buyFeeBreakdown").innerHTML = `Fee (3%): $${(usdAmount * BUY_FEE).toFixed(2)} | You get: $${amountAfterFee.toFixed(2)} worth of FIT`;
-    }
-    
-    function updateSellCalculator() {
-        const fitAmount = parseFloat(document.getElementById("sellAmountFIT").value);
-        const currentPrice = currentPriceDAI;
-        
-        if (isNaN(fitAmount) || fitAmount <= 0 || currentPrice <= 0) {
-            document.getElementById("sellUSDAmount").innerHTML = "— USD";
-            document.getElementById("sellFeeBreakdown").innerHTML = "—";
-            return;
-        }
-        
-        const totalValue = fitAmount * currentPrice;
-        const amountAfterFee = totalValue * (1 - SELL_FEE);
-        
-        document.getElementById("sellUSDAmount").innerHTML = `$${amountAfterFee.toFixed(2)} USD`;
-        document.getElementById("sellFeeBreakdown").innerHTML = `Fee (6%): $${(totalValue * SELL_FEE).toFixed(2)} | You receive: $${amountAfterFee.toFixed(2)}`;
-    }
-    
-    function updateCalculatorPrice() {
-        document.getElementById("calcPrice").innerHTML = `$${currentPriceDAI.toFixed(4)}`;
-        updateBuyCalculator();
-        updateSellCalculator();
-    }
-    
-    document.getElementById("buyAmountUSD").addEventListener("input", updateBuyCalculator);
-    document.getElementById("sellAmountFIT").addEventListener("input", updateSellCalculator);
-    
-    async function init() {
-        await loadAllFromJSON();
-        fetchLive();
-        fetchHolderCount();
-        setInterval(fetchHolderCount, 300000);
-    }
-    
-    document.getElementById("refreshBtn").addEventListener("click", () => {
-        fetchLive();
-        loadAllFromJSON();
-        fetchHolderCount();
-    });
-    document.getElementById("fitAmount").addEventListener("input", updateSim);
-    
-    init();
-    setInterval(fetchLive, 30000);
-    setInterval(loadAllFromJSON, 60000);
-
-    // ==================== MANUAL PROFIT SIMULATOR ====================
-    function calculateManualProfit() {
-        const fitAmount = parseFloat(document.getElementById("manualFitAmount").value) || 0;
-        const dailyIncrease = parseFloat(document.getElementById("dailyPriceIncrease").value) || 0;
-        
-        if (fitAmount <= 0 || dailyIncrease <= 0) {
-            document.getElementById("manualDailyReturn").innerHTML = "—";
-            document.getElementById("manualDailyDetails").innerHTML = "Enter valid values";
-            document.getElementById("manualWeeklyReturn").innerHTML = "—";
-            document.getElementById("manualWeeklyDetails").innerHTML = "—";
-            document.getElementById("manualMonthlyReturn").innerHTML = "—";
-            document.getElementById("manualMonthlyDetails").innerHTML = "—";
-            return;
-        }
-        
-        const dailyProfit = fitAmount * dailyIncrease;
-        const weeklyProfit = dailyProfit * 7;
-        const monthlyProfit = dailyProfit * 30;
-        
-        const formatCurrency = (value) => {
-            return '$' + value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        };
-        
-        document.getElementById("manualDailyReturn").innerHTML = formatCurrency(dailyProfit);
-        document.getElementById("manualDailyDetails").innerHTML = `${fitAmount} FIT × $${dailyIncrease.toFixed(2)} = ${formatCurrency(dailyProfit)}`;
-        
-        document.getElementById("manualWeeklyReturn").innerHTML = formatCurrency(weeklyProfit);
-        document.getElementById("manualWeeklyDetails").innerHTML = `${formatCurrency(dailyProfit)} × 7 days = ${formatCurrency(weeklyProfit)}`;
-        
-        document.getElementById("manualMonthlyReturn").innerHTML = formatCurrency(monthlyProfit);
-        document.getElementById("manualMonthlyDetails").innerHTML = `${formatCurrency(dailyProfit)} × 30 days = ${formatCurrency(monthlyProfit)}`;
-    }
-    
-    document.getElementById("manualSimBtn").addEventListener("click", calculateManualProfit);
-    document.getElementById("manualFitAmount").addEventListener("input", calculateManualProfit);
-    document.getElementById("dailyPriceIncrease").addEventListener("input", calculateManualProfit);
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        calculateManualProfit();
-    });
-
-    // ==================== PURCHASE CALCULATOR WITH REWARD ====================
-    const BUY_FEE_CALC = 0.03;
-
-    function calculatePurchaseLimit(minSide) {
-        let totalLimit = 100;
-        
-        if (minSide >= 1) totalLimit += 100;
-        if (minSide >= 10) totalLimit += 100;
-        if (minSide >= 30) totalLimit += 100;
-        if (minSide >= 100) totalLimit += 1000;
-        if (minSide >= 300) totalLimit += 1000;
-        if (minSide >= 1000) totalLimit += 10000;
-        if (minSide >= 3000) totalLimit += 10000;
-        if (minSide >= 10000) totalLimit += 100000;
-        if (minSide >= 30000) totalLimit += 100000;
-        if (minSide >= 100000) totalLimit += 1000000;
-        if (minSide >= 300000) totalLimit += 1000000;
-        if (minSide >= 1000000) totalLimit += 10000000;
-        if (minSide >= 3000000) totalLimit += 10000000;
-        if (minSide >= 10000000) totalLimit += 100000000;
-        if (minSide >= 30000000) totalLimit += 100000000;
-        if (minSide >= 100000000) totalLimit += 1000000000;
-        if (minSide >= 300000000) totalLimit += 1000000000;
-        if (minSide >= 1000000000) totalLimit += 10000000000;
-        
-        return totalLimit;
-    }
-
-    function calculateTotalRewardPoints(totalShares) {
-        if (totalShares <= 1) return 0;
-        
-        function buildTree(nodes) {
-            if (nodes <= 0) return { size: 0, points: 0 };
-            if (nodes === 1) return { size: 1, points: 0 };
-            
-            let leftSize = Math.floor((nodes - 1) / 2);
-            let rightSize = nodes - 1 - leftSize;
-            
-            let left = buildTree(leftSize);
-            let right = buildTree(rightSize);
-            
-            let minSide = Math.min(leftSize, rightSize);
-            let points = left.points + right.points + minSide;
-            
-            return { size: 1 + leftSize + rightSize, points: points };
-        }
-        
-        let result = buildTree(totalShares);
-        return result.points;
-    }
-
-    function calculatePurchase() {
-        const fitAmount = parseFloat(document.getElementById('calcFitAmount').value) || 0;
-        const fitPrice = parseFloat(document.getElementById('calcFitPrice').value) || 0;
-        const shareCost = parseFloat(document.getElementById('calcShareCost').value) || 100;
-        const rewardPerPoint = parseFloat(document.getElementById('rewardPerPoint').value) || 20;
-        
-        const totalDAINeeded = fitAmount * fitPrice;
-        const fitReceived = totalDAINeeded * (1 - BUY_FEE_CALC) / fitPrice;
-        
-        if (fitAmount <= 0 || fitPrice <= 0 || shareCost <= 0) {
-            const ids = ['calcSharesWithPlan', 'calcShareCostWithPlan', 'calcFitReceivedWithPlan', 'calcCapWithPlan', 'calcMinSideWithPlan', 'calcTotalCostWithPlan', 'calcRewardPointsWithPlan', 'calcRewardPerPointWithPlan', 'calcTotalRewardWithPlan', 'calcSharesWithoutPlan', 'calcShareCostWithoutPlan', 'calcFitReceivedWithoutPlan', 'calcCapWithoutPlan', 'calcMinSideWithoutPlan', 'calcTotalCostWithoutPlan', 'calcRewardPointsWithoutPlan', 'calcRewardPerPointWithoutPlan', 'calcTotalRewardWithoutPlan'];
-            ids.forEach(id => document.getElementById(id).innerHTML = '—');
-            document.getElementById('rewardBreakdownWithPlan').innerHTML = '—';
-            document.getElementById('savingsContainer').style.display = 'none';
-            document.getElementById('rewardContainer').style.display = 'none';
-            return;
-        }
-
-        // ===== WITHOUT Double Infinity PLAN =====
-        const capPerShareDirect = 100;
-        const sharesNeededDirect = Math.ceil(totalDAINeeded / capPerShareDirect);
-        const shareCostDirect = sharesNeededDirect * shareCost;
-        const totalCapDirect = sharesNeededDirect * capPerShareDirect;
-        const totalCostDirect = shareCostDirect + totalDAINeeded;
-        const minSideDirect = 0;
-        const rewardDirect = 0;
-
-        // ===== WITH Double Infinity PLAN =====
-        let sharesWithPlan = 0;
-        let totalCapWithPlan = 0;
-        let minSideWithPlan = 0;
-        
-        for (let shares = 1; shares <= 10000; shares++) {
-            let minSide = Math.floor((shares - 1) / 2);
-            if (minSide < 0) minSide = 0;
-            
-            const limitPerShare = calculatePurchaseLimit(minSide);
-            const totalCap = shares * limitPerShare;
-            
-            if (totalCap >= totalDAINeeded) {
-                sharesWithPlan = shares;
-                totalCapWithPlan = totalCap;
-                minSideWithPlan = minSide;
-                break;
-            }
-        }
-        
-        if (sharesWithPlan === 0) {
-            sharesWithPlan = Math.ceil(totalDAINeeded / 100);
-            totalCapWithPlan = sharesWithPlan * 100;
-            minSideWithPlan = 0;
-        }
-        
-        const shareCostWithPlan = sharesWithPlan * shareCost;
-        const totalCostWithPlan = shareCostWithPlan + totalDAINeeded;
-        
-        // ===== REWARD CALCULATION FOR ALL SHARES (Double Infinity TREE) =====
-        const totalRewardPoints = calculateTotalRewardPoints(sharesWithPlan);
-        const rewardWithPlan = totalRewardPoints * rewardPerPoint;
-        
-        let breakdown = `Total points from ${sharesWithPlan} shares = ${totalRewardPoints} points × $${rewardPerPoint} = $${rewardWithPlan.toFixed(2)}`;
-        document.getElementById('rewardBreakdownWithPlan').innerHTML = breakdown;
-
-        // ===== DISPLAY RESULTS =====
-        // With Plan
-        document.getElementById('calcSharesWithPlan').innerHTML = sharesWithPlan.toLocaleString();
-        document.getElementById('calcShareCostWithPlan').innerHTML = `$${shareCostWithPlan.toFixed(2)}`;
-        document.getElementById('calcFitReceivedWithPlan').innerHTML = `${fitReceived.toFixed(2)} FIT`;
-        document.getElementById('calcCapWithPlan').innerHTML = `$${totalCapWithPlan.toFixed(2)}`;
-        document.getElementById('calcMinSideWithPlan').innerHTML = minSideWithPlan.toLocaleString();
-        document.getElementById('calcTotalCostWithPlan').innerHTML = `$${totalCostWithPlan.toFixed(2)}`;
-        
-        // Rewards - With Plan
-        document.getElementById('calcRewardPointsWithPlan').innerHTML = totalRewardPoints.toLocaleString();
-        document.getElementById('calcRewardPerPointWithPlan').innerHTML = `$${rewardPerPoint.toFixed(2)}`;
-        document.getElementById('calcTotalRewardWithPlan').innerHTML = `$${rewardWithPlan.toFixed(2)}`;
-        
-        // Without Plan
-        document.getElementById('calcSharesWithoutPlan').innerHTML = sharesNeededDirect.toLocaleString();
-        document.getElementById('calcShareCostWithoutPlan').innerHTML = `$${shareCostDirect.toFixed(2)}`;
-        document.getElementById('calcFitReceivedWithoutPlan').innerHTML = `${fitReceived.toFixed(2)} FIT`;
-        document.getElementById('calcCapWithoutPlan').innerHTML = `$${totalCapDirect.toFixed(2)}`;
-        document.getElementById('calcMinSideWithoutPlan').innerHTML = '0';
-        document.getElementById('calcTotalCostWithoutPlan').innerHTML = `$${totalCostDirect.toFixed(2)}`;
-        
-        // Rewards - Without Plan
-        document.getElementById('calcRewardPointsWithoutPlan').innerHTML = '0';
-        document.getElementById('calcRewardPerPointWithoutPlan').innerHTML = `$${rewardPerPoint.toFixed(2)}`;
-        document.getElementById('calcTotalRewardWithoutPlan').innerHTML = `$0.00`;
-        
-        // Show savings
-        const savings = totalCostDirect - totalCostWithPlan;
-        if (savings > 0) {
-            document.getElementById('savingsContainer').style.display = 'block';
-            document.getElementById('savingsAmount').innerHTML = savings.toFixed(2);
-        } else {
-            document.getElementById('savingsContainer').style.display = 'none';
-        }
-        
-        // Show rewards
-        if (rewardWithPlan > 0) {
-            document.getElementById('rewardContainer').style.display = 'block';
-            document.getElementById('rewardAmount').innerHTML = rewardWithPlan.toFixed(2);
-        } else {
-            document.getElementById('rewardContainer').style.display = 'none';
-        }
-    }
-
-    // Event listeners
-    document.getElementById('calcBtn').addEventListener('click', calculatePurchase);
-    document.getElementById('calcFitAmount').addEventListener('input', calculatePurchase);
-    document.getElementById('calcFitPrice').addEventListener('input', function() {
-        this.dataset.userEdited = 'true';
-        calculatePurchase();
-    });
-    document.getElementById('calcShareCost').addEventListener('input', calculatePurchase);
-    document.getElementById('rewardPerPoint').addEventListener('input', calculatePurchase);
-
-    // Fetch live price
-    document.getElementById('calcFetchPrice').addEventListener('click', async function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        this.disabled = true;
-        
-        try {
-            const CONTRACT_ADDRESS_CALC = "0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa";
-            const ABI_CALC = [{"constant":true,"inputs":[],"name":"Price","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
-            const providerCalc = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
-            const contractCalc = new ethers.Contract(CONTRACT_ADDRESS_CALC, ABI_CALC, providerCalc);
-            
-            const raw = await contractCalc.Price();
-            const price = parseFloat(ethers.utils.formatEther(raw));
-            const priceInput = document.getElementById('calcFitPrice');
-            priceInput.value = price.toFixed(6);
-            priceInput.dataset.userEdited = 'false';
-            calculatePurchase();
-        } catch(e) {
-            console.error('Error fetching price:', e);
-            alert('Could not fetch live price. Please enter manually.');
-        } finally {
-            this.innerHTML = 'Fetch Live Price';
-            this.disabled = false;
-        }
-    });
-
-    // Auto-calculate on load
-    document.addEventListener('DOMContentLoaded', function() {
-        calculatePurchase();
-    });
-    
+}
 </script>
 
 <!-- ===== SIDEBAR SCRIPT ===== -->
