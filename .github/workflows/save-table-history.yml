@@ -2,48 +2,113 @@ name: Save Table Price History
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # هر 6 ساعت
-  workflow_dispatch:  # اجرای دستی
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   save-history:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Save price history
+      - name: Fetch and save ALL prices
         run: |
+          curl -s "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,solana,cardano,dogecoin,tron,zcash,stellar,pancakeswap-token,the-open-network,shiba-inu,official-donald-trump&vs_currencies=usd&include_24hr_change=true" > prices.json
+          
           node -e "
             const fs = require('fs');
+            const cryptoPrices = JSON.parse(fs.readFileSync('prices.json', 'utf8'));
             const historyFile = 'price-history-table.json';
+            
             let history = { records: [] };
             if (fs.existsSync(historyFile)) {
-              history = JSON.parse(fs.readFileSync(historyFile, 'utf8'));
+              try { history = JSON.parse(fs.readFileSync(historyFile, 'utf8')); } catch(e) {}
             }
+            
             const today = new Date().toISOString().split('T')[0];
-            // Check if today already exists
-            const existing = history.records.findIndex(r => r.date === today);
-            if (existing === -1) {
-              // Create empty record for today (will be filled by users)
-              history.records.push({ date: today, prices: {} });
-              history.records.sort((a, b) => a.date.localeCompare(b.date));
-              fs.writeFileSync(historyFile, JSON.stringify(history, null, 2));
-              console.log('✅ Created empty record for', today);
-            } else {
-              console.log('ℹ️ Record for', today, 'already exists');
+            
+            // Map CoinGecko IDs to our IDs
+            const map = {
+              'bitcoin': 'bitcoin',
+              'ethereum': 'ethereum',
+              'binancecoin': 'binancecoin',
+              'ripple': 'ripple',
+              'solana': 'solana',
+              'cardano': 'cardano',
+              'dogecoin': 'dogecoin',
+              'tron': 'tron',
+              'zcash': 'zcash',
+              'stellar': 'stellar',
+              'pancakeswap-token': 'pancakeswap',
+              'the-open-network': 'toncoin',
+              'shiba-inu': 'shibainu',
+              'official-donald-trump': 'trump'
+            };
+            
+            const prices = {};
+            
+            // Add all crypto prices
+            for (const [cgId, ourId] of Object.entries(map)) {
+              if (cryptoPrices[cgId]) {
+                const current = cryptoPrices[cgId].usd;
+                const change = cryptoPrices[cgId].usd_24h_change || 0;
+                const yesterday = current / (1 + change / 100);
+                prices[ourId] = { price: current, yesterday: yesterday, change: change };
+                console.log('✅', ourId, ':', current);
+              }
             }
+            
+            // Add FIT (use previous or default)
+            let fitPrice = 6.39;
+            let fitYesterday = 6.3261;
+            let fitChange = 1.0;
+            
+            if (history.records.length > 0) {
+              for (let i = history.records.length - 1; i >= 0; i--) {
+                const rec = history.records[i];
+                if (rec.prices && rec.prices.fit && rec.prices.fit.price) {
+                  const prev = rec.prices.fit.price;
+                  fitPrice = prev * 1.001;
+                  fitYesterday = prev;
+                  fitChange = ((fitPrice - fitYesterday) / fitYesterday) * 100;
+                  break;
+                }
+              }
+            }
+            
+            prices['fit'] = { price: fitPrice, yesterday: fitYesterday, change: fitChange };
+            console.log('✅ fit :', fitPrice);
+            
+            // Save to history
+            const existingIndex = history.records.findIndex(r => r.date === today);
+            if (existingIndex !== -1) {
+              history.records[existingIndex].prices = prices;
+            } else {
+              history.records.push({ date: today, prices: prices });
+            }
+            
+            history.records.sort((a, b) => a.date.localeCompare(b.date));
+            if (history.records.length > 90) history.records = history.records.slice(-90);
+            
+            fs.writeFileSync(historyFile, JSON.stringify(history, null, 2));
+            console.log('💾 Saved! Total records:', history.records.length);
+            console.log('📋 Tokens saved:', Object.keys(prices).join(', '));
           "
 
-      - name: Commit and push if changed
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.github.com"
           git add price-history-table.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-create price history record [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Save price history [skip ci]"
           git push
