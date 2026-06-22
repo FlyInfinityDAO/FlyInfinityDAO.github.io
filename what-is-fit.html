@@ -660,6 +660,84 @@
             margin: 0;
         }
         
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .step-item {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            border-left: 3px solid #00C896;
+        }
+        
+        .step-item .step-num {
+            font-size: 28px;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        
+        .step-item.gold {
+            border-left-color: #D4AF37;
+        }
+        
+        .step-item h4 {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        
+        .step-item.gold h4 {
+            color: #D4AF37;
+        }
+        
+        .step-item p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+        }
+        
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .number-item {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 200, 150, 0.2);
+        }
+        
+        .number-item .label {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .number-item .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .number-item .value.green {
+            color: #00C896;
+        }
+        
+        .number-item .value.gold {
+            color: #D4AF37;
+        }
+        
+        .number-item .value.reward {
+            color: #FFD700;
+        }
+        
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
@@ -717,6 +795,12 @@
             }
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .number-grid {
+                grid-template-columns: 1fr 1fr;
             }
             .sidebar {
                 width: 85vw;
@@ -821,10 +905,10 @@
         <h2 data-i18n="whatisfit.introTitle">The Digital Asset That Never Goes Down</h2>
         
         <div class="badge-container">
-            <span class="badge gold-bg"><i class="fas fa-infinity"></i> Non-Diminishing</span>
-            <span class="badge"><i class="fas fa-shield-halved"></i> Fully Backed</span>
-            <span class="badge gold"><i class="fas fa-chart-line"></i> Always Rising</span>
-            <span class="badge"><i class="fas fa-users"></i> DAO Governed</span>
+            <span class="badge gold-bg" data-i18n="whatisfit.badge1"><i class="fas fa-infinity"></i> Non-Diminishing</span>
+            <span class="badge" data-i18n="whatisfit.badge2"><i class="fas fa-shield-halved"></i> Fully Backed</span>
+            <span class="badge gold" data-i18n="whatisfit.badge3"><i class="fas fa-chart-line"></i> Always Rising</span>
+            <span class="badge" data-i18n="whatisfit.badge4"><i class="fas fa-users"></i> DAO Governed</span>
         </div>
         
         <p data-i18n="whatisfit.introText1">
@@ -834,7 +918,7 @@
         </p>
         
         <div class="info-box">
-            <h4>💡 In Simple Words:</h4>
+            <h4 data-i18n="whatisfit.introSimpleTitle">💡 In Simple Words:</h4>
             <p data-i18n="whatisfit.introSimple">
                 <span class="gold">FIT</span> is a digital currency that <span class="highlight">only goes up</span>. 
                 Unlike Bitcoin or Ethereum that can crash 50% or more, FIT is built on a smart contract that 
@@ -856,11 +940,11 @@
         </p>
         
         <div class="info-box gold">
-            <h4>📊 The Simple Formula:</h4>
-            <p style="font-size: 18px; text-align: center; color: #D4AF37; font-weight: bold;">
+            <h4 data-i18n="whatisfit.formulaTitle">📊 The Simple Formula:</h4>
+            <p style="font-size: 18px; text-align: center; color: #D4AF37; font-weight: bold;" data-i18n="whatisfit.formula">
                 FIT Price = DAI Reserve ÷ Total Supply
             </p>
-            <p style="font-size: 13px; text-align: center; color: #888;">
+            <p style="font-size: 13px; text-align: center; color: #888;" data-i18n="whatisfit.formulaNote">
                 When DAI increases OR Supply decreases → Price goes up
             </p>
         </div>
@@ -901,34 +985,34 @@
         
         <div class="comparison-grid">
             <div class="comparison-box fit">
-                <h4>✅ Fly Infinity (FIT)</h4>
+                <h4 data-i18n="whatisfit.compareFitTitle">✅ Fly Infinity (FIT)</h4>
                 <ul>
-                    <li><span class="check">✅</span> <span class="gold">Never decreases</span> — mathematically guaranteed</li>
-                    <li><span class="check">✅</span> Backed by <span class="gold">real DAI</span> (stablecoin)</li>
-                    <li><span class="check">✅</span> <span class="gold">Transparent</span> — all on blockchain</li>
-                    <li><span class="check">✅</span> <span class="gold">DAO governed</span> — no central control</li>
-                    <li><span class="check">✅</span> <span class="gold">Always rising</span> — every transaction helps</li>
-                    <li><span class="check">✅</span> <span class="gold">Non-transferable</span> — no black market</li>
-                    <li><span class="check">✅</span> <span class="gold">Step-based purchase</span> — anti-whale</li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit1"><span class="gold">Never decreases</span> — mathematically guaranteed</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit2">Backed by <span class="gold">real DAI</span> (stablecoin)</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit3"><span class="gold">Transparent</span> — all on blockchain</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit4"><span class="gold">DAO governed</span> — no central control</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit5"><span class="gold">Always rising</span> — every transaction helps</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit6"><span class="gold">Non-transferable</span> — no black market</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.compareFit7"><span class="gold">Step-based purchase</span> — anti-whale</span></li>
                 </ul>
             </div>
             <div class="comparison-box others">
-                <h4>❌ Traditional Crypto</h4>
+                <h4 data-i18n="whatisfit.compareOtherTitle">❌ Traditional Crypto</h4>
                 <ul>
-                    <li><span class="cross">❌</span> <span class="danger">Up and down</span> — unpredictable volatility</li>
-                    <li><span class="cross">❌</span> Often <span class="danger">not backed</span> by real assets</li>
-                    <li><span class="cross">❌</span> <span class="danger">No transparency</span> — centralized order books</li>
-                    <li><span class="cross">❌</span> <span class="danger">Whales</span> can manipulate prices</li>
-                    <li><span class="cross">❌</span> Can <span class="danger">crash 50-90%</span> in days</li>
-                    <li><span class="cross">❌</span> <span class="danger">Black markets</span> and scams</li>
-                    <li><span class="cross">❌</span> No protection against <span class="danger">whale manipulation</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther1"><span class="danger">Up and down</span> — unpredictable volatility</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther2">Often <span class="danger">not backed</span> by real assets</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther3"><span class="danger">No transparency</span> — centralized order books</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther4"><span class="danger">Whales</span> can manipulate prices</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther5">Can <span class="danger">crash 50-90%</span> in days</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther6"><span class="danger">Black markets</span> and scams</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.compareOther7">No protection against <span class="danger">whale manipulation</span></span></li>
                 </ul>
             </div>
         </div>
         
         <div class="info-box">
-            <h4>🎯 The Bottom Line:</h4>
-            <p data-i18n="whatisfit.whyBuyBottom">
+            <h4 data-i18n="whatisfit.bottomLineTitle">🎯 The Bottom Line:</h4>
+            <p data-i18n="whatisfit.bottomLineText">
                 FIT is not a speculative gamble. It's a <span class="gold">mathematical certainty</span>. 
                 While others hope their crypto goes up, FIT holders <span class="highlight">know</span> it will. 
                 Every single transaction — buy or sell — increases the value.
@@ -993,30 +1077,30 @@
         
         <div class="comparison-grid">
             <div class="comparison-box fit">
-                <h4>✅ With FIT You Get:</h4>
+                <h4 data-i18n="whatisfit.withFitTitle">✅ With FIT You Get:</h4>
                 <ul>
-                    <li><span class="check">✅</span> <span class="gold">Peace of mind</span> — your investment only goes up</li>
-                    <li><span class="check">✅</span> <span class="gold">Transparency</span> — all data on blockchain</li>
-                    <li><span class="check">✅</span> <span class="gold">Community power</span> — DAO governance</li>
-                    <li><span class="check">✅</span> <span class="gold">Real backing</span> — DAI reserves</li>
-                    <li><span class="check">✅</span> <span class="gold">Passive growth</span> — every transaction helps you</li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.withFit1"><span class="gold">Peace of mind</span> — your investment only goes up</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.withFit2"><span class="gold">Transparency</span> — all data on blockchain</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.withFit3"><span class="gold">Community power</span> — DAO governance</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.withFit4"><span class="gold">Real backing</span> — DAI reserves</span></li>
+                    <li><span class="check">✅</span> <span data-i18n="whatisfit.withFit5"><span class="gold">Passive growth</span> — every transaction helps you</span></li>
                 </ul>
             </div>
             <div class="comparison-box others">
-                <h4>❌ Without FIT You Face:</h4>
+                <h4 data-i18n="whatisfit.withoutFitTitle">❌ Without FIT You Face:</h4>
                 <ul>
-                    <li><span class="cross">❌</span> <span class="danger">Fear of crash</span> — constant worry</li>
-                    <li><span class="cross">❌</span> <span class="danger">No transparency</span> — hidden manipulations</li>
-                    <li><span class="cross">❌</span> <span class="danger">Central control</span> — someone can change rules</li>
-                    <li><span class="cross">❌</span> <span class="danger">No real backing</span> — just promises</li>
-                    <li><span class="cross">❌</span> <span class="danger">Zero-sum game</span> — your gain is someone's loss</li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.withoutFit1"><span class="danger">Fear of crash</span> — constant worry</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.withoutFit2"><span class="danger">No transparency</span> — hidden manipulations</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.withoutFit3"><span class="danger">Central control</span> — someone can change rules</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.withoutFit4"><span class="danger">No real backing</span> — just promises</span></li>
+                    <li><span class="cross">❌</span> <span data-i18n="whatisfit.withoutFit5"><span class="danger">Zero-sum game</span> — your gain is someone's loss</span></li>
                 </ul>
             </div>
         </div>
         
         <div class="info-box">
-            <h4>💡 Think of It This Way:</h4>
-            <p data-i18n="whatisfit.whyHaveAnalogy">
+            <h4 data-i18n="whatisfit.analogyTitle">💡 Think of It This Way:</h4>
+            <p data-i18n="whatisfit.analogyText">
                 Most cryptocurrencies are like a <span class="danger">roller coaster</span> — up, down, up, down. 
                 <span class="gold">FIT</span> is like an <span class="highlight">elevator</span> — 
                 it only goes <span class="gold">up</span>. Once you're in, you're always rising.
@@ -1029,35 +1113,35 @@
         <span class="icon-large">⚙️</span>
         <h2 data-i18n="whatisfit.howWorksTitle">How Does FIT Work?</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 15px; text-align: center; border-left: 3px solid #00C896;">
-                <div style="font-size: 28px; color: #D4AF37;">1</div>
-                <h4 style="color: #00C896; font-size: 14px; margin: 8px 0;" data-i18n="whatisfit.step1">Buy a Share</h4>
-                <p style="font-size: 12px; color: #888;" data-i18n="whatisfit.step1Desc">Purchase an ownership share (100 DAI)</p>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <h4 style="color: #00C896;" data-i18n="whatisfit.step1">Buy a Share</h4>
+                <p data-i18n="whatisfit.step1Desc">Purchase an ownership share (100 DAI)</p>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 15px; text-align: center; border-left: 3px solid #D4AF37;">
-                <div style="font-size: 28px; color: #D4AF37;">2</div>
-                <h4 style="color: #D4AF37; font-size: 14px; margin: 8px 0;" data-i18n="whatisfit.step2">Get FIT</h4>
-                <p style="font-size: 12px; color: #888;" data-i18n="whatisfit.step2Desc">Exchange DAI for FIT tokens</p>
+            <div class="step-item gold">
+                <div class="step-num">2</div>
+                <h4 style="color: #D4AF37;" data-i18n="whatisfit.step2">Get FIT</h4>
+                <p data-i18n="whatisfit.step2Desc">Exchange DAI for FIT tokens</p>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 15px; text-align: center; border-left: 3px solid #00C896;">
-                <div style="font-size: 28px; color: #D4AF37;">3</div>
-                <h4 style="color: #00C896; font-size: 14px; margin: 8px 0;" data-i18n="whatisfit.step3">Earn Rewards</h4>
-                <p style="font-size: 12px; color: #888;" data-i18n="whatisfit.step3Desc">Participate in the ecosystem and earn</p>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <h4 style="color: #00C896;" data-i18n="whatisfit.step3">Earn Rewards</h4>
+                <p data-i18n="whatisfit.step3Desc">Participate in the ecosystem and earn</p>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 15px; text-align: center; border-left: 3px solid #D4AF37;">
-                <div style="font-size: 28px; color: #D4AF37;">4</div>
-                <h4 style="color: #D4AF37; font-size: 14px; margin: 8px 0;" data-i18n="whatisfit.step4">Watch It Grow</h4>
-                <p style="font-size: 12px; color: #888;" data-i18n="whatisfit.step4Desc">Your investment increases with every transaction</p>
+            <div class="step-item gold">
+                <div class="step-num">4</div>
+                <h4 style="color: #D4AF37;" data-i18n="whatisfit.step4">Watch It Grow</h4>
+                <p data-i18n="whatisfit.step4Desc">Your investment increases with every transaction</p>
             </div>
         </div>
         
         <div class="info-box gold">
-            <h4>📈 The Growth Cycle:</h4>
-            <p style="text-align: center; font-size: 16px; color: #D4AF37;">
+            <h4 data-i18n="whatisfit.growthTitle">📈 The Growth Cycle:</h4>
+            <p style="text-align: center; font-size: 16px; color: #D4AF37;" data-i18n="whatisfit.growthText">
                 More Users → More Transactions → More DAI Reserve → <span class="highlight">Higher Price</span>
             </p>
-            <p style="text-align: center; font-size: 13px; color: #888;">
+            <p style="text-align: center; font-size: 13px; color: #888;" data-i18n="whatisfit.growthNote">
                 It's a <span class="gold">self-reinforcing cycle</span> that benefits everyone.
             </p>
         </div>
@@ -1068,27 +1152,27 @@
         <span class="icon-large">📊</span>
         <h2 data-i18n="whatisfit.numbersTitle">The Numbers Speak for Themselves</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(0, 200, 150, 0.2);">
-                <div style="font-size: 14px; color: #888;" data-i18n="whatisfit.numStart">Starting Price</div>
-                <div style="font-size: 28px; font-weight: bold; color: #D4AF37;">$1.00</div>
+        <div class="number-grid">
+            <div class="number-item">
+                <div class="label" data-i18n="whatisfit.numStart">Starting Price</div>
+                <div class="value gold">$1.00</div>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(0, 200, 150, 0.2);">
-                <div style="font-size: 14px; color: #888;" data-i18n="whatisfit.numCurrent">Current Price</div>
-                <div style="font-size: 28px; font-weight: bold; color: #00C896;">$6.40+</div>
+            <div class="number-item">
+                <div class="label" data-i18n="whatisfit.numCurrent">Current Price</div>
+                <div class="value green">$6.40+</div>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(0, 200, 150, 0.2);">
-                <div style="font-size: 14px; color: #888;" data-i18n="whatisfit.numGrowth">Total Growth</div>
-                <div style="font-size: 28px; font-weight: bold; color: #D4AF37;">540%+</div>
+            <div class="number-item">
+                <div class="label" data-i18n="whatisfit.numGrowth">Total Growth</div>
+                <div class="value gold">540%+</div>
             </div>
-            <div style="background: #1a1a1a; border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.3);">
-                <div style="font-size: 14px; color: #888;" data-i18n="whatisfit.numFee">Earned in Rewards</div>
-                <div style="font-size: 28px; font-weight: bold; color: #FFD700;">$5,000+</div>
+            <div class="number-item" style="border-color: rgba(255, 215, 0, 0.3);">
+                <div class="label" data-i18n="whatisfit.numFee">Earned in Rewards</div>
+                <div class="value reward">$5,000+</div>
             </div>
         </div>
         
         <div class="info-box">
-            <h4>📌 Key Point:</h4>
+            <h4 data-i18n="whatisfit.numbersPointTitle">📌 Key Point:</h4>
             <p data-i18n="whatisfit.numbersPoint">
                 FIT started at <span class="gold">$1.00</span> and has grown to over <span class="gold">$6.40</span> — 
                 and it <span class="highlight">never went down</span>. Not once. Every single day, the price 
@@ -1138,9 +1222,7 @@
             <span>|</span>
             <a href="what-is-fit.html" data-i18n="nav.whatisfit">What is FIT?</a>
         </div>
-        <p class="footer-tagline" data-i18n="footer.tagline">
-            Fly Infinity — <span class="gold">Decentralized. Transparent. Forever Rising.</span>
-        </p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline"></p>
     </div>
 
 </div>
