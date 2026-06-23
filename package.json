@@ -1,9 +1,10 @@
 {
-  "name": "fit-price-display",
+  "name": "fly-infinity-dao",
   "version": "1.0.0",
-  "description": "Fly Infinity Token price display",
+  "scripts": {
+    "update-trading-volume": "node update-trading-volume.js"
+  },
   "dependencies": {
-    "axios": "^1.6.0",
     "ethers": "^5.7.2"
   }
 }
