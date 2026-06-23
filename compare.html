@@ -699,6 +699,10 @@
             <a href="index.html" data-i18n="nav.dashboard">
                 <i class="fas fa-home"></i> <span data-i18n="nav.dashboard">Dashboard</span>
             </a>
+            <!-- ===== لینک What is FIT؟ ===== -->
+            <a href="what-is-fit.html" data-i18n="nav.whatisfit">
+                <i class="fas fa-question-circle"></i> <span data-i18n="nav.whatisfit">What is FIT?</span>
+            </a>
             <a href="compare.html" class="active" data-i18n="nav.comparison">
                 <i class="fas fa-chart-line"></i> <span data-i18n="nav.comparison">Comparison</span>
             </a>
@@ -729,6 +733,17 @@
             <a href="https://flyinfinitydao.github.io" target="_blank">flyinfinitydao.github.io</a><br>
             Fly Infinity DAO
         </div>
+    </div>
+
+    <!-- ===== Description Card ===== -->
+    <div class="card" style="text-align: center; padding: 20px; margin-bottom: 25px;">
+        <p style="color: #D4AF37; font-size: 14px; line-height: 1.6; max-width: 800px; margin: 0 auto;" data-i18n="compare.description">
+            <i class="fas fa-chart-line" style="color: #D4AF37; margin-right: 8px;"></i>
+            In this page, you can see the <strong style="color: #D4AF37;">constantly rising (non-diminishing) chart of FIT</strong> 
+            alongside the <strong style="color: #D4AF37;">volatile charts of top cryptocurrencies</strong>.
+            <br>
+            <strong style="color: #D4AF37;">FIT</strong> — the world's first <strong style="color: #D4AF37;">non-diminishing, always rising</strong> digital asset.
+        </p>
     </div>
 
     <!-- ===== PRICE TABLE WITH HISTORY ===== -->
@@ -784,17 +799,6 @@
         </div>
     </div>
 
-    <!-- Description Card -->
-    <div class="card" style="text-align: center; padding: 20px; margin-bottom: 25px;">
-        <p style="color: #D4AF37; font-size: 14px; line-height: 1.6; max-width: 800px; margin: 0 auto;" data-i18n="compare.description">
-            <i class="fas fa-chart-line" style="color: #D4AF37; margin-right: 8px;"></i>
-            In this page, you can see the <strong style="color: #D4AF37;">constantly rising (non-diminishing) chart of FIT</strong> 
-            alongside the <strong style="color: #D4AF37;">volatile charts of top cryptocurrencies</strong>.
-            <br>
-            <strong style="color: #D4AF37;">FIT</strong> — the world's first <strong style="color: #D4AF37;">non-diminishing, always rising</strong> digital asset.
-        </p>
-    </div>
-
     <div class="card" style="position: relative;">
         <div class="token-selector" id="tokenSelector"></div>
         
@@ -831,6 +835,9 @@
     <div class="footer">
         <div class="footer-links">
             <a href="index.html" data-i18n="nav.dashboard">Dashboard</a>
+            <span>|</span>
+            <!-- ===== لینک What is FIT؟ به فوتر اضافه شد ===== -->
+            <a href="what-is-fit.html" data-i18n="nav.whatisfit">What is FIT?</a>
             <span>|</span>
             <a href="compare.html" data-i18n="nav.comparison">Comparison</a>
             <span>|</span>
@@ -926,9 +933,11 @@
                     const today = new Date().toISOString().split('T')[0];
                     const todayRecord = historyData.records.find(r => r.date === today);
                     
-                    // If today has data, use it as tablePrices
+                    // If today has data, use it as tablePrices (only for crypto, not for FIT)
                     if (todayRecord && todayRecord.prices && Object.keys(todayRecord.prices).length > 0) {
                         for (const tokenId of Object.keys(todayRecord.prices)) {
+                            // برای FIT از data تاریخچه استفاده نکن (قیمت واقعی از قرارداد میاد)
+                            if (tokenId === 'fit') continue;
                             const p = todayRecord.prices[tokenId];
                             tablePrices[tokenId] = {
                                 current: p.price || 0,
@@ -937,7 +946,7 @@
                                 change: p.change || 0
                             };
                         }
-                        console.log('✅ Loaded today\'s data from JSON');
+                        console.log('✅ Loaded today\'s crypto data from JSON');
                     }
                     
                     updateHistoryDateSelect();
@@ -990,29 +999,75 @@
         const dateDisplay = isToday ? 'Today (Live Data)' : date;
         document.getElementById('historyDateDisplay').innerHTML = `Showing: ${dateDisplay}`;
         
-        let priceData;
+        // ===== ساخت داده‌های قیمت برای تاریخ انتخاب‌شده =====
+        let priceData = {};
+        
         if (isToday) {
-            // Check if tablePrices has valid data (price > 0)
-            let hasValidData = false;
-            for (const token of TABLE_TOKENS) {
-                if (tablePrices[token.id] && tablePrices[token.id].current > 0) {
-                    hasValidData = true;
-                    break;
-                }
-            }
-            if (!hasValidData) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #888;" data-i18n="compare.loadingToday">Loading today's data... Please wait or click Refresh</td></tr>`;
-                return;
-            }
+            // برای امروز: از tablePrices استفاده کن (قیمت‌های زنده)
             priceData = tablePrices;
         } else {
-            priceData = getPricesForDate(date);
-            if (!priceData || Object.keys(priceData).length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #888;" data-i18n="compare.noData">No data available for this date</td></tr>`;
-                return;
+            // برای تاریخ‌های دیگر: از تاریخچه‌ها استفاده کن
+            // 1. ابتدا از price-history-table.json برای کریپتوها
+            const tableHistoryData = getPricesForDate(date);
+            if (tableHistoryData) {
+                for (const [tokenId, data] of Object.entries(tableHistoryData)) {
+                    if (tokenId !== 'fit') {
+                        priceData[tokenId] = data;
+                    }
+                }
+            }
+            
+            // 2. برای FIT: از price-history.json (فایل اصلی) استفاده کن
+            // پیدا کردن قیمت FIT در تاریخ مورد نظر
+            let fitPrice = null;
+            let fitYesterday = null;
+            let fitChange = 0;
+            
+            // جستجو در fitDates و fitPrices (که از price-history.json بارگذاری شده‌اند)
+            if (fitDates.length > 0 && fitPrices.length > 0) {
+                const dateIndex = fitDates.indexOf(date);
+                if (dateIndex !== -1 && dateIndex < fitPrices.length) {
+                    fitPrice = fitPrices[dateIndex];
+                    // قیمت روز قبل را پیدا کن
+                    if (dateIndex > 0) {
+                        fitYesterday = fitPrices[dateIndex - 1];
+                        fitChange = ((fitPrice - fitYesterday) / fitYesterday) * 100;
+                    } else {
+                        fitYesterday = fitPrice;
+                        fitChange = 0;
+                    }
+                } else {
+                    // اگر تاریخ دقیق پیدا نشد، نزدیک‌ترین تاریخ قبل را پیدا کن
+                    let closestIndex = -1;
+                    for (let i = fitDates.length - 1; i >= 0; i--) {
+                        if (fitDates[i] <= date) {
+                            closestIndex = i;
+                            break;
+                        }
+                    }
+                    if (closestIndex !== -1) {
+                        fitPrice = fitPrices[closestIndex];
+                        if (closestIndex > 0) {
+                            fitYesterday = fitPrices[closestIndex - 1];
+                            fitChange = ((fitPrice - fitYesterday) / fitYesterday) * 100;
+                        } else {
+                            fitYesterday = fitPrice;
+                            fitChange = 0;
+                        }
+                    }
+                }
+            }
+            
+            if (fitPrice !== null) {
+                priceData['fit'] = {
+                    price: fitPrice,
+                    yesterday: fitYesterday || fitPrice,
+                    change: fitChange
+                };
             }
         }
         
+        // ===== نمایش داده‌ها در جدول =====
         let hasData = false;
         for (const token of TABLE_TOKENS) {
             const data = priceData[token.id];
@@ -1089,28 +1144,16 @@
                 }
             }
             
-            // ===== GET FIT PRICE =====
+            // ===== GET FIT PRICE (از قرارداد، نه از تاریخچه) =====
             try {
                 const raw = await contract.Price();
                 const currentPrice = parseFloat(ethers.utils.formatEther(raw));
                 
-                // Try to get yesterday from history
+                // استفاده از fitPrices واقعی (از price-history.json)
                 let yesterdayPrice = currentPrice;
                 let change24h = 0;
                 
-                // Check if we have history data
-                if (historyData.records.length > 0) {
-                    const today = new Date().toISOString().split('T')[0];
-                    const todayRecord = historyData.records.find(r => r.date === today);
-                    if (todayRecord && todayRecord.prices && todayRecord.prices.fit) {
-                        // Use the stored value
-                        yesterdayPrice = todayRecord.prices.fit.yesterday || currentPrice;
-                        change24h = todayRecord.prices.fit.change || 0;
-                    } else if (fitPrices.length >= 2) {
-                        yesterdayPrice = fitPrices[fitPrices.length - 2] || currentPrice;
-                        change24h = ((currentPrice - yesterdayPrice) / yesterdayPrice) * 100;
-                    }
-                } else if (fitPrices.length >= 2) {
+                if (fitPrices.length >= 2) {
                     yesterdayPrice = fitPrices[fitPrices.length - 2] || currentPrice;
                     change24h = ((currentPrice - yesterdayPrice) / yesterdayPrice) * 100;
                 }
@@ -1135,12 +1178,12 @@
                 }
             }
             
-            // ===== UPDATE HISTORY DATA IN MEMORY =====
+            // ===== UPDATE HISTORY DATA IN MEMORY (فقط برای کریپتوها، نه FIT) =====
             if (hasPriceData) {
                 const today = new Date().toISOString().split('T')[0];
                 const todayPrices = {};
                 for (const token of TABLE_TOKENS) {
-                    if (tablePrices[token.id]) {
+                    if (tablePrices[token.id] && token.id !== 'fit') {
                         todayPrices[token.id] = {
                             price: tablePrices[token.id].current,
                             yesterday: tablePrices[token.id].yesterday,
@@ -1210,7 +1253,7 @@
             const today = new Date().toISOString().split('T')[0];
             const todayPrices = {};
             for (const token of TABLE_TOKENS) {
-                if (tablePrices[token.id]) {
+                if (tablePrices[token.id] && token.id !== 'fit') {
                     todayPrices[token.id] = {
                         price: tablePrices[token.id].current,
                         yesterday: tablePrices[token.id].yesterday,
