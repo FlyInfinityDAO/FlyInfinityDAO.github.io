@@ -838,9 +838,9 @@
         </div>
     </div>
 
-    <!-- ===== TOP GRID - دو باکس بالایی ===== -->
+    <!-- ===== TOP GRID - The top two boxes ===== -->
     <div class="top-grid">
-        <!-- باکس اول: Fly Infinity Token (FIT) -->
+        <!-- First box: Fly Infinity Token (FIT) -->
         <div class="card" style="text-align:center">
             <div class="header-with-logo">
                 <img src="logo.png" alt="FIT Logo" class="token-logo" onerror="this.style.display='none'">
@@ -853,7 +853,7 @@
             <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> <span data-i18n="btn.refresh">Refresh Price</span></button>
         </div>
         
-        <!-- باکس دوم: Token Statistics -->
+        <!-- Second box: Token Statistics -->
         <div class="card">
             <div style="font-size:18px; margin-bottom:15px; text-align:center; color: #D4AF37;" data-i18n="dashboard.statistics"><i class="fas fa-chart-line"></i> Token Statistics</div>
             <div class="stats-grid">
@@ -875,7 +875,7 @@
         </div>
     </div>
 
-    <!-- ===== دکمه طلایی WHAT IS FIT - بین دو باکس (بعد از top-grid) ===== -->
+    <!-- ===== دکمه طلاییWHAT IS FIT - Between two boxes (after top-grid) ===== -->
     <div class="whatisfit-wrapper">
         <a href="what-is-fit.html" class="whatisfit-btn">
             <span class="btn-inner">
@@ -1266,17 +1266,17 @@
         }
     }
     
-    // ===== تابع جدید برای دریافت Total Airdrops از قرارداد =====
+    // ===== New function to get Total Airdrops from the contract =====
     async function fetchTotalAirdrops() {
         try {
             const totalOwners = await networkContract.All_Owner_Number();
             const totalOwnersNumber = parseInt(totalOwners.toString());
             
-            // ===== کم کردن تعداد مالکین قرارداد قبلی (Import شده) =====
+            // ===== Reduce the number of previous contract owners (Imported) =====
             const OLD_CONTRACT_OWNERS = 80897;
             const newOwners = Math.max(0, totalOwnersNumber - OLD_CONTRACT_OWNERS);
             
-            // هر مالک جدید ۲ دلار FIT هدیه گرفته
+            // Every new owner gets a $2 FIT gift
             const airdropPerOwner = 2;
             const totalAirdrops = newOwners * airdropPerOwner;
             
@@ -1291,7 +1291,7 @@
         }
     }
 
-    // ===== تابع برای دریافت Trading Volume =====
+    // ===== Function to receive Trading Volume =====
     async function fetchTradingVolume() {
         try {
             const response = await fetch('trading-volume.json?t=' + Date.now());
@@ -1302,10 +1302,10 @@
         } catch(e) {
             console.log('⚠️ Could not load trading-volume.json');
         }
-        // Fallback: محاسبه از قرارداد (در صورت وجود)
+        // Fallback: Calculate from contract (if any)
         try {
-            // اگر قرارداد تابعی برای حجم معاملات داشته باشه
-            // فعلاً از فایل JSON استفاده میکنیم
+            // If the contract has a function for trading volume
+            // We are using JSON file for now
             return 0;
         } catch(e) {
             return 0;
@@ -1502,11 +1502,11 @@
             let reserve = parseFloat(ethers.utils.formatEther(await daiContract.balanceOf(CONTRACT_ADDRESS)));
             document.getElementById("daiBalance").innerHTML = "$" + reserve.toLocaleString(undefined, {maximumFractionDigits:2});
             
-            // ===== Trading Volume (از فایل JSON) =====
+            // ===== Trading Volume (From JSON file) =====
             const tradingVolume = await fetchTradingVolume();
             document.getElementById("tradingVolume").innerHTML = "$" + tradingVolume.toLocaleString(undefined, {maximumFractionDigits:0});
             
-            // ===== Total Airdrops (از قرارداد Network) =====
+            // ===== Total Airdrops (From the Network contract) =====
             const totalAirdrops = await fetchTotalAirdrops();
             document.getElementById("totalAirdrops").innerHTML = "$" + totalAirdrops.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
             
