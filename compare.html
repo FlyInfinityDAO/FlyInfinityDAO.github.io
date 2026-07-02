@@ -936,7 +936,7 @@
                     // If today has data, use it as tablePrices (only for crypto, not for FIT)
                     if (todayRecord && todayRecord.prices && Object.keys(todayRecord.prices).length > 0) {
                         for (const tokenId of Object.keys(todayRecord.prices)) {
-                            // برای FIT از data تاریخچه استفاده نکن (قیمت واقعی از قرارداد میاد)
+                            // Do not use historical data for FIT (actual price comes from contract)
                             if (tokenId === 'fit') continue;
                             const p = todayRecord.prices[tokenId];
                             tablePrices[tokenId] = {
@@ -999,15 +999,15 @@
         const dateDisplay = isToday ? 'Today (Live Data)' : date;
         document.getElementById('historyDateDisplay').innerHTML = `Showing: ${dateDisplay}`;
         
-        // ===== ساخت داده‌های قیمت برای تاریخ انتخاب‌شده =====
+        // ===== Generate price data for the selected date =====
         let priceData = {};
         
         if (isToday) {
-            // برای امروز: از tablePrices استفاده کن (قیمت‌های زنده)
+            // For today: use tablePrices (live prices)
             priceData = tablePrices;
         } else {
-            // برای تاریخ‌های دیگر: از تاریخچه‌ها استفاده کن
-            // 1. ابتدا از price-history-table.json برای کریپتوها
+            // For other dates: use dates
+            // 1. First from price-history-table.json for cryptos
             const tableHistoryData = getPricesForDate(date);
             if (tableHistoryData) {
                 for (const [tokenId, data] of Object.entries(tableHistoryData)) {
@@ -1017,13 +1017,13 @@
                 }
             }
             
-            // 2. برای FIT: از price-history.json (فایل اصلی) استفاده کن
-            // پیدا کردن قیمت FIT در تاریخ مورد نظر
+            // 2. For FIT: use price-history.json (main file)
+            // Find the FIT price on the desired date
             let fitPrice = null;
             let fitYesterday = null;
             let fitChange = 0;
             
-            // جستجو در fitDates و fitPrices (که از price-history.json بارگذاری شده‌اند)
+            // Search in fitDates and fitPrices (loaded from price-history.json)
             if (fitDates.length > 0 && fitPrices.length > 0) {
                 const dateIndex = fitDates.indexOf(date);
                 if (dateIndex !== -1 && dateIndex < fitPrices.length) {
@@ -1037,7 +1037,7 @@
                         fitChange = 0;
                     }
                 } else {
-                    // اگر تاریخ دقیق پیدا نشد، نزدیک‌ترین تاریخ قبل را پیدا کن
+                    // If the exact date is not found, find the closest previous date
                     let closestIndex = -1;
                     for (let i = fitDates.length - 1; i >= 0; i--) {
                         if (fitDates[i] <= date) {
@@ -1067,7 +1067,7 @@
             }
         }
         
-        // ===== نمایش داده‌ها در جدول =====
+        // ===== Displaying data in a table =====
         let hasData = false;
         for (const token of TABLE_TOKENS) {
             const data = priceData[token.id];
@@ -1144,12 +1144,12 @@
                 }
             }
             
-            // ===== GET FIT PRICE (از قرارداد، نه از تاریخچه) =====
+            // ===== GET FIT PRICE (From the contract, not from history) =====
             try {
                 const raw = await contract.Price();
                 const currentPrice = parseFloat(ethers.utils.formatEther(raw));
                 
-                // استفاده از fitPrices واقعی (از price-history.json)
+                // Use actual fitPrices (from price-history.json)
                 let yesterdayPrice = currentPrice;
                 let change24h = 0;
                 
@@ -1178,7 +1178,7 @@
                 }
             }
             
-            // ===== UPDATE HISTORY DATA IN MEMORY (فقط برای کریپتوها، نه FIT) =====
+            // ===== UPDATE HISTORY DATA IN MEMORY (Just for cryptos, no FIT) =====
             if (hasPriceData) {
                 const today = new Date().toISOString().split('T')[0];
                 const todayPrices = {};
