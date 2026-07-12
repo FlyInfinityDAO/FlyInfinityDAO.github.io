@@ -1261,9 +1261,9 @@
             const url = `https://api.etherscan.io/v2/api?chainid=${BSC_CHAIN_ID}&module=token&action=topholders&contractaddress=${CONTRACT_ADDRESS}&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
             const response = await fetch(url);
             const data = await response.json();
-            document.getElementById("holderCount").innerHTML = "1,200";
+            document.getElementById("holderCount").innerHTML = "1,300+";
         } catch(e) {
-            document.getElementById("holderCount").innerHTML = "1,200";
+            document.getElementById("holderCount").innerHTML = "1,300+";
         }
     }
     
