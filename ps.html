@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, view-fit=cover">
     <title>FIT Price Simulator - Fly Infinity</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
@@ -13,11 +13,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
@@ -47,7 +43,6 @@
             z-index: 1;
         }
         
-        /* ===== HEADER ===== */
         .header {
             text-align: center;
             padding: 30px 20px;
@@ -124,7 +119,6 @@
             color: #0F0F0F;
         }
         
-        /* ===== BACK BUTTON ===== */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -145,7 +139,6 @@
             border-color: #D4AF37;
         }
         
-        /* ===== CARDS ===== */
         .card {
             background: #0F0F0F;
             backdrop-filter: blur(10px);
@@ -177,7 +170,6 @@
             color: #00C896;
         }
         
-        /* ===== INPUT GRID ===== */
         .input-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -232,7 +224,6 @@
             opacity: 0.5;
         }
         
-        /* ===== CALCULATE BUTTON ===== */
         .calc-btn {
             background: linear-gradient(135deg, #00C896, #008a6a);
             border: none;
@@ -267,7 +258,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* ===== RESULTS ===== */
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -313,7 +303,6 @@
             margin-top: 4px;
         }
         
-        /* ===== STEP LOG ===== */
         .step-log {
             max-height: 400px;
             overflow-y: auto;
@@ -409,7 +398,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* ===== SUMMARY BADGES ===== */
         .summary-badges {
             display: flex;
             flex-wrap: wrap;
@@ -440,7 +428,6 @@
             color: #D4AF37;
         }
         
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             font-size: 11px;
@@ -459,7 +446,6 @@
             color: #D4AF37;
         }
         
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .card { padding: 18px 16px; }
             .input-grid { grid-template-columns: 1fr; }
@@ -485,7 +471,6 @@
 
 <div class="container">
 
-    <!-- ===== HEADER ===== -->
     <div class="header">
         <div class="logo">
             <img src="logo.png" alt="Fly Infinity DAO" onerror="this.style.display='none'">
@@ -501,30 +486,20 @@
         </div>
     </div>
 
-    <!-- ===== BACK BUTTON ===== -->
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
 
-    <!-- ===== MAIN CALCULATOR ===== -->
     <div class="card">
         <div class="card-title">
             <i class="fas fa-sliders-h"></i> Simulation Parameters
         </div>
         <p style="color: #888; font-size: 13px; margin-bottom: 18px;">
-            Enter the number of events you expect in the next 24 hours. The simulator will calculate the price impact step-by-step.
+            Enter the number of BeCome_Owner events. Each owner triggers a $100 buy. Sells happen every 10 cycles (2 × $100 sells = $200 total).
         </p>
         
         <div class="input-grid">
             <div class="input-group">
                 <span class="label"><i class="fas fa-user-plus"></i> BeCome_Owner Events</span>
                 <input type="number" id="ownerCount" value="30" min="0" max="1000" step="1">
-            </div>
-            <div class="input-group gold">
-                <span class="label"><i class="fas fa-shopping-cart"></i> Buy $100 Events</span>
-                <input type="number" id="buyCount" value="30" min="0" max="1000" step="1">
-            </div>
-            <div class="input-group">
-                <span class="label"><i class="fas fa-chart-line"></i> Sell $200 Events</span>
-                <input type="number" id="sellCount" value="6" min="0" max="1000" step="1">
             </div>
         </div>
         
@@ -539,7 +514,6 @@
         </div>
     </div>
 
-    <!-- ===== RESULTS ===== -->
     <div class="card" id="resultsCard">
         <div class="card-title">
             <i class="fas fa-chart-bar"></i> Simulation Results
@@ -582,7 +556,6 @@
         </div>
     </div>
 
-    <!-- ===== STEP LOG ===== -->
     <div class="card">
         <div class="card-title">
             <i class="fas fa-list-ol"></i> Step-by-Step Log
@@ -603,7 +576,6 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
     <div class="footer">
         <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 12px; margin-bottom: 8px;">
             <a href="index.html">Dashboard</a>
@@ -632,8 +604,6 @@
     
     // ==================== DOM REFS ====================
     const ownerInput = document.getElementById('ownerCount');
-    const buyInput = document.getElementById('buyCount');
-    const sellInput = document.getElementById('sellCount');
     const calcBtn = document.getElementById('calculateBtn');
     const resetBtn = document.getElementById('resetBtn');
     const refreshBtn = document.getElementById('refreshPriceBtn');
@@ -680,142 +650,145 @@
     }
     
     // ==================== SIMULATION ENGINE ====================
-    function runSimulation(ownerCount, buyCount, sellCount, startPrice) {
+    function runSimulation(ownerCount, startPrice) {
         // Initial state
         let reserve = 53467.47;
         let supply = 7912.5;
         let price = startPrice;
         const steps = [];
         
-        // Build event sequence: interleave owners and buys, with sells every 10 cycles
-        const events = [];
-        let ownerIndex = 0;
-        let buyIndex = 0;
-        let sellIndex = 0;
-        let cycle = 0;
+        // Each cycle: 1 owner + 1 buy
+        // Sell every 10 cycles: 2 sells of $100 each = $200 total
         
-        while (ownerIndex < ownerCount || buyIndex < buyCount || sellIndex < sellCount) {
-            cycle++;
-            
-            // BeCome_Owner
-            if (ownerIndex < ownerCount) {
-                events.push({ type: 'owner', index: ownerIndex + 1 });
-                ownerIndex++;
-            }
-            
-            // Buy
-            if (buyIndex < buyCount) {
-                events.push({ type: 'buy', index: buyIndex + 1 });
-                buyIndex++;
-            }
-            
-            // Sell every 10 cycles
-            if (cycle % 10 === 0 && sellIndex < sellCount) {
-                events.push({ type: 'sell', index: sellIndex + 1 });
-                sellIndex++;
-            }
-        }
-        
-        // Execute events
-        let totalBurned = 0;
-        let totalInflow = 0;
         let totalOwners = 0;
         let totalBuys = 0;
         let totalSells = 0;
+        let totalBurned = 0;
+        let totalInflow = 0;
         
-        for (let i = 0; i < events.length; i++) {
-            const event = events[i];
-            const prevPrice = price;
-            const prevReserve = reserve;
-            const prevSupply = supply;
+        const buyAmount = 100;
+        const buyFeePercent = 0.03;
+        const buyFee = buyAmount * buyFeePercent; // $3
+        const buyEffective = buyAmount - buyFee; // $97
+        
+        const sellAmount = 100; // Each sell is $100
+        const sellFeePercent = 0.06;
+        const sellFee = sellAmount * sellFeePercent; // $6
+        const sellPayout = sellAmount - sellFee; // $94
+        
+        for (let i = 0; i < ownerCount; i++) {
+            const cycleNum = i + 1;
             
-            if (event.type === 'owner') {
-                // BeCome_Owner: +$20 to reserve, no new tokens
-                reserve += 20;
-                totalOwners++;
-                totalInflow += 20;
+            // ===== Step 1: BeCome_Owner =====
+            const prevPrice1 = price;
+            const prevReserve1 = reserve;
+            const prevSupply1 = supply;
+            
+            reserve += 20;
+            totalOwners++;
+            totalInflow += 20;
+            
+            const newPrice1 = reserve / supply;
+            const change1 = newPrice1 - prevPrice1;
+            
+            steps.push({
+                num: steps.length + 1,
+                type: 'owner',
+                eventLabel: 'BeCome_Owner #' + cycleNum,
+                price: newPrice1,
+                change: change1,
+                changePercent: (change1 / prevPrice1) * 100,
+                supply: supply,
+                reserve: reserve
+            });
+            price = newPrice1;
+            
+            // ===== Step 2: Buy $100 =====
+            const prevPrice2 = price;
+            const prevReserve2 = reserve;
+            const prevSupply2 = supply;
+            
+            reserve += buyAmount; // Full $100 goes in
+            const tokensBought = buyEffective / price;
+            supply += tokensBought;
+            totalBuys++;
+            totalInflow += buyAmount;
+            
+            const newPrice2 = reserve / supply;
+            const change2 = newPrice2 - prevPrice2;
+            
+            steps.push({
+                num: steps.length + 1,
+                type: 'buy',
+                eventLabel: 'Buy $100 #' + cycleNum,
+                price: newPrice2,
+                change: change2,
+                changePercent: (change2 / prevPrice2) * 100,
+                supply: supply,
+                reserve: reserve,
+                tokensBought: tokensBought
+            });
+            price = newPrice2;
+            
+            // ===== Step 3: Sell every 10 cycles (2 sells of $100 each) =====
+            if (cycleNum % 10 === 0) {
+                // Sell 1: $100
+                const prevPriceS1 = price;
+                const prevReserveS1 = reserve;
+                const prevSupplyS1 = supply;
                 
-                const newPrice = reserve / supply;
-                const change = newPrice - prevPrice;
+                const tokensSold1 = sellAmount / price;
+                
+                reserve = reserve + sellFee - sellPayout;
+                supply = supply - tokensSold1;
+                totalSells++;
+                totalBurned += tokensSold1;
+                totalInflow += sellFee;
+                
+                const newPriceS1 = reserve / supply;
+                const changeS1 = newPriceS1 - prevPriceS1;
+                
                 steps.push({
-                    num: i + 1,
-                    type: 'owner',
-                    eventLabel: 'BeCome_Owner #' + event.index,
-                    price: newPrice,
-                    change: change,
-                    changePercent: (change / prevPrice) * 100,
-                    supply: supply,
-                    reserve: reserve
-                });
-                price = newPrice;
-                
-            } else if (event.type === 'buy') {
-                // Buy $100: 3% fee to reserve, 97% used to buy tokens
-                const fee = 3;
-                const effectiveAmount = 97;
-                reserve += 100; // full amount goes in
-                const tokensBought = effectiveAmount / price;
-                supply += tokensBought;
-                totalBuys++;
-                totalInflow += 100;
-                
-                const newPrice = reserve / supply;
-                const change = newPrice - prevPrice;
-                steps.push({
-                    num: i + 1,
-                    type: 'buy',
-                    eventLabel: 'Buy $100 #' + event.index,
-                    price: newPrice,
-                    change: change,
-                    changePercent: (change / prevPrice) * 100,
+                    num: steps.length + 1,
+                    type: 'sell',
+                    eventLabel: 'Sell $100 #' + (totalSells),
+                    price: newPriceS1,
+                    change: changeS1,
+                    changePercent: (changeS1 / prevPriceS1) * 100,
                     supply: supply,
                     reserve: reserve,
-                    tokensBought: tokensBought
+                    tokensSold: tokensSold1
                 });
-                price = newPrice;
+                price = newPriceS1;
                 
-            } else if (event.type === 'sell') {
-                // Sell $200: 6% fee to reserve, 94% paid out
-                const fee = 12;
-                const payout = 188;
-                const tokensSold = 200 / price;
+                // Sell 2: $100
+                const prevPriceS2 = price;
+                const prevReserveS2 = reserve;
+                const prevSupplyS2 = supply;
                 
-                // ===== FIX: Only allow sell if reserve can cover payout =====
-                if (reserve >= payout) {
-                    reserve = reserve + fee - payout;
-                    supply = supply - tokensSold;
-                    totalSells++;
-                    totalBurned += tokensSold;
-                    totalInflow += fee;
-                    
-                    const newPrice = reserve / supply;
-                    const change = newPrice - prevPrice;
-                    steps.push({
-                        num: i + 1,
-                        type: 'sell',
-                        eventLabel: 'Sell $200 #' + event.index,
-                        price: newPrice,
-                        change: change,
-                        changePercent: (change / prevPrice) * 100,
-                        supply: supply,
-                        reserve: reserve,
-                        tokensSold: tokensSold
-                    });
-                    price = newPrice;
-                } else {
-                    // Sell is skipped due to insufficient reserve
-                    steps.push({
-                        num: i + 1,
-                        type: 'sell',
-                        eventLabel: 'Sell $200 #' + event.index + ' (SKIPPED)',
-                        price: price,
-                        change: 0,
-                        changePercent: 0,
-                        supply: supply,
-                        reserve: reserve,
-                        tokensSold: 0
-                    });
-                }
+                const tokensSold2 = sellAmount / price;
+                
+                reserve = reserve + sellFee - sellPayout;
+                supply = supply - tokensSold2;
+                totalSells++;
+                totalBurned += tokensSold2;
+                totalInflow += sellFee;
+                
+                const newPriceS2 = reserve / supply;
+                const changeS2 = newPriceS2 - prevPriceS2;
+                
+                steps.push({
+                    num: steps.length + 1,
+                    type: 'sell',
+                    eventLabel: 'Sell $100 #' + (totalSells),
+                    price: newPriceS2,
+                    change: changeS2,
+                    changePercent: (changeS2 / prevPriceS2) * 100,
+                    supply: supply,
+                    reserve: reserve,
+                    tokensSold: tokensSold2
+                });
+                price = newPriceS2;
             }
         }
         
@@ -837,7 +810,6 @@
     function displayResults(result) {
         const { steps, finalPrice, finalReserve, finalSupply, totalOwners, totalBuys, totalSells, totalBurned, totalInflow, startPrice } = result;
         
-        // Summary
         startPriceEl.textContent = '$' + startPrice.toFixed(6);
         endPriceEl.textContent = '$' + finalPrice.toFixed(6);
         const priceChange = finalPrice - startPrice;
@@ -849,14 +821,12 @@
         finalReserveEl.textContent = '$' + finalReserve.toFixed(2);
         finalSupplyEl.textContent = finalSupply.toFixed(2) + ' FIT';
         
-        // Badges
         badgeOwners.textContent = totalOwners;
         badgeBuys.textContent = totalBuys;
         badgeSells.textContent = totalSells;
         badgeNetInflow.textContent = '$' + totalInflow.toFixed(2);
         badgeBurned.textContent = totalBurned.toFixed(2) + ' FIT';
         
-        // Step log
         stepLog.innerHTML = '';
         const header = document.createElement('div');
         header.className = 'step-log-header';
@@ -899,22 +869,18 @@
         calcBtn.innerHTML = '<i class="fas fa-spinner spinner"></i> Running...';
         
         try {
-            // Get current price
             const price = await fetchLivePrice();
-            
             const ownerCount = parseInt(ownerInput.value) || 0;
-            const buyCount = parseInt(buyInput.value) || 0;
-            const sellCount = parseInt(sellInput.value) || 0;
             
-            if (ownerCount === 0 && buyCount === 0 && sellCount === 0) {
-                alert('Please enter at least one event to simulate.');
+            if (ownerCount === 0) {
+                alert('Please enter at least 1 BeCome_Owner event.');
                 calcBtn.disabled = false;
                 calcBtn.innerHTML = '<i class="fas fa-play"></i> Run Simulation';
                 isSimulating = false;
                 return;
             }
             
-            const result = runSimulation(ownerCount, buyCount, sellCount, price);
+            const result = runSimulation(ownerCount, price);
             displayResults(result);
             
         } catch (e) {
@@ -930,8 +896,6 @@
     // ==================== RESET ====================
     function resetToDefault() {
         ownerInput.value = '30';
-        buyInput.value = '30';
-        sellInput.value = '6';
         runSimulationFromInputs();
     }
     
@@ -947,17 +911,13 @@
         runSimulationFromInputs();
     });
     
-    // Enter key support
-    [ownerInput, buyInput, sellInput].forEach(input => {
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') runSimulationFromInputs();
-        });
+    ownerInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') runSimulationFromInputs();
     });
     
     // ==================== INIT ====================
     async function init() {
         await fetchLivePrice();
-        // Run default simulation after a short delay
         setTimeout(runSimulationFromInputs, 300);
     }
     
