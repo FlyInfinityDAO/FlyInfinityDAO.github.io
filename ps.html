@@ -651,14 +651,11 @@
     
     // ==================== SIMULATION ENGINE ====================
     function runSimulation(ownerCount, startPrice) {
-        // Initial state
+        // Use the exact startPrice passed in
         let reserve = 53467.47;
         let supply = 7912.5;
-        let price = startPrice;
+        let price = startPrice;  // CRITICAL: Use the passed startPrice
         const steps = [];
-        
-        // Each cycle: 1 owner + 1 buy
-        // Sell every 10 cycles: 2 sells of $100 each = $200 total
         
         let totalOwners = 0;
         let totalBuys = 0;
@@ -667,23 +664,18 @@
         let totalInflow = 0;
         
         const buyAmount = 100;
-        const buyFeePercent = 0.03;
-        const buyFee = buyAmount * buyFeePercent; // $3
-        const buyEffective = buyAmount - buyFee; // $97
+        const buyFee = 3;
+        const buyEffective = 97;
         
-        const sellAmount = 100; // Each sell is $100
-        const sellFeePercent = 0.06;
-        const sellFee = sellAmount * sellFeePercent; // $6
-        const sellPayout = sellAmount - sellFee; // $94
+        const sellAmount = 100;
+        const sellFee = 6;
+        const sellPayout = 94;
         
         for (let i = 0; i < ownerCount; i++) {
             const cycleNum = i + 1;
             
             // ===== Step 1: BeCome_Owner =====
             const prevPrice1 = price;
-            const prevReserve1 = reserve;
-            const prevSupply1 = supply;
-            
             reserve += 20;
             totalOwners++;
             totalInflow += 20;
@@ -705,10 +697,7 @@
             
             // ===== Step 2: Buy $100 =====
             const prevPrice2 = price;
-            const prevReserve2 = reserve;
-            const prevSupply2 = supply;
-            
-            reserve += buyAmount; // Full $100 goes in
+            reserve += buyAmount;
             const tokensBought = buyEffective / price;
             supply += tokensBought;
             totalBuys++;
@@ -734,9 +723,6 @@
             if (cycleNum % 10 === 0) {
                 // Sell 1: $100
                 const prevPriceS1 = price;
-                const prevReserveS1 = reserve;
-                const prevSupplyS1 = supply;
-                
                 const tokensSold1 = sellAmount / price;
                 
                 reserve = reserve + sellFee - sellPayout;
@@ -763,9 +749,6 @@
                 
                 // Sell 2: $100
                 const prevPriceS2 = price;
-                const prevReserveS2 = reserve;
-                const prevSupplyS2 = supply;
-                
                 const tokensSold2 = sellAmount / price;
                 
                 reserve = reserve + sellFee - sellPayout;
@@ -802,7 +785,7 @@
             totalSells,
             totalBurned,
             totalInflow,
-            startPrice
+            startPrice: startPrice
         };
     }
     
