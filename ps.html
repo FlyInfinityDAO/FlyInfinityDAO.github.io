@@ -779,26 +779,43 @@
                 const fee = 12;
                 const payout = 188;
                 const tokensSold = 200 / price;
-                reserve = reserve + fee - payout;
-                supply = supply - tokensSold;
-                totalSells++;
-                totalBurned += tokensSold;
-                totalInflow += fee;
                 
-                const newPrice = reserve / supply;
-                const change = newPrice - prevPrice;
-                steps.push({
-                    num: i + 1,
-                    type: 'sell',
-                    eventLabel: 'Sell $200 #' + event.index,
-                    price: newPrice,
-                    change: change,
-                    changePercent: (change / prevPrice) * 100,
-                    supply: supply,
-                    reserve: reserve,
-                    tokensSold: tokensSold
-                });
-                price = newPrice;
+                // ===== FIX: Only allow sell if reserve can cover payout =====
+                if (reserve >= payout) {
+                    reserve = reserve + fee - payout;
+                    supply = supply - tokensSold;
+                    totalSells++;
+                    totalBurned += tokensSold;
+                    totalInflow += fee;
+                    
+                    const newPrice = reserve / supply;
+                    const change = newPrice - prevPrice;
+                    steps.push({
+                        num: i + 1,
+                        type: 'sell',
+                        eventLabel: 'Sell $200 #' + event.index,
+                        price: newPrice,
+                        change: change,
+                        changePercent: (change / prevPrice) * 100,
+                        supply: supply,
+                        reserve: reserve,
+                        tokensSold: tokensSold
+                    });
+                    price = newPrice;
+                } else {
+                    // Sell is skipped due to insufficient reserve
+                    steps.push({
+                        num: i + 1,
+                        type: 'sell',
+                        eventLabel: 'Sell $200 #' + event.index + ' (SKIPPED)',
+                        price: price,
+                        change: 0,
+                        changePercent: 0,
+                        supply: supply,
+                        reserve: reserve,
+                        tokensSold: 0
+                    });
+                }
             }
         }
         
