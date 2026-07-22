@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>FIT Price Simulator - Fly Infinity</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
@@ -778,7 +778,7 @@
                 // Sell $200: 6% fee to reserve, 94% paid out
                 const fee = 12;
                 const payout = 188;
-                const tokensSold = 200 / price; // amount of tokens to burn
+                const tokensSold = 200 / price;
                 reserve = reserve + fee - payout;
                 supply = supply - tokensSold;
                 totalSells++;
