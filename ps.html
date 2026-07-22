@@ -649,10 +649,10 @@
         return currentPrice;
     }
     
-    // ==================== SIMULATION ENGINE (SIMPLE & ACCURATE) ====================
+    // ==================== SIMULATION ENGINE (FIXED) ====================
     function runSimulation(ownerCount, startPrice) {
-        // ===== FIX: Use a fresh copy of startPrice =====
-        let price = startPrice;
+        // ===== CRITICAL: Use startPrice as the initial price =====
+        let price = startPrice;  // This is the fix!
         let reserve = 53467.47;
         let supply = 7912.5;
         const steps = [];
@@ -713,7 +713,7 @@
                 tokensBought: tokensBought
             });
             
-            // ---- Step 3: Sell every 10 cycles (2 sells of $100 each) ----
+            // ---- Step 3: Sell every 10 cycles ----
             if (i % 10 === 0) {
                 // Sell 1
                 prevPrice = price;
