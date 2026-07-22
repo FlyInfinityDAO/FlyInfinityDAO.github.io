@@ -649,12 +649,12 @@
         return currentPrice;
     }
     
-    // ==================== SIMULATION ENGINE ====================
+    // ==================== SIMULATION ENGINE (SIMPLE & ACCURATE) ====================
     function runSimulation(ownerCount, startPrice) {
-        // ===== CRITICAL FIX: Use the exact startPrice passed in =====
+        // ===== FIX: Use a fresh copy of startPrice =====
+        let price = startPrice;
         let reserve = 53467.47;
         let supply = 7912.5;
-        let price = startPrice;
         const steps = [];
         
         let totalOwners = 0;
@@ -663,115 +663,103 @@
         let totalBurned = 0;
         let totalInflow = 0;
         
-        const buyAmount = 100;
-        const buyFee = 3;
-        const buyEffective = 97;
+        const BUY_AMOUNT = 100;
+        const BUY_FEE = 3;
+        const BUY_EFFECTIVE = 97;
         
-        const sellAmount = 100;
-        const sellFee = 6;
-        const sellPayout = 94;
+        const SELL_AMOUNT = 100;
+        const SELL_FEE = 6;
+        const SELL_PAYOUT = 94;
         
-        for (let i = 0; i < ownerCount; i++) {
-            const cycleNum = i + 1;
-            
-            // ===== Step 1: BeCome_Owner (+$20 to reserve, no new tokens) =====
-            const prevPrice1 = price;
+        for (let i = 1; i <= ownerCount; i++) {
+            // ---- Step 1: BeCome_Owner ----
+            let prevPrice = price;
             reserve = reserve + 20;
             totalOwners++;
             totalInflow = totalInflow + 20;
             
-            const newPrice1 = reserve / supply;
-            const change1 = newPrice1 - prevPrice1;
-            
+            price = reserve / supply;
+            let change = price - prevPrice;
             steps.push({
                 num: steps.length + 1,
                 type: 'owner',
-                eventLabel: 'BeCome_Owner #' + cycleNum,
-                price: newPrice1,
-                change: change1,
-                changePercent: (change1 / prevPrice1) * 100,
+                label: 'BeCome_Owner #' + i,
+                price: price,
+                change: change,
+                changePercent: (change / prevPrice) * 100,
                 supply: supply,
                 reserve: reserve
             });
-            price = newPrice1;
             
-            // ===== Step 2: Buy $100 (3% fee, 97% used to buy tokens) =====
-            const prevPrice2 = price;
-            reserve = reserve + buyAmount;
-            const tokensBought = buyEffective / price;
+            // ---- Step 2: Buy $100 ----
+            prevPrice = price;
+            reserve = reserve + BUY_AMOUNT;
+            let tokensBought = BUY_EFFECTIVE / price;
             supply = supply + tokensBought;
             totalBuys++;
-            totalInflow = totalInflow + buyAmount;
+            totalInflow = totalInflow + BUY_AMOUNT;
             
-            const newPrice2 = reserve / supply;
-            const change2 = newPrice2 - prevPrice2;
-            
+            price = reserve / supply;
+            change = price - prevPrice;
             steps.push({
                 num: steps.length + 1,
                 type: 'buy',
-                eventLabel: 'Buy $100 #' + cycleNum,
-                price: newPrice2,
-                change: change2,
-                changePercent: (change2 / prevPrice2) * 100,
+                label: 'Buy $100 #' + i,
+                price: price,
+                change: change,
+                changePercent: (change / prevPrice) * 100,
                 supply: supply,
                 reserve: reserve,
                 tokensBought: tokensBought
             });
-            price = newPrice2;
             
-            // ===== Step 3: Sell every 10 cycles (2 sells of $100 each) =====
-            if (cycleNum % 10 === 0) {
-                // Sell 1: $100
-                const prevPriceS1 = price;
-                const tokensSold1 = sellAmount / price;
-                
-                reserve = reserve + sellFee - sellPayout;
-                supply = supply - tokensSold1;
+            // ---- Step 3: Sell every 10 cycles (2 sells of $100 each) ----
+            if (i % 10 === 0) {
+                // Sell 1
+                prevPrice = price;
+                let tokensSold = SELL_AMOUNT / price;
+                reserve = reserve + SELL_FEE - SELL_PAYOUT;
+                supply = supply - tokensSold;
                 totalSells++;
-                totalBurned = totalBurned + tokensSold1;
-                totalInflow = totalInflow + sellFee;
+                totalBurned = totalBurned + tokensSold;
+                totalInflow = totalInflow + SELL_FEE;
                 
-                const newPriceS1 = reserve / supply;
-                const changeS1 = newPriceS1 - prevPriceS1;
-                
+                price = reserve / supply;
+                change = price - prevPrice;
                 steps.push({
                     num: steps.length + 1,
                     type: 'sell',
-                    eventLabel: 'Sell $100 #' + (totalSells),
-                    price: newPriceS1,
-                    change: changeS1,
-                    changePercent: (changeS1 / prevPriceS1) * 100,
+                    label: 'Sell $100 #' + totalSells,
+                    price: price,
+                    change: change,
+                    changePercent: (change / prevPrice) * 100,
                     supply: supply,
                     reserve: reserve,
-                    tokensSold: tokensSold1
+                    tokensSold: tokensSold
                 });
-                price = newPriceS1;
                 
-                // Sell 2: $100
-                const prevPriceS2 = price;
-                const tokensSold2 = sellAmount / price;
-                
-                reserve = reserve + sellFee - sellPayout;
-                supply = supply - tokensSold2;
+                // Sell 2
+                prevPrice = price;
+                tokensSold = SELL_AMOUNT / price;
+                reserve = reserve + SELL_FEE - SELL_PAYOUT;
+                supply = supply - tokensSold;
                 totalSells++;
-                totalBurned = totalBurned + tokensSold2;
-                totalInflow = totalInflow + sellFee;
+                totalBurned = totalBurned + tokensSold;
+                totalInflow = totalInflow + SELL_FEE;
                 
-                const newPriceS2 = reserve / supply;
-                const changeS2 = newPriceS2 - prevPriceS2;
-                
+                price = reserve / supply;
+                change = price - prevPrice;
                 steps.push({
                     num: steps.length + 1,
                     type: 'sell',
-                    eventLabel: 'Sell $100 #' + (totalSells),
-                    price: newPriceS2,
-                    change: changeS2,
-                    changePercent: (changeS2 / prevPriceS2) * 100,
+                    label: 'Sell $100 #' + totalSells,
+                    price: price,
+                    change: change,
+                    changePercent: (change / prevPrice) * 100,
                     supply: supply,
                     reserve: reserve,
-                    tokensSold: tokensSold2
+                    tokensSold: tokensSold
                 });
-                price = newPriceS2;
             }
         }
         
@@ -844,7 +832,7 @@
             
             div.innerHTML = `
                 <span class="step-num">${step.num}</span>
-                <span class="step-event ${typeClass}">${step.eventLabel}</span>
+                <span class="step-event ${typeClass}">${step.label}</span>
                 <span class="step-price">$${step.price.toFixed(6)}</span>
                 <span class="step-change ${changeColor}">${changeSign}$${step.change.toFixed(6)} (${changeSign}${step.changePercent.toFixed(3)}%)</span>
                 <span class="step-supply">${step.supply.toFixed(2)}</span>
