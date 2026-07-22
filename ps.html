@@ -651,10 +651,10 @@
     
     // ==================== SIMULATION ENGINE ====================
     function runSimulation(ownerCount, startPrice) {
-        // Use the exact startPrice passed in
+        // ===== CRITICAL FIX: Use the exact startPrice passed in =====
         let reserve = 53467.47;
         let supply = 7912.5;
-        let price = startPrice;  // CRITICAL: Use the passed startPrice
+        let price = startPrice;
         const steps = [];
         
         let totalOwners = 0;
@@ -674,11 +674,11 @@
         for (let i = 0; i < ownerCount; i++) {
             const cycleNum = i + 1;
             
-            // ===== Step 1: BeCome_Owner =====
+            // ===== Step 1: BeCome_Owner (+$20 to reserve, no new tokens) =====
             const prevPrice1 = price;
-            reserve += 20;
+            reserve = reserve + 20;
             totalOwners++;
-            totalInflow += 20;
+            totalInflow = totalInflow + 20;
             
             const newPrice1 = reserve / supply;
             const change1 = newPrice1 - prevPrice1;
@@ -695,13 +695,13 @@
             });
             price = newPrice1;
             
-            // ===== Step 2: Buy $100 =====
+            // ===== Step 2: Buy $100 (3% fee, 97% used to buy tokens) =====
             const prevPrice2 = price;
-            reserve += buyAmount;
+            reserve = reserve + buyAmount;
             const tokensBought = buyEffective / price;
-            supply += tokensBought;
+            supply = supply + tokensBought;
             totalBuys++;
-            totalInflow += buyAmount;
+            totalInflow = totalInflow + buyAmount;
             
             const newPrice2 = reserve / supply;
             const change2 = newPrice2 - prevPrice2;
@@ -728,8 +728,8 @@
                 reserve = reserve + sellFee - sellPayout;
                 supply = supply - tokensSold1;
                 totalSells++;
-                totalBurned += tokensSold1;
-                totalInflow += sellFee;
+                totalBurned = totalBurned + tokensSold1;
+                totalInflow = totalInflow + sellFee;
                 
                 const newPriceS1 = reserve / supply;
                 const changeS1 = newPriceS1 - prevPriceS1;
@@ -754,8 +754,8 @@
                 reserve = reserve + sellFee - sellPayout;
                 supply = supply - tokensSold2;
                 totalSells++;
-                totalBurned += tokensSold2;
-                totalInflow += sellFee;
+                totalBurned = totalBurned + tokensSold2;
+                totalInflow = totalInflow + sellFee;
                 
                 const newPriceS2 = reserve / supply;
                 const changeS2 = newPriceS2 - prevPriceS2;
@@ -776,22 +776,31 @@
         }
         
         return {
-            steps,
+            steps: steps,
             finalPrice: price,
             finalReserve: reserve,
             finalSupply: supply,
-            totalOwners,
-            totalBuys,
-            totalSells,
-            totalBurned,
-            totalInflow,
+            totalOwners: totalOwners,
+            totalBuys: totalBuys,
+            totalSells: totalSells,
+            totalBurned: totalBurned,
+            totalInflow: totalInflow,
             startPrice: startPrice
         };
     }
     
     // ==================== DISPLAY RESULTS ====================
     function displayResults(result) {
-        const { steps, finalPrice, finalReserve, finalSupply, totalOwners, totalBuys, totalSells, totalBurned, totalInflow, startPrice } = result;
+        const steps = result.steps;
+        const finalPrice = result.finalPrice;
+        const finalReserve = result.finalReserve;
+        const finalSupply = result.finalSupply;
+        const totalOwners = result.totalOwners;
+        const totalBuys = result.totalBuys;
+        const totalSells = result.totalSells;
+        const totalBurned = result.totalBurned;
+        const totalInflow = result.totalInflow;
+        const startPrice = result.startPrice;
         
         startPriceEl.textContent = '$' + startPrice.toFixed(6);
         endPriceEl.textContent = '$' + finalPrice.toFixed(6);
@@ -826,7 +835,10 @@
             const div = document.createElement('div');
             div.className = 'step-item';
             
-            const typeClass = step.type === 'buy' ? 'buy' : (step.type === 'sell' ? 'sell' : 'owner');
+            let typeClass = 'owner';
+            if (step.type === 'buy') typeClass = 'buy';
+            else if (step.type === 'sell') typeClass = 'sell';
+            
             const changeSign = step.change >= 0 ? '+' : '';
             const changeColor = step.change >= 0 ? 'up' : 'down';
             
@@ -894,7 +906,7 @@
         runSimulationFromInputs();
     });
     
-    ownerInput.addEventListener('keydown', (e) => {
+    ownerInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') runSimulationFromInputs();
     });
     
