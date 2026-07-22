@@ -649,10 +649,10 @@
         return currentPrice;
     }
     
-    // ==================== SIMULATION ENGINE (FIXED) ====================
+    // ==================== SIMULATION ENGINE (EXACTLY AS REQUESTED) ====================
     function runSimulation(ownerCount, startPrice) {
-        // ===== CRITICAL: Use startPrice as the initial price =====
-        let price = startPrice;  // This is the fix!
+        // ===== CRITICAL: Use startPrice as the initial price. No other variable overwrites it =====
+        let price = startPrice;
         let reserve = 53467.47;
         let supply = 7912.5;
         const steps = [];
@@ -672,7 +672,7 @@
         const SELL_PAYOUT = 94;
         
         for (let i = 1; i <= ownerCount; i++) {
-            // ---- Step 1: BeCome_Owner ----
+            // ---- Step 1: BeCome_Owner (+$20 to reserve, no new tokens) ----
             let prevPrice = price;
             reserve = reserve + 20;
             totalOwners++;
@@ -691,7 +691,7 @@
                 reserve: reserve
             });
             
-            // ---- Step 2: Buy $100 ----
+            // ---- Step 2: Buy $100 (3% fee, 97% used to buy tokens) ----
             prevPrice = price;
             reserve = reserve + BUY_AMOUNT;
             let tokensBought = BUY_EFFECTIVE / price;
@@ -713,7 +713,7 @@
                 tokensBought: tokensBought
             });
             
-            // ---- Step 3: Sell every 10 cycles ----
+            // ---- Step 3: Sell every 10 cycles (2 sells of $100 each) ----
             if (i % 10 === 0) {
                 // Sell 1
                 prevPrice = price;
