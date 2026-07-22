@@ -596,10 +596,15 @@
 <script>
     // ==================== CONTRACT CONFIG ====================
     const CONTRACT_ADDRESS = "0xBebe4ea7aA4037CeF5D0bc25a10f9dcA16120Dfa";
-    const ABI = [{"constant":true,"inputs":[],"name":"Price","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
+    const ABI = [
+        {"constant":true,"inputs":[],"name":"Price","outputs":[{"name":"","type":"uint256"}],"type":"function"},
+        {"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"type":"function"}
+    ];
     
     // ==================== STATE ====================
     let currentPrice = 6.75656;
+    let currentSupply = 7912.5;
+    let currentReserve = currentPrice * currentSupply;
     let isSimulating = false;
     
     // ==================== DOM REFS ====================
@@ -627,34 +632,57 @@
     const badgeNetInflow = document.getElementById('badgeNetInflow');
     const badgeBurned = document.getElementById('badgeBurned');
     
-    // ==================== FETCH LIVE PRICE ====================
-    async function fetchLivePrice() {
+    // ==================== FETCH LIVE DATA FROM CONTRACT ====================
+    async function fetchLiveData() {
         try {
             const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
             const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
-            const raw = await contract.Price();
-            const price = parseFloat(ethers.utils.formatEther(raw));
-            if (price > 0) {
-                currentPrice = price;
-                livePriceDisplay.textContent = '$' + price.toFixed(6);
-                priceSource.textContent = '(live from BSC)';
-                priceSource.style.color = '#00C896';
-                return price;
-            }
+            
+            // Get Price (Function F8)
+            const rawPrice = await contract.Price();
+            const price = parseFloat(ethers.utils.formatEther(rawPrice));
+            
+            // Get Total Supply (Function F15)
+            const rawSupply = await contract.totalSupply();
+            const supply = parseFloat(ethers.utils.formatEther(rawSupply));
+            
+            // Calculate Reserve = Price * Supply
+            const reserve = price * supply;
+            
+            // Update state
+            currentPrice = price;
+            currentSupply = supply;
+            currentReserve = reserve;
+            
+            // Update display
+            livePriceDisplay.textContent = '$' + price.toFixed(6);
+            priceSource.textContent = '(live from BSC)';
+            priceSource.style.color = '#00C896';
+            
+            console.log(`✅ Live Data: Price=$${price.toFixed(6)}, Supply=${supply.toFixed(2)}, Reserve=$${reserve.toFixed(2)}`);
+            
+            return { price, supply, reserve };
+            
         } catch (e) {
-            console.error('Error fetching price:', e);
+            console.error('❌ Error fetching live data:', e);
             priceSource.textContent = '(fallback)';
             priceSource.style.color = '#888';
+            
+            // Return fallback values
+            return {
+                price: currentPrice,
+                supply: currentSupply,
+                reserve: currentReserve
+            };
         }
-        return currentPrice;
     }
     
-    // ==================== SIMULATION ENGINE (EXACTLY AS REQUESTED) ====================
-    function runSimulation(ownerCount, startPrice) {
-        // ===== CRITICAL: Use startPrice as the initial price. No other variable overwrites it =====
+    // ==================== SIMULATION ENGINE ====================
+    function runSimulation(ownerCount, startPrice, startReserve, startSupply) {
+        // Use the exact values passed from the contract
         let price = startPrice;
-        let reserve = 53467.47;
-        let supply = 7912.5;
+        let reserve = startReserve;
+        let supply = startSupply;
         const steps = [];
         
         let totalOwners = 0;
@@ -852,7 +880,8 @@
         calcBtn.innerHTML = '<i class="fas fa-spinner spinner"></i> Running...';
         
         try {
-            const price = await fetchLivePrice();
+            // Get live data from contract
+            const liveData = await fetchLiveData();
             const ownerCount = parseInt(ownerInput.value) || 0;
             
             if (ownerCount === 0) {
@@ -863,7 +892,13 @@
                 return;
             }
             
-            const result = runSimulation(ownerCount, price);
+            // Pass live data to simulation
+            const result = runSimulation(
+                ownerCount,
+                liveData.price,
+                liveData.reserve,
+                liveData.supply
+            );
             displayResults(result);
             
         } catch (e) {
@@ -888,7 +923,7 @@
     refreshBtn.addEventListener('click', async function() {
         this.innerHTML = '<i class="fas fa-spinner spinner"></i>';
         this.disabled = true;
-        await fetchLivePrice();
+        await fetchLiveData();
         this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
         this.disabled = false;
         runSimulationFromInputs();
@@ -900,7 +935,7 @@
     
     // ==================== INIT ====================
     async function init() {
-        await fetchLivePrice();
+        await fetchLiveData();
         setTimeout(runSimulationFromInputs, 300);
     }
     
