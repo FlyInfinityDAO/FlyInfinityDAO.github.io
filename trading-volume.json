@@ -1,22 +1,22 @@
 {
-  "lastUpdated": "2026-07-26T18:58:44.709Z",
-  "totalVolume": 38791.61,
-  "dailyVolume": 175.53,
+  "lastUpdated": "2026-07-27T02:05:58.692Z",
+  "totalVolume": 38801.61,
+  "dailyVolume": 174.78,
   "scanInfo": {
     "method": "AUTOMATIC_DELTA_FORMULA_ONLY_INCREASE",
-    "daysSinceStart": 221,
+    "daysSinceStart": 222,
     "totalOwners": 81396,
     "newOwners": 499,
-    "reserve": 54765.82,
-    "deltaNewOwners": 2,
-    "deltaReserve": 609.1,
-    "deltaVolume": 565.1,
-    "volumeIncrease": 565.1,
+    "reserve": 54775.82,
+    "deltaNewOwners": 0,
+    "deltaReserve": 10,
+    "deltaVolume": 10,
+    "volumeIncrease": 10,
     "perOwnerIncoming": 22
   },
   "transactions": {
     "totalBuys": 0,
-    "totalSells": 565.1,
+    "totalSells": 10,
     "buyCount": 0,
     "sellCount": 0
   }
