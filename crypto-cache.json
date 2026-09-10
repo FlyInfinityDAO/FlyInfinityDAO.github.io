@@ -1,70 +1,70 @@
 {
-  "lastUpdated": "2026-09-10T10:12:55.385Z",
+  "lastUpdated": "2026-09-10T15:26:01.960Z",
   "source": "CoinGecko API + Backup Fallback",
   "currentPrices": {
     "bitcoin": {
-      "price": 77968,
-      "change24h": -1.2869791090049931,
+      "price": 77163,
+      "change24h": -1.217570824891891,
       "source": "api"
     },
     "ethereum": {
-      "price": 2468.9,
-      "change24h": -0.8860644948707672,
+      "price": 2435.8,
+      "change24h": -1.5148727604145076,
       "source": "api"
     },
     "binancecoin": {
-      "price": 717.51,
-      "change24h": -4.4220142064602745,
+      "price": 707,
+      "change24h": -3.893246481958075,
       "source": "api"
     },
     "ripple": {
-      "price": 1.38,
-      "change24h": -3.085443374147917,
+      "price": 1.36,
+      "change24h": -3.6475579474166233,
       "source": "api"
     },
     "solana": {
-      "price": 101.12,
-      "change24h": -2.5321117315850965,
+      "price": 99.8,
+      "change24h": -2.3350428742467737,
       "source": "api"
     },
     "cardano": {
-      "price": 0.213331,
-      "change24h": -2.2616209371958367,
+      "price": 0.20957,
+      "change24h": -1.9860117362903824,
       "source": "api"
     },
     "dogecoin": {
-      "price": 0.084998,
-      "change24h": -5.824120261544624,
+      "price": 0.083403,
+      "change24h": -5.523986118410387,
       "source": "api"
     },
     "tron": {
-      "price": 0.340233,
-      "change24h": 0.36061438565699205,
+      "price": 0.338819,
+      "change24h": 0.2108503249017087,
       "source": "api"
     },
     "zcash": {
-      "price": 1224.09,
-      "change24h": -1.1857774367549823,
+      "price": 1168.08,
+      "change24h": -6.669607634428805,
       "source": "api"
     },
     "stellar": {
-      "price": 0.179268,
-      "change24h": -4.398204634590668,
+      "price": 0.177277,
+      "change24h": -3.4768173024022313,
       "source": "api"
     },
     "pancakeswap": {
-      "price": 2.16,
-      "change24h": -5.113314086028764,
+      "price": 2.1,
+      "change24h": -6.116579281884083,
       "source": "api"
     },
     "toncoin": {
-      "price": 1.37,
-      "change24h": -1.9721036112205284,
+      "price": 1.35,
+      "change24h": -1.836604922820852,
       "source": "api"
     },
     "shibainu": {
-      "price": 0.00000515,
-      "change24h": -4.68633726286517,
+      "price": 0.00000506,
+      "change24h": -4.314848551611852,
       "source": "api"
     },
     "trump": {
